@@ -549,125 +549,127 @@
         </div>
     </div>
 
-    <!-- SCRIPT DE FIREBASE Y LÓGICA -->
-    <script type="module">
-        // Importar funciones de Firebase
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+<!-- SCRIPT DE FIREBASE Y LÓGICA (VERSIÓN CORREGIDA) -->
+<script type="module">
+    // Importar funciones de Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-        // Tu configuración personal de Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyBpvJVoiEe_ELuJGtDt7wfpkDSDK77gmqc",
-            authDomain: "secreto-matchbetting.firebaseapp.com",
-            projectId: "secreto-matchbetting",
-            storageBucket: "secreto-matchbetting.appspot.com",
-            messagingSenderId: "742895000020",
-            appId: "1:742895000020:web:6d5e5f43df2706e0f95e41",
-            measurementId: "G-E9R9X4D48D"
+    // Tu configuración personal de Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyBpvJVoiEe_ELuJGtDt7wfpkDSDK77gmqc",
+        authDomain: "secreto-matchbetting.firebaseapp.com",
+        projectId: "secreto-matchbetting",
+        storageBucket: "secreto-matchbetting.appspot.com",
+        messagingSenderId: "742895000020",
+        appId: "1:742895000020:web:6d5e5f43df2706e0f95e41",
+        measurementId: "G-E9R9X4D48D"
+    };
+
+    // Inicializar Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- LÓGICA DE LA UI (Elementos de la página) ---
+        const userStatusDiv = document.getElementById('user-status');
+        const mainCtaButton = document.getElementById('main-cta-button');
+        const navGuideLink = document.getElementById('nav-guide-link');
+        const modal = document.getElementById('auth-modal');
+        const closeModalButton = document.getElementById('close-modal-button');
+        const modalTitle = document.getElementById('modal-title');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const showRegisterLink = document.getElementById('show-register-form');
+        const showLoginLink = document.getElementById('show-login-form');
+        const authError = document.getElementById('auth-error');
+
+        const openModal = (view = 'login') => {
+            modal.classList.add('flex');
+            authError.textContent = '';
+            if (view === 'login') {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+                modalTitle.textContent = 'Iniciar Sesión';
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+                modalTitle.textContent = 'Crear Cuenta';
+            }
         };
 
-        // Inicializar Firebase
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+        const closeModal = () => modal.classList.remove('flex');
 
-        // Envolvemos todo en DOMContentLoaded para asegurar que la página ha cargado
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- LÓGICA DE LA UI (Elementos de la página) ---
-            const userStatusDiv = document.getElementById('user-status');
-            const mainCtaButton = document.getElementById('main-cta-button');
-            const modal = document.getElementById('auth-modal');
-            const closeModalButton = document.getElementById('close-modal-button');
-            const modalTitle = document.getElementById('modal-title');
-            const loginForm = document.getElementById('login-form');
-            const registerForm = document.getElementById('register-form');
-            const showRegisterLink = document.getElementById('show-register-form');
-            const showLoginLink = document.getElementById('show-login-form');
-            const authError = document.getElementById('auth-error');
+        closeModalButton.addEventListener('click', closeModal);
+        showRegisterLink.addEventListener('click', (e) => { e.preventDefault(); openModal('register'); });
+        showLoginLink.addEventListener('click', (e) => { e.preventDefault(); openModal('login'); });
 
-            const openModal = (view = 'login') => {
-                modal.classList.add('flex');
-                authError.textContent = '';
-                if (view === 'login') {
-                    loginForm.style.display = 'block';
-                    registerForm.style.display = 'none';
-                    modalTitle.textContent = 'Iniciar Sesión';
-                } else {
-                    loginForm.style.display = 'none';
-                    registerForm.style.display = 'block';
-                    modalTitle.textContent = 'Crear Cuenta';
-                }
-            };
-
-            const closeModal = () => modal.classList.remove('flex');
-
-            // Eventos para abrir/cerrar el modal
-            closeModalButton.addEventListener('click', closeModal);
-            showRegisterLink.addEventListener('click', (e) => { e.preventDefault(); openModal('register'); });
-            showLoginLink.addEventListener('click', (e) => { e.preventDefault(); openModal('login'); });
-            
-            if (mainCtaButton) {
-                mainCtaButton.addEventListener('click', () => {
-                    if (auth.currentUser) {
-                        window.location.href = '/guias.html';
-                    } else {
-                        openModal('login');
-                    }
-                });
+        // --- LÓGICA DE AUTENTICACIÓN ---
+        onAuthStateChanged(auth, user => {
+            userStatusDiv.innerHTML = '';
+            if (user) {
+                userStatusDiv.innerHTML = `
+                    <span class="text-sm text-gray-600 hidden sm:inline">${user.email}</span>
+                    <button id="logout-button" class="bg-gray-200 text-gray-700 px-3 py-1 rounded-md text-sm font-semibold hover:bg-gray-300">Salir</button>
+                `;
+                document.getElementById('logout-button').addEventListener('click', () => signOut(auth));
+            } else {
+                userStatusDiv.innerHTML = `
+                    <button id="nav-login-button" class="bg-blue-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-700">Acceder</button>
+                `;
+                // <-- CAMBIO CLAVE AQUÍ: Nos aseguramos de que el botón existe antes de añadirle el listener
+                document.getElementById('nav-login-button').addEventListener('click', () => openModal('login'));
             }
-
-            // --- LÓGICA DE AUTENTICACIÓN ---
-            onAuthStateChanged(auth, user => {
-                userStatusDiv.innerHTML = '';
-                if (user) {
-                    userStatusDiv.innerHTML = `
-                        <span class="text-sm text-gray-600 hidden sm:inline">${user.email}</span>
-                        <button id="logout-button" class="bg-gray-200 text-gray-700 px-3 py-1 rounded-md text-sm font-semibold hover:bg-gray-300">Salir</button>
-                    `;
-                    document.getElementById('logout-button').addEventListener('click', () => signOut(auth));
-                } else {
-                    userStatusDiv.innerHTML = `
-                        <button id="nav-login-button" class="bg-blue-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-700">Acceder</button>
-                    `;
-                    document.getElementById('nav-login-button').addEventListener('click', () => openModal('login'));
-                }
-            });
-
-            // Registro de nuevo usuario
-            registerForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                authError.textContent = '';
-                const name = document.getElementById('register-name').value;
-                const email = document.getElementById('register-email').value;
-                const password = document.getElementById('register-password').value;
-
-                try {
-                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                    await setDoc(doc(db, "users", userCredential.user.uid), { name: name });
-                    closeModal();
-                    window.location.href = '/guias.html';
-                } catch (error) {
-                    authError.textContent = 'Error: La contraseña debe tener 6+ caracteres o el email ya está en uso.';
-                }
-            });
-
-            // Inicio de sesión
-            loginForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                authError.textContent = '';
-                const email = document.getElementById('login-email').value;
-                const password = document.getElementById('login-password').value;
-
-                try {
-                    await signInWithEmailAndPassword(auth, email, password);
-                    closeModal();
-                    window.location.href = '/guias.html';
-                } catch (error) {
-                    authError.textContent = 'Error: Email o contraseña incorrectos.';
-                }
-            });
         });
-    </script>
+
+        // --- LÓGICA DE LOS BOTONES PROTEGIDOS ---
+        const handleProtectedLink = (event) => {
+            event.preventDefault();
+            const user = auth.currentUser;
+            if (user) {
+                window.location.href = '/guias.html';
+            } else {
+                openModal('signup');
+            }
+        };
+
+        // Asignamos la misma función a ambos botones
+        mainCtaButton.addEventListener('click', handleProtectedLink);
+        navGuideLink.addEventListener('click', handleProtectedLink);
+
+        // --- Lógica de los Formularios (sin cambios) ---
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            authError.textContent = '';
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                await setDoc(doc(db, "users", userCredential.user.uid), { name: name });
+                closeModal();
+                window.location.href = '/guias.html';
+            } catch (error) {
+                authError.textContent = 'Error: La contraseña debe tener 6+ caracteres o el email ya está en uso.';
+            }
+        });
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            authError.textContent = '';
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                closeModal();
+                window.location.href = '/guias.html';
+            } catch (error) {
+                authError.textContent = 'Error: Email o contraseña incorrectos.';
+            }
+        });
+    });
+</script>
 </body>
 </html>
