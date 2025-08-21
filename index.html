@@ -631,7 +631,8 @@
             if (user) {
                 window.location.href = '/guias.html';
             } else {
-                openModal('signup');
+                // Solo abrir el modal si el usuario ha hecho clic en un botón/enlace
+                openModal('login');  
             }
         };
 
