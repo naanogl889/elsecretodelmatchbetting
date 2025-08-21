@@ -26,7 +26,7 @@
               <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
               
               <!-- Enlace a Guías (PROTEGIDO) -->
-              <a href="/guias.html" class="js-login font-medium text-gray-700 hover:text-blue-600 transition">
+              <a href="/guias.html" data-netlify-identity-button class="font-medium text-gray-700 hover:text-blue-600 transition">
                   <span>Guía GRATIS</span>
               </a>
               
@@ -75,29 +75,5 @@
   
 <!-- Script de Netlify Identity -->
 <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-<!-- SCRIPT DE CONTROL PARA EL LOGIN -->
-<script>
-    // 1. Abrir el widget cuando se hace clic en un botón de login
-    const loginButtons = document.querySelectorAll('.js-login');
-    if (loginButtons) {
-        loginButtons.forEach(button => {
-            button.addEventListener('click', (event) => {
-                event.preventDefault();
-                netlifyIdentity.open();
-            });
-        });
-    }
-
-    // 2. Redirigir al usuario DESPUÉS de que inicie sesión con éxito
-    netlifyIdentity.on('login', user => {
-        netlifyIdentity.close();
-        // Solo redirigimos si NO estamos ya en la página de guías
-        if (window.location.pathname !== '/guias.html') {
-            window.location.href = '/guias.html';
-        }
-    });
-</script>
-
 </body>
 </html>
