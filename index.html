@@ -551,10 +551,12 @@
 
 <!-- SCRIPT DE FIREBASE Y LÓGICA (VERSIÓN CORREGIDA) -->
 <script type="module">
+    // Importar funciones de Firebase
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
     import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+    // Tu configuración personal de Firebase
     const firebaseConfig = {
         apiKey: "AIzaSyBpvJVoiEe_ELuJGtDt7wfpkDSDK77gmqc",
         authDomain: "secreto-matchbetting.firebaseapp.com",
@@ -565,11 +567,13 @@
         measurementId: "G-E9R9X4D48D"
     };
 
+    // Inicializar Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
 
     document.addEventListener('DOMContentLoaded', () => {
+        // --- LÓGICA DE LA UI (Elementos de la página) ---
         const userStatusDiv = document.getElementById('user-status');
         const mainCtaButton = document.getElementById('main-cta-button');
         const navGuideLink = document.getElementById('nav-guide-link');
@@ -602,7 +606,7 @@
         showRegisterLink.addEventListener('click', (e) => { e.preventDefault(); openModal('register'); });
         showLoginLink.addEventListener('click', (e) => { e.preventDefault(); openModal('login'); });
 
-        // --- ACTUALIZAR UI AL CAMBIAR EL ESTADO DE AUTENTICACIÓN ---
+        // --- LÓGICA DE AUTENTICACIÓN ---
         onAuthStateChanged(auth, user => {
             userStatusDiv.innerHTML = '';
             if (user) {
@@ -615,25 +619,27 @@
                 userStatusDiv.innerHTML = `
                     <button id="nav-login-button" class="bg-blue-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-700">Acceder</button>
                 `;
+                // <-- CAMBIO CLAVE AQUÍ: Nos aseguramos de que el botón existe antes de añadirle el listener
                 document.getElementById('nav-login-button').addEventListener('click', () => openModal('login'));
             }
         });
 
-        // --- BOTONES PROTEGIDOS ---
+        // --- LÓGICA DE LOS BOTONES PROTEGIDOS ---
         const handleProtectedLink = (event) => {
             event.preventDefault();
             const user = auth.currentUser;
             if (user) {
                 window.location.href = '/guias.html';
             } else {
-                openModal('login'); // solo abrir cuando haga clic sin estar logueado
+                openModal('signup');
             }
         };
 
+        // Asignamos la misma función a ambos botones
         mainCtaButton.addEventListener('click', handleProtectedLink);
         navGuideLink.addEventListener('click', handleProtectedLink);
 
-        // --- FORMULARIOS ---
+        // --- Lógica de los Formularios (sin cambios) ---
         registerForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             authError.textContent = '';
@@ -665,6 +671,3 @@
         });
     });
 </script>
-
-</body>
-</html>
