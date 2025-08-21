@@ -7,44 +7,32 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        .pulse-animation {
-            animation: pulse 2s infinite;
-        }
+        /* Ocultar el contenido hasta que se verifique el usuario */
+        body { visibility: hidden; }
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
-
-    <!-- ======================================================= -->
-      <!-- ======================================================= -->
-<!-- ========= BARRA DE NAVEGACIÓN DEFINITIVA ========= -->
-<!-- ======================================================= -->
-  <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
-      <div class="container mx-auto px-4 max-w-6xl">
-          <div class="flex justify-center items-center space-x-8">
-              <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
-              
-              <!-- Enlace a Guías (PROTEGIDO) -->
-              <a href="/guias.html" data-netlify-identity-button class="font-medium text-gray-700 hover:text-blue-600 transition">
-                  <span>Guía GRATIS</span>
-              </a>
-              
-              <!-- Enlace a Calculadora (PÚBLICO) -->
-              <a href="/calculadora.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Calculadora</a>
-              
-              <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
-                  <i class="fab fa-telegram mr-2"></i> Grupo Telegram
-              </a>
-              <a href="https://www.instagram.com/naanogl" target="_blank" class="font-medium text-gray-700 hover:text-pink-600 transition flex items-center">
-                  <i class="fab fa-instagram mr-2"></i> Instagram
-              </a>
-          </div>
-      </div>
-  </nav>
+  <!-- BARRA DE NAVEGACIÓN DINÁMICA -->
+    <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-8">
+                    <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
+                    <a href="/guias.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guía GRATIS</a>
+                    <a href="/calculadora.html" class="font-bold text-blue-600 transition">Calculadora</a>
+                    <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
+                        <i class="fab fa-telegram mr-2"></i> Telegram
+                    </a>
+                    <a href="https://www.instagram.com/naanogl" target="_blank" class="font-medium text-gray-700 hover:text-pink-600 transition flex items-center">
+                        <i class="fab fa-instagram mr-2"></i> Instagram
+                    </a>
+                </div>
+                <div id="user-status" class="flex items-center space-x-4">
+                    <!-- Contenido dinámico: Login/Logout -->
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <!-- ======================================================= -->
     <!-- ============ CONTENIDO MEJORADO DE LA GUÍA ============ -->
@@ -250,8 +238,48 @@
             </div>
         </div>
     </footer>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        
+        // Declaramos las variables UNA SOLA VEZ
+        const firebaseConfig = {
+            apiKey: "AIzaSyBpvJVoiEe_ELuJGtDt7wfpkDSDK77gmqc",
+            authDomain: "secreto-matchbetting.firebaseapp.com",
+            projectId: "secreto-matchbetting",
+            storageBucket: "secreto-matchbetting.appspot.com",
+            messagingSenderId: "742895000020",
+            appId: "1:742895000020:web:6d5e5f43df2706e0f95e41",
+            measurementId: "G-E9R9X4D48D"
+        };
 
-<!-- Script de Netlify Identity -->
-<script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Lógica de protección y UI
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                // 1. Si el usuario está logueado, muestra la página
+                document.body.style.visibility = 'visible';
+                
+                // 2. Rellena la información del usuario en la cabecera
+                const userStatusDiv = document.getElementById('user-status');
+                if (userStatusDiv) {
+                    userStatusDiv.innerHTML = `
+                        <span class="text-sm text-gray-600 hidden sm:inline">${user.email}</span>
+                        <button id="logout-button" class="bg-gray-200 text-gray-700 px-3 py-1 rounded-md text-sm font-semibold hover:bg-gray-300">Salir</button>
+                    `;
+                    document.getElementById('logout-button').addEventListener('click', () => {
+                        signOut(auth).then(() => {
+                            window.location.href = '/'; // Redirigir a la raíz
+                        });
+                    });
+                }
+            } else {
+                // 3. Si no está logueado, lo expulsa a la página de inicio
+                window.location.replace('/'); // Redirigir a la raíz
+            }
+        });
+    </script>
 </body>
 </html>

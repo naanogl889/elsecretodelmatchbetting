@@ -1,53 +1,42 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>El Secreto del Match Betting</title>
-  <meta name="description" content="Guía gratuita de Match Betting: gana dinero con promociones de casas de apuestas sin riesgo, paso a paso."/>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <style>
-    .hero-gradient { background: linear-gradient(135deg, #065f46 0%, #10b981 100%); }
-    .btn-primary { background-color: #f97316; transition: all 0.3s ease; }
-    .btn-primary:hover { background-color: #ea580c; transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
-    .btn-secondary { background-color: #22c55e; transition: all 0.3s ease; }
-    .feature-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
-    .step-number { width: 40px; height: 40px; display:flex; align-items:center; justify-content:center; border-radius:50%; background-color:#22c55e; color:#fff; font-weight:bold; margin-right:15px; }
-    .btn-secondary:hover { 
-        background-color: #16a34a; /* Un verde un poco más oscuro */
-        transform: translateY(-2px); 
-        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); 
-}
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>El Secreto del Match Betting</title>
+    <meta name="description" content="Guía gratuita de Match Betting: gana dinero con promociones de casas de apuestas sin riesgo, paso a paso."/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        /* Ocultar el modal por defecto */
+        #auth-modal { display: none; }
+        /* Mostrar el modal cuando tenga la clase 'flex' */
+        #auth-modal.flex { display: flex; }
+    </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-green-100">
-  <!-- Navigation -->
-  <!-- ======================================================= -->
-<!-- ========= BARRA DE NAVEGACIÓN DEFINITIVA ========= -->
-<!-- ======================================================= -->
-  <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
-      <div class="container mx-auto px-4 max-w-6xl">
-          <div class="flex justify-center items-center space-x-8">
-              <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
-              
-              <!-- Enlace a Guías (PROTEGIDO) -->
-              <a href="/guias.html" data-netlify-identity-button class="font-medium text-gray-700 hover:text-blue-600 transition">
-                  <span>Guía GRATIS</span>
-              </a>
-              
-              <!-- Enlace a Calculadora (PÚBLICO) -->
-              <a href="/calculadora.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Calculadora</a>
-              
-              <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
-                  <i class="fab fa-telegram mr-2"></i> Grupo Telegram
-              </a>
-              <a href="https://www.instagram.com/naanogl" target="_blank" class="font-medium text-gray-700 hover:text-pink-600 transition flex items-center">
-                  <i class="fab fa-instagram mr-2"></i> Instagram
-              </a>
-          </div>
-      </div>
-  </nav>
+
+    <!-- BARRA DE NAVEGACIÓN DINÁMICA -->
+    <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-8">
+                    <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
+                    <a href="/guias.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guía GRATIS</a>
+                    <a href="/calculadora.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Calculadora</a>
+                    <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
+                        <i class="fab fa-telegram mr-2"></i> Telegram
+                    </a>
+                    <a href="https://www.instagram.com/naanogl" target="_blank" class="font-medium text-gray-700 hover:text-pink-600 transition flex items-center">
+                        <i class="fab fa-instagram mr-2"></i> Instagram
+                    </a>
+                </div>
+                <div id="user-status" class="flex items-center space-x-4">
+                    <!-- Contenido dinámico: Login/Logout -->
+                </div>
+            </div>
+        </div>
+    </nav>
 
   <!-- Header -->
   <header id="top" class="bg-green-300 py-16">
@@ -512,8 +501,174 @@
       }
     });
   </script>
+<!-- FOOTER -->
+    <footer class="py-8 bg-gray-800 text-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <p class="text-gray-400">© 2025 El Secreto del Match Betting</p>
+        </div>
+        <div class="flex space-x-4">
+          <a href="https://www.instagram.com/naanogl" target="_blank" class="text-gray-400 hover:text-white transition" aria-label="Instagram">
+            <i class="fab fa-instagram text-xl"></i>
+          </a>
+          <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="text-gray-400 hover:text-white transition" aria-label="Grupo de Telegram">
+            <i class="fab fa-telegram text-xl"></i>
+          </a>
+          <a href="mailto:naanogl@gmail.com" class="text-gray-400 hover:text-white transition" aria-label="Contacto por correo">
+            <i class="fas fa-envelope text-xl"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-<!-- Script de Netlify Identity -->
-<script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <!-- MODAL DE AUTENTICACIÓN -->
+    <div id="auth-modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-2xl p-8 w-full max-w-md m-4">
+            <div class="flex justify-between items-center mb-6">
+                <h2 id="modal-title" class="text-2xl font-bold text-gray-800">Iniciar Sesión</h2>
+                <button id="close-modal-button" class="text-gray-500 hover:text-gray-800 text-3xl leading-none">&times;</button>
+            </div>
+            
+            <form id="login-form" class="space-y-4">
+                <input type="email" id="login-email" placeholder="Correo electrónico" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="password" id="login-password" placeholder="Contraseña" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">Iniciar Sesión</button>
+                <p class="text-sm text-center">¿No tienes cuenta? <a href="#" id="show-register-form" class="text-blue-600 hover:underline">Regístrate</a></p>
+            </form>
+
+            <form id="register-form" class="space-y-4 hidden">
+                <input type="text" id="register-name" placeholder="Nombre" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                <input type="email" id="register-email" placeholder="Correo electrónico" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                <input type="password" id="register-password" placeholder="Contraseña (mín. 6 caracteres)" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition">Crear Cuenta</button>
+                <p class="text-sm text-center">¿Ya tienes cuenta? <a href="#" id="show-login-form" class="text-blue-600 hover:underline">Inicia Sesión</a></p>
+            </form>
+            <p id="auth-error" class="text-red-500 text-sm mt-4 text-center h-4"></p>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE FIREBASE Y LÓGICA -->
+    <script type="module">
+        // Importar funciones de Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        // Tu configuración personal de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBpvJVoiEe_ELuJGtDt7wfpkDSDK77gmqc",
+            authDomain: "secreto-matchbetting.firebaseapp.com",
+            projectId: "secreto-matchbetting",
+            storageBucket: "secreto-matchbetting.appspot.com",
+            messagingSenderId: "742895000020",
+            appId: "1:742895000020:web:6d5e5f43df2706e0f95e41",
+            measurementId: "G-E9R9X4D48D"
+        };
+
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Envolvemos todo en DOMContentLoaded para asegurar que la página ha cargado
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- LÓGICA DE LA UI (Elementos de la página) ---
+            const userStatusDiv = document.getElementById('user-status');
+            const mainCtaButton = document.getElementById('main-cta-button');
+            const modal = document.getElementById('auth-modal');
+            const closeModalButton = document.getElementById('close-modal-button');
+            const modalTitle = document.getElementById('modal-title');
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            const showRegisterLink = document.getElementById('show-register-form');
+            const showLoginLink = document.getElementById('show-login-form');
+            const authError = document.getElementById('auth-error');
+
+            const openModal = (view = 'login') => {
+                modal.classList.add('flex');
+                authError.textContent = '';
+                if (view === 'login') {
+                    loginForm.style.display = 'block';
+                    registerForm.style.display = 'none';
+                    modalTitle.textContent = 'Iniciar Sesión';
+                } else {
+                    loginForm.style.display = 'none';
+                    registerForm.style.display = 'block';
+                    modalTitle.textContent = 'Crear Cuenta';
+                }
+            };
+
+            const closeModal = () => modal.classList.remove('flex');
+
+            // Eventos para abrir/cerrar el modal
+            closeModalButton.addEventListener('click', closeModal);
+            showRegisterLink.addEventListener('click', (e) => { e.preventDefault(); openModal('register'); });
+            showLoginLink.addEventListener('click', (e) => { e.preventDefault(); openModal('login'); });
+            
+            if (mainCtaButton) {
+                mainCtaButton.addEventListener('click', () => {
+                    if (auth.currentUser) {
+                        window.location.href = '/guias.html';
+                    } else {
+                        openModal('login');
+                    }
+                });
+            }
+
+            // --- LÓGICA DE AUTENTICACIÓN ---
+            onAuthStateChanged(auth, user => {
+                userStatusDiv.innerHTML = '';
+                if (user) {
+                    userStatusDiv.innerHTML = `
+                        <span class="text-sm text-gray-600 hidden sm:inline">${user.email}</span>
+                        <button id="logout-button" class="bg-gray-200 text-gray-700 px-3 py-1 rounded-md text-sm font-semibold hover:bg-gray-300">Salir</button>
+                    `;
+                    document.getElementById('logout-button').addEventListener('click', () => signOut(auth));
+                } else {
+                    userStatusDiv.innerHTML = `
+                        <button id="nav-login-button" class="bg-blue-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-700">Acceder</button>
+                    `;
+                    document.getElementById('nav-login-button').addEventListener('click', () => openModal('login'));
+                }
+            });
+
+            // Registro de nuevo usuario
+            registerForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                authError.textContent = '';
+                const name = document.getElementById('register-name').value;
+                const email = document.getElementById('register-email').value;
+                const password = document.getElementById('register-password').value;
+
+                try {
+                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                    await setDoc(doc(db, "users", userCredential.user.uid), { name: name });
+                    closeModal();
+                    window.location.href = '/guias.html';
+                } catch (error) {
+                    authError.textContent = 'Error: La contraseña debe tener 6+ caracteres o el email ya está en uso.';
+                }
+            });
+
+            // Inicio de sesión
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                authError.textContent = '';
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+
+                try {
+                    await signInWithEmailAndPassword(auth, email, password);
+                    closeModal();
+                    window.location.href = '/guias.html';
+                } catch (error) {
+                    authError.textContent = 'Error: Email o contraseña incorrectos.';
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
