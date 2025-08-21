@@ -23,27 +23,31 @@
 </head>
 <body class="font-sans antialiased text-gray-800 bg-green-100">
   <!-- Navigation -->
+  <!-- ======================================================= -->
+<!-- ========= BARRA DE NAVEGACIÓN DEFINITIVA ========= -->
+<!-- ======================================================= -->
   <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
-    <div class="container mx-auto px-4 max-w-6xl">
-        <div class="flex justify-center items-center space-x-8">
-            <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
-            
-            <!-- Enlace a Guías (PROTEGIDO) -->
-            <a href="/guias.html" class="js-login font-medium text-gray-700 hover:text-blue-600 transition">
-                <span>Guía GRATIS</span>
-            </a>
-            <!-- Enlace a Calculadora (PÚBLICO) -->
-            <a href="/calculadora.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Calculadora</a>
-            
-            <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
-                <i class="fab fa-telegram mr-2"></i> Grupo Telegram
-            </a>
-            <a href="https://www.instagram.com/naanogl" target="_blank" class="font-medium text-gray-700 hover:text-pink-600 transition flex items-center">
-                <i class="fab fa-instagram mr-2"></i> Instagram
-            </a>
-        </div>
-    </div>
-</nav>
+      <div class="container mx-auto px-4 max-w-6xl">
+          <div class="flex justify-center items-center space-x-8">
+              <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
+              
+              <!-- Enlace a Guías (PROTEGIDO) -->
+              <a href="/guias.html" class="js-login font-medium text-gray-700 hover:text-blue-600 transition">
+                  <span>Guía GRATIS</span>
+              </a>
+              
+              <!-- Enlace a Calculadora (PÚBLICO) -->
+              <a href="/calculadora.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Calculadora</a>
+              
+              <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
+                  <i class="fab fa-telegram mr-2"></i> Grupo Telegram
+              </a>
+              <a href="https://www.instagram.com/naanogl" target="_blank" class="font-medium text-gray-700 hover:text-pink-600 transition flex items-center">
+                  <i class="fab fa-instagram mr-2"></i> Instagram
+              </a>
+          </div>
+      </div>
+  </nav>
 
   <!-- Header -->
   <header id="top" class="bg-green-300 py-16">
@@ -55,13 +59,14 @@
           <p class="text-sm text-gray-800 mb-4 max-w-3xl mx-auto">Para que me creas, ahora te voy a enseñar como ganar 30€ en apenas 20 minutos de trabajo total. He creado una guía gratuita para que empieces en este mundillo y veas como de verdad se le puede sacar dinero a las casas de apuestas. No es ninguna mierda de tipsters ni nada, es un método para convertir las promociones en dinero real que puedes retirar a tu cuenta. Te dejo aquí abajo la guía gratuita para que le eches un vistazo. Si tienes cualquier duda puedes preguntarme por instagram.</p>
           <p class="text-lg mb-8 max-w-3xl mx-auto text-black">Con matemáticas simples, en solo 20 minutos puedes ganar tus primeros 30€.</p>
 
-          <!-- BOTÓN DE ACCESO / LOGIN (Estructura Corregida) -->
+          <!-- BOTÓN DE ACCESO / LOGIN -->
           <a href="/guias.html" class="js-login bg-orange-500 text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:bg-orange-600 transition transform hover:scale-105 inline-block cursor-pointer">
-            <span>¡Gana los primeros 30€!</span>
+              <span>¡Gana los primeros 30€!</span>
           </a>
 
           <!-- Texto de ayuda -->
           <p class="text-xs text-gray-700 mt-2 opacity-75">(Si el botón no responde, por favor, refresca la página)</p>
+
 
         </div>
       </div>
@@ -508,6 +513,31 @@
     });
   </script>
 
+<!-- Script de Netlify Identity -->
+<script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+<!-- SCRIPT DE CONTROL PARA EL LOGIN -->
+<script>
+    // 1. Abrir el widget cuando se hace clic en un botón de login
+    const loginButtons = document.querySelectorAll('.js-login');
+    if (loginButtons) {
+        loginButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                netlifyIdentity.open();
+            });
+        });
+    }
+
+    // 2. Redirigir al usuario DESPUÉS de que inicie sesión con éxito
+    netlifyIdentity.on('login', user => {
+        netlifyIdentity.close();
+        // Solo redirigimos si NO estamos ya en la página de guías
+        if (window.location.pathname !== '/guias.html') {
+            window.location.href = '/guias.html';
+        }
+    });
+</script>
 
 </body>
 </html>

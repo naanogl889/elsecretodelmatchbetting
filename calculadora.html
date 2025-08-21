@@ -18,28 +18,29 @@
 <body class="font-sans antialiased text-gray-800 bg-green-100">
 
   <!-- ======================================================= -->
-  <!-- ============ NAVEGACIÓN CORREGIDA ============ -->
-  <!-- ======================================================= -->
+<!-- ========= BARRA DE NAVEGACIÓN DEFINITIVA ========= -->
+<!-- ======================================================= -->
   <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
-    <div class="container mx-auto px-4 max-w-6xl">
-        <div class="flex justify-center items-center space-x-8">
-            <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
-            
-            <!-- Enlace a Guías (PROTEGIDO) -->
-            <a href="/guias.html" class="js-login font-medium text-gray-700 hover:text-blue-600 transition">
-                <span>Guía GRATIS</span>
-            </a>
-            <!-- Enlace a Calculadora (PÚBLICO) -->
-            <a href="/calculadora.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Calculadora</a>
-            
-            <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
-                <i class="fab fa-telegram mr-2"></i> Grupo Telegram
-            </a>
-            <a href="https://www.instagram.com/naanogl" target="_blank" class="font-medium text-gray-700 hover:text-pink-600 transition flex items-center">
-                <i class="fab fa-instagram mr-2"></i> Instagram
-            </a>
-        </div>
-    </div>
+      <div class="container mx-auto px-4 max-w-6xl">
+          <div class="flex justify-center items-center space-x-8">
+              <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
+              
+              <!-- Enlace a Guías (PROTEGIDO) -->
+              <a href="/guias.html" class="js-login font-medium text-gray-700 hover:text-blue-600 transition">
+                  <span>Guía GRATIS</span>
+              </a>
+              
+              <!-- Enlace a Calculadora (PÚBLICO) -->
+              <a href="/calculadora.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Calculadora</a>
+              
+              <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
+                  <i class="fab fa-telegram mr-2"></i> Grupo Telegram
+              </a>
+              <a href="https://www.instagram.com/naanogl" target="_blank" class="font-medium text-gray-700 hover:text-pink-600 transition flex items-center">
+                  <i class="fab fa-instagram mr-2"></i> Instagram
+              </a>
+          </div>
+      </div>
   </nav>
 
   <main class="container mx-auto px-4 py-8 sm:py-16">
@@ -72,6 +73,31 @@
     </div>
   </footer>
   
+<!-- Script de Netlify Identity -->
+<script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+<!-- SCRIPT DE CONTROL PARA EL LOGIN -->
+<script>
+    // 1. Abrir el widget cuando se hace clic en un botón de login
+    const loginButtons = document.querySelectorAll('.js-login');
+    if (loginButtons) {
+        loginButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                netlifyIdentity.open();
+            });
+        });
+    }
+
+    // 2. Redirigir al usuario DESPUÉS de que inicie sesión con éxito
+    netlifyIdentity.on('login', user => {
+        netlifyIdentity.close();
+        // Solo redirigimos si NO estamos ya en la página de guías
+        if (window.location.pathname !== '/guias.html') {
+            window.location.href = '/guias.html';
+        }
+    });
+</script>
 
 </body>
 </html>
