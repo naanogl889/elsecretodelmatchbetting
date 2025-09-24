@@ -432,7 +432,8 @@
   </footer>
 
 <!-- MODAL DE AUTENTICACIÓN -->
-    <div id="auth-modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+    <div id="auth-modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 items-center justify-center z-50">
+
         <div class="bg-white rounded-lg shadow-2xl p-8 w-full max-w-md m-4">
             <div class="flex justify-between items-center mb-6">
                 <h2 id="modal-title" class="text-2xl font-bold text-gray-800">Iniciar Sesión</h2>
@@ -440,7 +441,7 @@
             </div>
             <form id="login-form" class="space-y-4">
                 <input type="email" id="login-email" placeholder="Correo electrónico" required class="w-full px-4 py-2 border rounded-lg">
-                <input type="password" id="login-password" placeholder="Contraseña" required class="w-full px-4 py-2 border rounded-lg">
+                <input type="password" id="register-password" required minlength="8" placeholder="Mínimo 8 caracteres">
                 <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700">Iniciar Sesión</button>
                 <p class="text-sm text-center">¿No tienes cuenta? <a href="#" id="show-register-form" class="text-blue-600 hover:underline">Regístrate</a></p>
             </form>
@@ -539,33 +540,71 @@
 
             registerForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                authError.textContent = '';
-                const name = document.getElementById('register-name').value;
-                const email = document.getElementById('register-email').value;
-                const password = document.getElementById('register-password').value;
-                try {
-                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                    await setDoc(doc(db, "users", userCredential.user.uid), { name: name });
-                    closeModal();
-                    window.location.href = '/guias.html';
-                } catch (error) {
-                    authError.textContent = 'Error: La contraseña debe tener 6+ caracteres o el email ya está en uso.';
-                }
-            });
 
-            loginForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
+                // Limpia mensajes
                 authError.textContent = '';
-                const email = document.getElementById('login-email').value;
-                const password = document.getElementById('login-password').value;
-                try {
-                    await signInWithEmailAndPassword(auth, email, password);
-                    closeModal();
-                    window.location.href = '/guias.html';
-                } catch (error) {
-                    authError.textContent = 'Error: Email o contraseña incorrectos.';
+                authError.classList.remove('text-red-500');
+                authError.classList.remove('text-green-600');
+
+                const name = document.getElementById('register-name')?.value?.trim() || '';
+                const email = document.getElementById('register-email')?.value?.trim() || '';
+                const password = document.getElementById('register-password')?.value || '';
+
+                // Validación previa (evita errores feos de Firebase)
+                if (!email) {
+                  authError.textContent = 'Introduce un email válido.';
+                  authError.classList.add('text-red-500');
+                  return;
                 }
-            });
+                if (password.length < 8) {
+                  authError.textContent = 'La contraseña debe tener al menos 8 caracteres.';
+                  authError.classList.add('text-red-500');
+                  return;
+                }
+
+                try {
+                  const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+                  // Guarda nombre (opcional, si usas Firestore)
+                  try {
+                    await setDoc(doc(db, "users", userCredential.user.uid), { name });
+                  } catch (_) {}
+
+                  // ✅ Éxito: no redirigimos. Mostramos mensaje bonito y cambiamos a modo "login"
+                  authError.textContent = 'Cuenta creada con éxito. Ahora inicia sesión para acceder.';
+                  authError.classList.add('text-green-600');
+
+                  // Cambia el modal a vista de login (tu openModal ya alterna vistas)
+                  if (typeof openModal === 'function') openModal('login');
+
+                  // Pre-rellena email en el formulario de login (comodidad)
+                  const loginEmailInput = document.getElementById('login-email');
+                  if (loginEmailInput) loginEmailInput.value = email;
+
+                  // Limpia la contraseña del registro
+                  const regPass = document.getElementById('register-password');
+                  if (regPass) regPass.value = '';
+
+                } catch (error) {
+                  const code = error.code || '';
+                  authError.classList.add('text-red-500');
+
+                  if (code === 'auth/email-already-in-use') {
+                    authError.textContent = 'Ese email ya tiene cuenta. Cambiando a “Iniciar sesión”…';
+                    if (typeof openModal === 'function') openModal('login');
+                    const loginEmailInput = document.getElementById('login-email');
+                    if (loginEmailInput) loginEmailInput.value = email;
+                  } else if (code === 'auth/invalid-email') {
+                    authError.textContent = 'Email no válido.';
+                  } else if (code === 'auth/weak-password') {
+                    authError.textContent = 'La contraseña es débil. Usa 8+ caracteres.';
+                  } else {
+                    authError.textContent = 'Ha ocurrido un error. Inténtalo de nuevo.';
+                    console.error(error);
+                  }
+                }
+              });
+
         });
     </script>
 </body>
