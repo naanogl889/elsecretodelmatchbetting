@@ -409,7 +409,7 @@
           <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="text-gray-400 hover:text-white transition" aria-label="Grupo de Telegram">
             <i class="fab fa-telegram text-xl"></i>
           </a>
-          <a href="mailto:naanogl@gmail.com" class="text-gray-400 hover:text-white transition" aria-label="Contacto por correo">
+          <a href="mailto:elsecretodelmatchbetting@gmail.com" class="text-gray-400 hover:text-white transition" aria-label="Contacto por correo">
             <i class="fas fa-envelope text-xl"></i>
           </a>
         </div>
@@ -442,7 +442,7 @@
                 <p class="text-sm text-center">¿Ya tienes cuenta? <a href="#" id="show-login-form" class="text-blue-600 hover:underline">Inicia Sesión</a></p>
             </form>
 
-            <p id="auth-error" class="text-red-500 text-sm mt-4 text-center h-4"></p>
+            <p id="auth-error" class="text-red-500 text-sm mt-4 text-center"></p>
         </div>
     </div>
 
@@ -560,11 +560,13 @@
                   // Guarda nombre (opcional) en Firestore
                   try { await setDoc(doc(db, "users", userCredential.user.uid), { name }); } catch (_) {}
 
-                  // Éxito → mensaje y cambio a login
+                  // Éxito → primero cambiamos a login...
+                  openModal('login');
+
+                  // ...y AHORA mostramos el mensaje en verde (para que no lo borre openModal)
+                  authError.classList.remove('text-red-500','text-green-600'); // por si acaso
                   authError.textContent = 'Cuenta creada con éxito. Ahora inicia sesión para acceder.';
                   authError.classList.add('text-green-600');
-
-                  openModal('login');
 
                   // Pre-rellenar email en login
                   const loginEmailInput = document.getElementById('login-email');
