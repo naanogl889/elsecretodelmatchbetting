@@ -560,6 +560,13 @@
                   // Guarda nombre (opcional) en Firestore
                   try { await setDoc(doc(db, "users", userCredential.user.uid), { name }); } catch (_) {}
 
+                  // Enviar email a Brevo (añadir a lista de contactos)
+                  fetch('/.netlify/functions/subscribe-brevo', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, name })
+                  }).catch(() => {});
+
                   // Éxito → primero cambiamos a login...
                   openModal('login');
 
