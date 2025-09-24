@@ -22,7 +22,7 @@
             <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-8">
                     <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
-                    <a href="/guias.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guía GRATIS</a>
+                    <a id="nav-guide-link" href="/guias.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guía GRATIS</a>
                     <a href="/calculadora.html" class="font-bold text-blue-600 transition">Calculadora</a>
                     <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
                         <i class="fab fa-telegram mr-2"></i> Telegram
@@ -49,8 +49,9 @@
           <p class="text-lg mb-8 max-w-3xl mx-auto text-black">Con matemáticas simples, en solo 20 minutos puedes ganar tus primeros 30€.</p>
 
           <!-- BOTÓN DE ACCESO / LOGIN -->
-          <a href="/guias.html" data-netlify-identity-button class="bg-orange-500 text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:bg-orange-600 transition transform hover:scale-105 inline-block cursor-pointer">
-              <span>¡Gana los primeros 30€!</span>
+          <a id="main-cta-button" href="/guias.html"
+            class="bg-orange-500 text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:bg-orange-600 transition transform hover:scale-105 inline-block cursor-pointer">
+            <span>¡Gana los primeros 30€!</span>
           </a>
 
           <!-- Texto de ayuda -->
@@ -408,99 +409,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="py-8 bg-gray-800 text-white">
-    <div class="container mx-auto px-4 max-w-6xl">
-      <div class="flex flex-col md:flex-row justify-between items-center">
-        <div class="mb-4 md:mb-0">
-          <p class="text-gray-400">© 2025 El Secreto del Match Betting</p>
-        </div>
-        <div class="flex space-x-4">
-          <a href="https://www.instagram.com/naanogl" target="_blank" class="text-gray-400 hover:text-white transition" aria-label="Instagram">
-            <i class="fab fa-instagram text-xl"></i>
-          </a>
-          <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="text-gray-400 hover:text-white transition" aria-label="Grupo de Telegram">
-            <i class="fab fa-telegram text-xl"></i>
-          </a>
-          <a href="mailto:naanogl@gmail.com" class="text-gray-400 hover:text-white transition" aria-label="Contacto por correo">
-            <i class="fas fa-envelope text-xl"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // ✉️ URL del Web App de Google Apps Script
-    const FORM_URL = 'https://script.google.com/macros/s/AKfycbx_OQOoZnmQ1xgg1A4U4JK_Pp-3EdhAueMtqlR9WM5gqdz1KkHB9_4khh_CicIkQY6I/exec';
-
-
-    // Validación y envío
-    const emailInput = document.getElementById('email');
-    const nameInput = document.getElementById('name');
-    const consentInput = document.getElementById('consent');
-    const emailError = document.getElementById('emailError');
-    const submitBtn = document.getElementById('submitBtn');
-    const form = document.getElementById('leadForm');
-    const msg = document.getElementById('formMsg');
-
-    function validateForm() {
-      const email = emailInput.value.trim();
-      const consent = consentInput.checked;
-      const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      if (!email) { emailError.classList.add('hidden'); submitBtn.disabled = true; return; }
-      if (!isValid) { emailError.classList.remove('hidden'); submitBtn.disabled = true; return; }
-      emailError.classList.add('hidden');
-      submitBtn.disabled = !consent;
-    }
-
-    emailInput.addEventListener('input', validateForm);
-    nameInput.addEventListener('input', validateForm);
-    consentInput.addEventListener('change', validateForm);
-
-    [emailInput, nameInput].forEach(input => {
-      input.addEventListener('focus', () => { input.parentElement.querySelector('label').classList.add('text-blue-600'); });
-      input.addEventListener('blur', () => { input.parentElement.querySelector('label').classList.remove('text-blue-600'); });
-    });
-
-    function setMsg(text, ok=true) {
-      msg.textContent = text;
-      msg.className = 'text-sm mt-3 ' + (ok ? 'text-green-700' : 'text-red-600');
-    }
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      // Honeypot (anti-spam)
-      const hp = new FormData(form).get('website');
-      if (hp) return;
-
-      submitBtn.disabled = true;
-      const original = submitBtn.innerHTML;
-      submitBtn.textContent = 'Enviando...';
-
-      try {
-        const data = new FormData(form);
-        const res = await fetch(FORM_URL, { method: 'POST', body: data });
-        const json = await res.json().catch(() => ({}));
-
-        // ✨ CÓDIGO MEJORADO
-      if (json.ok) {
-        // Ocultamos el contenedor del formulario
-        document.getElementById('leadFormContainer').classList.add('hidden');
-        // Mostramos el mensaje de éxito
-        document.getElementById('successMessage').classList.remove('hidden');
-      } else {
-        setMsg('Hubo un problema enviando el correo. Inténtalo de nuevo en unos minutos.', false);
-      }
-      } catch (err) {
-        setMsg('Error de conexión. Inténtalo más tarde.', false);
-      } finally {
-        submitBtn.innerHTML = original;
-        submitBtn.disabled = true; // se vuelve a deshabilitar hasta nueva validación
-      }
-    });
-  </script>
 <!-- FOOTER -->
     <footer class="py-8 bg-gray-800 text-white">
     <div class="container mx-auto px-4 max-w-6xl">
