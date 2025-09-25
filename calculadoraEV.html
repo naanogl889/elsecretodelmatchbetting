@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora EV Matchbetting</title>
+  <style>
+    body {font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif; background:#f9fafb; margin:0; padding:20px;}
+    h1 {text-align:center; margin-bottom:20px;}
+    .ev-wrap{max-width:720px;margin:0 auto;padding:16px;}
+    .ev-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+    .ev-label{font-size:14px;font-weight:600;color:#444;display:block}
+    .ev-input{width:100%;padding:10px;border-radius:12px;border:1px solid #d9d9d9}
+    .ev-card{border:1px solid #e5e7eb;border-radius:16px;padding:16px;background:#ffffff;transition:background 0.3s,border 0.3s}
+    .ev-card.positive{background:#ecfdf5;border-color:#a7f3d0}
+    .ev-card.negative{background:#fef2f2;border-color:#fecaca}
+    .ev-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+    .ev-badge{font-size:12px;border:1px solid #d1d5db;border-radius:999px;padding:2px 8px;color:#374151}
+    .ev-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:10px}
+    .ev-big{border:1px solid #e5e7eb;border-radius:12px;padding:10px;text-align:center;background:#fff}
+    .ev-sub{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#6b7280}
+    .ev-bigv{font-size:24px;font-weight:800}
+    .ev-small{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px;color:#374151}
+    @media(max-width:640px){.ev-grid{grid-template-columns:1fr}.ev-stats,.ev-small{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+  <h1>Calculadora EV (Cash Boost)</h1>
+
+  <div id="ev-calc" class="ev-wrap">
+    <div class="ev-grid">
+      <label class="ev-label">Cuota SÍ (sin boost)
+        <input id="ev-yes" class="ev-input" placeholder="1.44">
+      </label>
+      <label class="ev-label">Cuota NO (sin boost)
+        <input id="ev-no" class="ev-input" placeholder="2.55">
+      </label>
+      <label class="ev-label">Cuota aumentada (cash)
+        <input id="ev-boost" class="ev-input" placeholder="2.00">
+      </label>
+      <label class="ev-label">Stake (€)
+        <input id="ev-stake" class="ev-input" placeholder="100">
+      </label>
+    </div>
+
+    <div id="ev-card" class="ev-card">
+      <div class="ev-card-top">
+        <h3>Valor esperado</h3>
+        <span id="ev-badge" class="ev-badge">-EV</span>
+      </div>
+      <div class="ev-stats">
+        <div class="ev-big">
+          <div class="ev-sub">EV total</div>
+          <div id="ev-total" class="ev-bigv">€0,00</div>
+        </div>
+        <div class="ev-big">
+          <div class="ev-sub">EV por €</div>
+          <div id="ev-per" class="ev-bigv">0,0000 €</div>
+        </div>
+        <div class="ev-big">
+          <div class="ev-sub">ROI</div>
+          <div id="ev-roi" class="ev-bigv">0,00%</div>
+        </div>
+      </div>
+      <div class="ev-small">
+        <div>
+          <div class="ev-sub">Prob. justa (SÍ)</div>
+          <div id="ev-pyes">0,0000</div>
+        </div>
+        <div>
+          <div class="ev-sub">Cuota justa</div>
+          <div id="ev-breakeven">0,000</div>
+        </div>
+        <div>
+          <div class="ev-sub">Modelo</div>
+          <div>Cash boost</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      function toN(v){const n=Number(String(v).trim().replace(",", "."));return Number.isFinite(n)?n:null}
+      function fairP(yes,no){const qy=1/yes, qn=1/no, s=qy+qn; return qy/s}
+      function fmt(n,d){n=Number.isFinite(n)?n:0; return n.toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d})}
+      function money(n){n=Number.isFinite(n)?n:0; return n.toLocaleString(undefined,{style:"currency",currency:"EUR"})}
+
+      const elYes=document.getElementById('ev-yes');
+      const elNo=document.getElementById('ev-no');
+      const elBoost=document.getElementById('ev-boost');
+      const elStake=document.getElementById('ev-stake');
+      const card=document.getElementById('ev-card');
+      const badge=document.getElementById('ev-badge');
+      const vTotal=document.getElementById('ev-total');
+      const vPer=document.getElementById('ev-per');
+      const vRoi=document.getElementById('ev-roi');
+      const vPYes=document.getElementById('ev-pyes');
+      const vBreak=document.getElementById('ev-breakeven');
+
+      function update(){
+        const yes=toN(elYes.value), no=toN(elNo.value), boost=toN(elBoost.value);
+        const stake=Math.max(0, toN(elStake.value)||0);
+        const valid = yes && no && boost && yes>1 && no>1 && boost>1;
+        if(!valid){
+          card.classList.remove('positive','negative');
+          vTotal.textContent=money(0); vPer.textContent=fmt(0,4)+" €";
+          vRoi.textContent=fmt(0,2)+"%"; vPYes.textContent=fmt(0,4);
+          vBreak.textContent=fmt(0,3); badge.textContent='-EV';
+          return;
+        }
+        const pYes=fairP(yes,no);
+        const breakeven=1/pYes;
+        const evPerEuro=pYes*boost - 1;
+        const evTotal=evPerEuro*stake;
+        const roi=evPerEuro*100;
+
+        vTotal.textContent=money(evTotal);
+        vPer.textContent=fmt(evPerEuro,4)+" €";
+        vRoi.textContent=fmt(roi,2)+"%";
+        vPYes.textContent=fmt(pYes,4);
+        vBreak.textContent=fmt(breakeven,3);
+
+        const positive = evPerEuro>0;
+        card.classList.toggle('positive', positive);
+        card.classList.toggle('negative', !positive);
+        badge.textContent = positive? '+EV' : '-EV';
+      }
+
+      [elYes,elNo,elBoost,elStake].forEach(el=>el.addEventListener('input',update));
+      elYes.value='1.44'; elNo.value='2.55'; elBoost.value='2.00'; elStake.value='100';
+      update();
+    })();
+  </script>
+</body>
+</html>
