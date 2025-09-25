@@ -40,13 +40,13 @@
       <!-- Inputs fijos (según tu requerimiento) -->
       <section class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         <label class="block">
-          <span class="block text-sm font-medium text-gray-600 mb-1">Cuota SÍ (casa, sin boost)</span>
+          <span class="block text-sm font-medium text-gray-600 mb-1">Cuota SÍ real (max cuota encontrada)</span>
           <input id="odds-yes" inputmode="decimal" placeholder="1.50"
                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
           <div id="yes-note" class="text-[11px] text-gray-500 mt-1 hidden">En modo exchange NO se usa.</div>
         </label>
         <label class="block">
-          <span class="block text-sm font-medium text-gray-600 mb-1">Cuota aumentada (cash)</span>
+          <span class="block text-sm font-medium text-gray-600 mb-1">Cuota SÍ aumentada  </span>
           <input id="odds-boost" inputmode="decimal" placeholder="2.00"
                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
         </label>
@@ -82,7 +82,7 @@
         <!-- Exchange -->
         <label id="wrap-no-ex" class="hidden block">
           <span class="block text-sm font-medium text-gray-600 mb-1">Cuota Exchange (misma selección)</span>
-          <input id="odds-no-ex" inputmode="decimal" placeholder="1.90"
+          <input id="odds-no-ex" inputmode="decimal" placeholder="1.52"
                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
           <div class="text-[11px] text-gray-500 mt-1">
             Comisión exchange (informativa):
