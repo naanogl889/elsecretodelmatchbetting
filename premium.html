@@ -87,6 +87,43 @@
       </div>
     </div>
   </footer>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBpvJVoiEe_ELuJGtDt7wfpkDSDK77gmqc",
+    authDomain: "secreto-matchbetting.firebaseapp.com",
+    projectId: "secreto-matchbetting",
+    storageBucket: "secreto-matchbetting.appspot.com",
+    messagingSenderId: "742895000020",
+    appId: "1:742895000020:web:6d5e5f43df2706e0f95e41",
+    measurementId: "G-E9R9X4D48D"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const userStatusDiv = document.getElementById('user-status');
+
+  onAuthStateChanged(auth, user => {
+    userStatusDiv.innerHTML = '';
+    if (user) {
+      userStatusDiv.innerHTML = `
+        <span class="text-sm text-gray-600 hidden sm:inline">${user.email}</span>
+        <button id="logout-button" class="bg-gray-200 text-gray-700 px-3 py-1 rounded-md text-sm font-semibold hover:bg-gray-300">Salir</button>
+      `;
+      document.getElementById('logout-button').addEventListener('click', () => signOut(auth));
+    } else {
+      userStatusDiv.innerHTML = `
+        <button id="nav-login-button" class="bg-blue-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-700">Acceder</button>
+      `;
+      document.getElementById('nav-login-button').addEventListener('click', () => {
+        window.location.href = "/index.html"; // o abrir modal, según prefieras
+      });
+    }
+  });
+</script>
 
 </body>
 </html>
