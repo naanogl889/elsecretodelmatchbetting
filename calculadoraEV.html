@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Calculadora EV | El Secreto del Match Betting</title>
-  <meta name="description" content="Calculadora EV de Cash Boost con tres modos: comparación directa con exchange, NO de la misma casa y sin NO (comisión asumida)."/>
+  <meta name="description" content="Calculadora EV de Cash Boost con tres modos: comparación con exchange (con comisión), NO de la misma casa y sin NO (comisión asumida)."/>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
@@ -37,7 +37,7 @@
     <div class="bg-white p-5 sm:p-8 rounded-xl shadow-lg">
       <h1 class="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800">Calculadora EV (Valor Esperado)</h1>
 
-      <!-- Inputs fijos (según tu requerimiento) -->
+      <!-- Inputs fijos -->
       <section class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         <label class="block">
           <span class="block text-sm font-medium text-gray-600 mb-1">Cuota SÍ real (max cuota encontrada)</span>
@@ -46,7 +46,7 @@
           <div id="yes-note" class="text-[11px] text-gray-500 mt-1 hidden">En modo exchange NO se usa.</div>
         </label>
         <label class="block">
-          <span class="block text-sm font-medium text-gray-600 mb-1">Cuota SÍ aumentada  </span>
+          <span class="block text-sm font-medium text-gray-600 mb-1">Cuota SÍ aumentada</span>
           <input id="odds-boost" inputmode="decimal" placeholder="2.00"
                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
         </label>
@@ -58,14 +58,14 @@
           <input type="radio" name="mode" id="mode-ex" class="h-4 w-4 text-blue-600" />
           <div>
             <div class="text-sm font-semibold">Comparar con exchange (misma selección)</div>
-            <div class="text-xs text-gray-600">EV% = (Boost / Exchange − 1) × 100. No usa “SÍ”.</div>
+            <div class="text-xs text-gray-600">EV% = (Boost / Exchange_neto − 1) × 100. No usa “SÍ”.</div>
           </div>
         </label>
         <label class="flex items-center gap-2 border rounded-lg p-3">
           <input type="radio" name="mode" id="mode-book" class="h-4 w-4 text-blue-600" />
           <div>
             <div class="text-sm font-semibold">Usar mercado NO (misma casa)</div>
-            <div class="text-xs text-gray-600">Calcula comisión real de la casa y calcula EV.</div>
+            <div class="text-xs text-gray-600">Desvigoriza con SÍ/NO (comisión exacta) y calcula EV.</div>
           </div>
         </label>
         <label class="flex items-center gap-2 border rounded-lg p-3">
@@ -82,10 +82,10 @@
         <!-- Exchange -->
         <label id="wrap-no-ex" class="hidden block">
           <span class="block text-sm font-medium text-gray-600 mb-1">Cuota Exchange (misma selección)</span>
-          <input id="odds-no-ex" inputmode="decimal" placeholder="1.52"
+          <input id="odds-no-ex" inputmode="decimal" placeholder="1.98"
                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
           <div class="text-[11px] text-gray-500 mt-1">
-            Comisión exchange (informativa):
+            Comisión exchange (sobre ganancias):
             <input id="ex-comm" type="number" min="0" max="20" step="0.1" value="2"
                    class="w-20 ml-1 border border-gray-300 rounded-md px-2 py-0.5 text-[11px] focus:outline-none focus:ring-2 focus:ring-blue-200" />%
           </div>
@@ -145,7 +145,7 @@
       </section>
 
       <p class="text-xs text-gray-500 mt-4">
-        En modo <b>exchange</b> se aplica la comparación directa de precios: EV% = (Boost/Exchange − 1)×100. La comisión del exchange (por defecto 2%) es informativa y no entra en el cálculo.
+        En modo <b>exchange</b> se usa <b>cuota neta</b> con comisión: EV% = (Boost / (1 + (Ex−1)·(1−c)) − 1)×100.
       </p>
     </div>
   </main>
@@ -187,7 +187,7 @@
       const wrapAsm  = $('wrap-assumed');
 
       const oNoEx   = $('odds-no-ex');
-      const exComm  = $('ex-comm');       // % informativa (2 por defecto)
+      const exComm  = $('ex-comm');       // % (2 por defecto)
       const oNoBook = $('odds-no-book');
       const asmComm = $('assumed-comm');  // % (10 por defecto)
 
@@ -224,10 +224,11 @@
         commEl.textContent='0,00%';
       }
 
-      // Cálculos para modos 2 y 3
+      // Cálculos auxiliares
       function fairP_fromYesNo(oS, oN){ const qS=1/oS, qN=1/oN, s=qS+qN; return qS/s }      // desvigoriza
       function overround_pct(oS, oN){ const qS=1/oS, qN=1/oN; return (qS+qN-1)*100 }         // %
-      function fairP_fromYes_and_comm(oS, commPct){ const c=commPct/100; return (1/oS)/(1+c) } // asume overround total c
+      function fairP_fromYes_and_comm(oS, commPct){ const c=commPct/100; return (1/oS)/(1+c) } // asumida
+      function netExchangeOdds(Ex, cPct){ const c = cPct/100; return 1 + (Ex - 1)*(1 - c) }    // neto
 
       function updateVisibility(){
         const ex = modeEx.checked, book = modeBook.checked, none = modeNone.checked;
@@ -238,14 +239,14 @@
         // Nota bajo "SÍ"
         yesNote.classList.toggle('hidden', !ex);
 
-        // Mostrar/ocultar tarjetas de pYes y fair según modo
-        cardPyes.classList.toggle('hidden', ex);
-        cardFair.classList.toggle('hidden', ex);
+        // NO ocultamos recuadros en Exchange (pides “exactamente los mismos”)
+        cardPyes.classList.remove('hidden');
+        cardFair.classList.remove('hidden');
 
-        // Cambiar títulos de comisión según modo
+        // Títulos/nota de comisión
         if(ex){
-          commTitle.textContent = 'Comisión exchange (informativa)';
-          commNote.textContent  = 'No entra en el cálculo del EV en modo exchange.';
+          commTitle.textContent = 'Comisión exchange';
+          commNote.textContent  = 'Se aplica al cálculo del break-even y del EV.';
         } else if(book){
           commTitle.textContent = 'Comisión exacta del mercado';
           commNote.textContent  = 'Overround SÍ/NO de la casa.';
@@ -262,29 +263,33 @@
         const B = toN(oBoost.value);
         if(!B || B<=1){ resetOutputs(); return; }
 
-        // 1) Exchange: EV% = (B / Ex - 1) * 100 — sólo usa Boost y Exchange
+        // 1) Exchange: Boost y Exchange (aplicando comisión al neto)
         if(modeEx.checked){
           const Ex = toN(oNoEx.value);
-          if(!Ex || Ex<=1){ resetOutputs(); commEl.textContent = pct(toN(exComm.value)||2)+'%'; return; }
+          const cPct = Number(exComm.value); // % (2 por defecto en el input)
+          if(!Ex || Ex<=1){ resetOutputs(); commEl.textContent = pct(Number.isFinite(cPct)?cPct:2)+'%'; return; }
 
-          const ev1 = (B / Ex) - 1;     // €/€
-          const roi = ev1 * 100;        // %
-          const pos = ev1 > 0;
+          const netEx = netExchangeOdds(Ex, Number.isFinite(cPct)?cPct:2);
+          const ev1   = (B / netEx) - 1;   // €/€
+          const roi   = ev1 * 100;
+          const pos   = ev1 > 0;
 
           setStatus(pos);
           value.textContent  = (pos? '+' : '') + pct(roi) + '%';
           evEuro.textContent = fmt(ev1,4) + ' €';
-          pYesEl.textContent = '—';
-          fairEl.textContent = '—';
-          commEl.textContent = pct(toN(exComm.value)||2) + '%'; // sólo informativo
+
+          // Recuadros adicionales (mismos que en otros modos)
+          const pApprox = 1 / Ex; // prob. implícita aprox. desde Exchange (referencial)
+          pYesEl.textContent = fmt(pApprox,4);
+          fairEl.textContent = fmt(netEx,3); // break-even del boost con comisión
+
+          commEl.textContent = pct(Number.isFinite(cPct)?cPct:2) + '%';
           return;
         }
 
-        // A partir de aquí, necesitamos S
-        if(!S || S<=1){ resetOutputs(); return; }
-
         // 2) NO (misma casa): desvigoriza con S y NO_book
         if(modeBook.checked){
+          if(!S || S<=1){ resetOutputs(); return; }
           const Nbook = toN(oNoBook.value);
           if(!Nbook || Nbook<=1){ resetOutputs(); return; }
 
@@ -306,8 +311,10 @@
 
         // 3) Sin NO: comisión asumida c%
         if(modeNone.checked){
+          if(!S || S<=1){ resetOutputs(); return; }
           const c = toN(asmComm.value);
           const cUse = Number.isFinite(c) ? Math.max(0, c) : 10;
+
           const pYes = fairP_fromYes_and_comm(S, cUse);
           const fair = 1 / pYes;
           const ev1  = pYes * B - 1;
@@ -323,14 +330,13 @@
           return;
         }
 
-        // Ningún modo marcado
         resetOutputs();
       }
 
       // Valores demo + modo por defecto
       oYes.value   = '1.50';
       oBoost.value = '2.00';
-      oNoEx.value  = '1.52';
+      oNoEx.value  = '1.98';
       oNoBook.value= '2.55';
       exComm.value = '2';
       asmComm.value= '10';
@@ -344,7 +350,7 @@
     })();
   </script>
 
-  <!-- FIREBASE / AUTH UI (igual a tu ejemplo) -->
+  <!-- FIREBASE / AUTH UI -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
