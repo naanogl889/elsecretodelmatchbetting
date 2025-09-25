@@ -2,217 +2,224 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Calculadora EV Matchbetting</title>
-  <style>
-    :root{
-      --bg:#0b0c0f;            /* fondo oscuro elegante */
-      --card:#111218;          /* tarjeta principal */
-      --muted:#9aa0a6;         /* texto secundario */
-      --text:#e6e8eb;          /* texto principal */
-      --accent:#d0d4d9;        /* bordes suaves */
-      --green:#10b981;         /* EV positivo */
-      --red:#ef4444;           /* EV negativo */
-      --focus:#6b7280;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; background:linear-gradient(180deg,#0b0c0f,#0c0f14 30%,#0d1117);
-      color:var(--text); font-family: ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial;
-      display:flex; align-items:center; justify-content:center; padding:24px;
-    }
-    .wrap{width:100%; max-width:820px}
-    .card{
-      background:linear-gradient(180deg,#111318,#0f1217);
-      border:1px solid #1f232b; border-radius:20px; padding:28px;
-      box-shadow: 0 10px 40px rgba(0,0,0,.35);
-    }
-    .header{
-      display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:18px;
-    }
-    .title{font-size:20px; font-weight:700; letter-spacing:.2px}
-    .subtitle{font-size:12px; color:var(--muted)}
-    .inputs{
-      display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:8px 0 18px;
-    }
-    @media (max-width:720px){ .inputs{grid-template-columns:1fr} }
-
-    .field{
-      background:#0c0f14; border:1px solid #20242c; border-radius:14px; padding:12px 12px 10px;
-      transition:border .2s ease, box-shadow .2s ease;
-    }
-    .field:focus-within{ border-color:#2d3643; box-shadow:0 0 0 3px rgba(99,102,241,.08) }
-    .label{display:block; font-size:12px; color:var(--muted); margin-bottom:6px}
-    .input{
-      width:100%; font-size:16px; background:transparent; border:0; outline:0; color:var(--text);
-      padding:4px 2px 2px;
-    }
-
-    .ev-block{
-      margin-top:6px; display:flex; align-items:center; justify-content:space-between; gap:16px;
-      background: radial-gradient(70% 140% at 0% 0%, rgba(16,185,129,.08) 0%, transparent 55%),
-                  radial-gradient(60% 120% at 100% 0%, rgba(239,68,68,.08) 0%, transparent 55%);
-      border:1px solid #222733; border-radius:18px; padding:18px 18px;
-    }
-    .ev-left{display:flex; align-items:center; gap:14px}
-    .ev-pill{
-      min-width:64px; text-align:center; font-weight:800; letter-spacing:.5px;
-      border-radius:999px; padding:8px 12px; border:1px solid #2a3140;
-      background:#0c1016; font-size:14px;
-    }
-    .ev-value{
-      font-size:42px; font-weight:900; letter-spacing:-.5px; line-height:1;
-    }
-    .ev-positive .ev-pill{ color:var(--green); border-color:rgba(16,185,129,.35); background:rgba(16,185,129,.08) }
-    .ev-positive .ev-value{ color:var(--green) }
-    .ev-negative .ev-pill{ color:var(--red); border-color:rgba(239,68,68,.35); background:rgba(239,68,68,.08) }
-    .ev-negative .ev-value{ color:var(--red) }
-
-    .mini{
-      margin-top:18px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
-    }
-    @media (max-width:720px){ .mini{grid-template-columns:1fr 1fr} }
-    @media (max-width:500px){ .mini{grid-template-columns:1fr} }
-
-    .mini-card{
-      background:#0c0f14; border:1px solid #20242c; border-radius:14px; padding:12px 14px;
-    }
-    .mini-title{font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:6px}
-    .mini-value{font-size:16px; font-weight:700}
-    .mini-note{font-size:12px; color:var(--muted); margin-top:4px; line-height:1.45}
-    .footer-note{margin-top:14px; font-size:12px; color:var(--muted)}
-    a{color:#8ab4f8; text-decoration:none}
-    a:hover{text-decoration:underline}
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora EV | El Secreto del Match Betting</title>
+  <meta name="description" content="Calculadora EV de Cash Boost para match betting: introduce cuotas SÍ/NO y la cuota aumentada y obtén el ROI esperado (+EV/−EV)."/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
-<body>
-  <div class="wrap">
-    <div class="card" role="region" aria-label="Calculadora de EV">
-      <div class="header">
-        <div>
-          <div class="title">Calculadora EV (Cash Boost)</div>
-          <div class="subtitle">Introduce las cuotas del mercado SÍ/NO y la cuota aumentada en cash.</div>
-        </div>
-      </div>
 
-      <!-- Inputs principales -->
-      <div class="inputs" aria-label="Entrada de cuotas">
-        <label class="field">
-          <span class="label">Cuota SÍ (sin boost)</span>
-          <input id="odds-yes" class="input" inputmode="decimal" placeholder="1.44" />
-        </label>
-        <label class="field">
-          <span class="label">Cuota NO (sin boost)</span>
-          <input id="odds-no" class="input" inputmode="decimal" placeholder="2.55" />
-        </label>
-        <label class="field">
-          <span class="label">Cuota aumentada (cash)</span>
-          <input id="odds-boost" class="input" inputmode="decimal" placeholder="2.00" />
-        </label>
-      </div>
-
-      <!-- Resultado principal: % EV con + verde / - rojo -->
-      <div id="ev-block" class="ev-block ev-negative" aria-live="polite">
-        <div class="ev-left">
-          <div id="ev-sign" class="ev-pill">-EV</div>
-          <div>
-            <div style="font-size:12px; color:var(--muted); margin-bottom:4px;">Valor esperado (ROI)</div>
-            <div id="ev-value" class="ev-value">0,00%</div>
-          </div>
+<body class="font-sans antialiased text-gray-800 bg-green-100">
+  <!-- BARRA DE NAVEGACIÓN (idéntica al ejemplo) -->
+  <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center space-x-8">
+          <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
+          <a href="/guias.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guía GRATIS</a>
+          <a href="/premium.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guías Premium</a>
+          <a href="/calculadora.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Calculadora</a>
+          <a href="/calculadoraev.html" class="font-bold text-blue-600 transition">Calculadora EV</a>
+          <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
+            <i class="fab fa-telegram mr-2"></i> Telegram
+          </a>
+          <a href="https://www.instagram.com/naanogl" target="_blank" class="font-medium text-gray-700 hover:text-pink-600 transition flex items-center">
+            <i class="fab fa-instagram mr-2"></i> Instagram
+          </a>
         </div>
-      </div>
-
-      <!-- Información secundaria (pequeño y breve) -->
-      <div class="mini">
-        <div class="mini-card">
-          <div class="mini-title">Probabilidad justa (SÍ)</div>
-          <div id="p-yes" class="mini-value">0,0000</div>
-          <div class="mini-note">Estimación quitando el margen usando SÍ/NO.</div>
+        <div id="user-status" class="flex items-center space-x-4">
+          <!-- Contenido dinámico: Login/Logout -->
         </div>
-        <div class="mini-card">
-          <div class="mini-title">Cuota justa (break-even)</div>
-          <div id="fair-odds" class="mini-value">0,000</div>
-          <div class="mini-note">Si el boost supera esta cuota, la apuesta es +EV.</div>
-        </div>
-        <div class="mini-card">
-          <div class="mini-title">EV por euro</div>
-          <div id="ev-euro" class="mini-value">0,0000 €</div>
-          <div class="mini-note">Beneficio medio por € apostado a la cuota aumentada.</div>
-        </div>
-      </div>
-
-      <div class="footer-note">
-        Nota: Modelo <b>cash boost</b>. No se consideran límites, bonos ni comisiones de exchange.
       </div>
     </div>
-  </div>
+  </nav>
 
+  <!-- CONTENIDO -->
+  <main class="container mx-auto px-4 py-8 sm:py-16 max-w-6xl">
+    <div class="bg-white p-5 sm:p-8 rounded-xl shadow-lg">
+      <h1 class="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800">Calculadora EV (Cash Boost)</h1>
+
+      <!-- Inputs principales -->
+      <section aria-label="Entrada de cuotas" class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <label class="block">
+          <span class="block text-sm font-medium text-gray-600 mb-1">Cuota SÍ (sin boost)</span>
+          <input id="odds-yes" inputmode="decimal" placeholder="1.44"
+                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+        </label>
+        <label class="block">
+          <span class="block text-sm font-medium text-gray-600 mb-1">Cuota NO (sin boost)</span>
+          <input id="odds-no" inputmode="decimal" placeholder="2.55"
+                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+        </label>
+        <label class="block">
+          <span class="block text-sm font-medium text-gray-600 mb-1">Cuota aumentada (cash)</span>
+          <input id="odds-boost" inputmode="decimal" placeholder="2.00"
+                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+        </label>
+      </section>
+
+      <!-- Resultado principal (grande y muy visual) -->
+      <section id="ev-card" class="flex items-center justify-between gap-4 border rounded-xl p-5 md:p-6 bg-gray-50">
+        <div class="flex items-center gap-4">
+          <span id="ev-pill"
+                class="min-w-[64px] text-center text-sm font-extrabold tracking-wide px-3 py-2 rounded-full border">
+            -EV
+          </span>
+          <div>
+            <div class="text-xs text-gray-500 mb-1">Valor esperado (ROI)</div>
+            <div id="ev-value" class="text-4xl md:text-5xl font-black leading-none">0,00%</div>
+          </div>
+        </div>
+        <!-- (Opcional) espacio para un icono o ayuda -->
+      </section>
+
+      <!-- Secundario breve -->
+      <section class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 text-sm">
+        <div class="border rounded-lg p-4">
+          <div class="uppercase tracking-wide text-[11px] text-gray-500">Prob. justa (SÍ)</div>
+          <div id="p-yes" class="text-lg font-semibold">0,0000</div>
+          <p class="text-gray-500 mt-1">Estimación quitando margen con cuotas SÍ/NO.</p>
+        </div>
+        <div class="border rounded-lg p-4">
+          <div class="uppercase tracking-wide text-[11px] text-gray-500">Cuota justa (break-even)</div>
+          <div id="fair-odds" class="text-lg font-semibold">0,000</div>
+          <p class="text-gray-500 mt-1">Si el boost supera esta cuota, es +EV.</p>
+        </div>
+        <div class="border rounded-lg p-4">
+          <div class="uppercase tracking-wide text-[11px] text-gray-500">EV por euro</div>
+          <div id="ev-euro" class="text-lg font-semibold">0,0000 €</div>
+          <p class="text-gray-500 mt-1">Beneficio medio por € apostado.</p>
+        </div>
+      </section>
+
+      <p class="text-xs text-gray-500 mt-4">
+        Modelo <b>cash boost</b>. No contempla límites promocionales, bonos ni comisiones de exchange.
+      </p>
+    </div>
+  </main>
+
+  <!-- FOOTER (idéntico al ejemplo) -->
+  <footer class="py-8 bg-gray-800 text-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <p class="text-gray-400">© 2025 El Secreto del Match Betting</p>
+        </div>
+        <div class="flex space-x-4">
+          <a href="https://www.instagram.com/naanogl" target="_blank" class="text-gray-400 hover:text-white transition" aria-label="Instagram"><i class="fab fa-instagram text-xl"></i></a>
+          <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="text-gray-400 hover:text-white transition" aria-label="Grupo de Telegram"><i class="fab fa-telegram text-xl"></i></a>
+          <a href="mailto:naanogl@gmail.com" class="text-gray-400 hover:text-white transition" aria-label="Contacto por correo"><i class="fas fa-envelope text-xl"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LÓGICA CALCULADORA (sin dependencias) -->
   <script>
     (function(){
       const $ = (id) => document.getElementById(id);
+      const yes = $('odds-yes'), no = $('odds-no'), boost = $('odds-boost');
+      const card = $('ev-card'), pill = $('ev-pill'), value = $('ev-value');
+      const pYesEl = $('p-yes'), fairEl = $('fair-odds'), evEuro = $('ev-euro');
 
-      const elYes   = $('odds-yes');
-      const elNo    = $('odds-no');
-      const elBoost = $('odds-boost');
+      function toN(v){ const n = Number(String(v||'').trim().replace(',', '.')); return Number.isFinite(n)?n:null }
+      function fairP(oy,on){ const qy=1/oy, qn=1/on, s=qy+qn; return qy/s }
+      function fmt(n,d){ n=Number.isFinite(n)?n:0; return n.toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d}) }
+      function pct(n){ n=Number.isFinite(n)?n:0; return n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}) }
 
-      const block   = $('ev-block');
-      const sign    = $('ev-sign');
-      const value   = $('ev-value');
-      const pYesEl  = $('p-yes');
-      const fairEl  = $('fair-odds');
-      const evEuro  = $('ev-euro');
+      function setStatus(pos){
+        // Limpia clases y aplica estilo visual +EV / −EV
+        card.classList.remove('bg-red-50','border-red-200','bg-green-50','border-green-200');
+        pill.classList.remove('text-red-600','border-red-200','bg-red-100/60','text-green-600','border-green-200','bg-green-100/60');
+        value.classList.remove('text-red-600','text-green-600');
 
-      function toN(v){
-        const n = Number(String(v || '').trim().replace(',', '.'));
-        return Number.isFinite(n) ? n : null;
+        if(pos){
+          card.classList.add('bg-green-50','border-green-200');
+          pill.classList.add('text-green-600','border-green-200','bg-green-100/60');
+          value.classList.add('text-green-600');
+          pill.textContent = '+EV';
+        } else {
+          card.classList.add('bg-red-50','border-red-200');
+          pill.classList.add('text-red-600','border-red-200','bg-red-100/60');
+          value.classList.add('text-red-600');
+          pill.textContent = '-EV';
+        }
       }
-      function fairP(yes,no){
-        const qy = 1/yes, qn = 1/no; return qy/(qy+qn);
-      }
-      function fmt(n,d){ n = Number.isFinite(n)?n:0; return n.toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d}); }
-      function pct(n){ n = Number.isFinite(n)?n:0; return n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}); }
 
       function update(){
-        const oYes = toN(elYes.value);
-        const oNo  = toN(elNo.value);
-        const oB   = toN(elBoost.value);
+        const oy = toN(yes.value), on = toN(no.value), ob = toN(boost.value);
+        const ok = oy && on && ob && oy>1 && on>1 && ob>1;
 
-        const ok = oYes && oNo && oB && oYes>1 && oNo>1 && oB>1;
         if(!ok){
-          block.classList.remove('ev-positive','ev-negative');
-          sign.textContent = '-EV';
-          value.textContent = '0,00%';
-          pYesEl.textContent = fmt(0,4);
-          fairEl.textContent = fmt(0,3);
-          evEuro.textContent = fmt(0,4)+' €';
+          card.classList.remove('bg-red-50','border-red-200','bg-green-50','border-green-200');
+          pill.classList.remove('text-red-600','border-red-200','bg-red-100/60','text-green-600','border-green-200','bg-green-100/60');
+          value.classList.remove('text-red-600','text-green-600');
+          pill.textContent='-EV';
+          value.textContent='0,00%';
+          pYesEl.textContent=fmt(0,4);
+          fairEl.textContent=fmt(0,3);
+          evEuro.textContent=fmt(0,4)+' €';
           return;
         }
 
-        const pYes = fairP(oYes, oNo);           // prob. justa SÍ
-        const fair = 1 / pYes;                    // cuota justa (break-even)
-        const ev1  = pYes * oB - 1;              // EV por €
-        const roi  = ev1 * 100;                  // %
-        const pos  = ev1 > 0;
+        const pYes = fairP(oy,on);
+        const fair = 1/pYes;
+        const ev1  = pYes*ob - 1;   // €/€
+        const roi  = ev1*100;       // %
+        const pos  = ev1>0;
 
-        block.classList.toggle('ev-positive', pos);
-        block.classList.toggle('ev-negative', !pos);
-        sign.textContent = pos ? '+EV' : '-EV';
+        setStatus(pos);
         value.textContent = (pos? '+' : '') + pct(roi) + '%';
-
         pYesEl.textContent = fmt(pYes,4);
         fairEl.textContent = fmt(fair,3);
         evEuro.textContent = fmt(ev1,4) + ' €';
       }
 
-      // Valores ejemplo
-      elYes.value = '1.44';
-      elNo.value  = '2.55';
-      elBoost.value = '2.00';
-
-      [elYes, elNo, elBoost].forEach(el => el.addEventListener('input', update));
+      // Valores de ejemplo (puedes borrarlos si prefieres vacío)
+      yes.value = '1.44'; no.value = '2.55'; boost.value = '2.00';
+      [yes,no,boost].forEach(el => el.addEventListener('input', update));
       update();
     })();
+  </script>
+
+  <!-- SCRIPT DE FIREBASE Y LÓGICA DE UI (idéntico al ejemplo) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBpvJVoiEe_ELuJGtDt7wfpkDSDK77gmqc",
+      authDomain: "secreto-matchbetting.firebaseapp.com",
+      projectId: "secreto-matchbetting",
+      storageBucket: "secreto-matchbetting.appspot.com",
+      messagingSenderId: "742895000020",
+      appId: "1:742895000020:web:6d5e5f43df2706e0f95e41",
+      measurementId: "G-E9R9X4D48D"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const userStatusDiv = document.getElementById('user-status');
+
+      onAuthStateChanged(auth, user => {
+        userStatusDiv.innerHTML = '';
+        if (user) {
+          userStatusDiv.innerHTML = `
+            <span class="text-sm text-gray-600 hidden sm:inline">\${user.email}</span>
+            <button id="logout-button" class="bg-gray-200 text-gray-700 px-3 py-1 rounded-md text-sm font-semibold hover:bg-gray-300">Salir</button>
+          `;
+          document.getElementById('logout-button').addEventListener('click', () => {
+            signOut(auth).then(() => { window.location.href = '/index.html'; });
+          });
+        } else {
+          userStatusDiv.innerHTML = `
+            <a href="/index.html" class="bg-blue-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-700">Acceder</a>
+          `;
+        }
+      });
+    });
   </script>
 </body>
 </html>
