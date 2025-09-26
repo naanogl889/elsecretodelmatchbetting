@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Calculadora EV | El Secreto del Match Betting</title>
-  <meta name="description" content="Calculadora EV de Cash Boost con tres modos: comparación con exchange (con comisión), NO de la misma casa y sin NO (comisión asumida)."/>
+  <meta name="description" content="Calculadora EV de Cash Boost con modos: Exchange (con comisión), Mercado 2 opciones (misma casa), Mercado 3 opciones (1X2) y Sin NO (comisión asumida)."/>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
@@ -40,39 +40,46 @@
       <!-- Inputs fijos -->
       <section class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         <label class="block">
-          <span class="block text-sm font-medium text-gray-600 mb-1">Cuota SÍ real (max cuota encontrada)</span>
+          <span class="block text-sm font-medium text-gray-600 mb-1">Cuota SÍ real (misma selección sin boost)</span>
           <input id="odds-yes" inputmode="decimal" placeholder="1.50"
                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
           <div id="yes-note" class="text-[11px] text-gray-500 mt-1 hidden">En modo exchange NO se usa.</div>
         </label>
         <label class="block">
-          <span class="block text-sm font-medium text-gray-600 mb-1">Cuota SÍ aumentada</span>
+          <span class="block text-sm font-medium text-gray-600 mb-1">Cuota SÍ aumentada (boost)</span>
           <input id="odds-boost" inputmode="decimal" placeholder="2.00"
                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
         </label>
       </section>
 
       <!-- Selector de modo -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-3">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 mb-3">
         <label class="flex items-center gap-2 border rounded-lg p-3">
           <input type="radio" name="mode" id="mode-ex" class="h-4 w-4 text-blue-600" />
           <div>
-            <div class="text-sm font-semibold">Comparar con exchange (misma selección)</div>
+            <div class="text-sm font-semibold">Exchange (misma selección)</div>
             <div class="text-xs text-gray-600">EV% = (Boost / Exchange_neto − 1) × 100. No usa “SÍ”.</div>
           </div>
         </label>
         <label class="flex items-center gap-2 border rounded-lg p-3">
-          <input type="radio" name="mode" id="mode-book" class="h-4 w-4 text-blue-600" />
+          <input type="radio" name="mode" id="mode-book2" class="h-4 w-4 text-blue-600" />
           <div>
-            <div class="text-sm font-semibold">Usar mercado NO (misma casa)</div>
-            <div class="text-xs text-gray-600">Desvigoriza con SÍ/NO (comisión exacta) y calcula EV.</div>
+            <div class="text-sm font-semibold">Mercado 2 opciones (misma casa)</div>
+            <div class="text-xs text-gray-600">Desvigoriza SÍ/NO y calcula EV.</div>
+          </div>
+        </label>
+        <label class="flex items-center gap-2 border rounded-lg p-3">
+          <input type="radio" name="mode" id="mode-book3" class="h-4 w-4 text-blue-600" />
+          <div>
+            <div class="text-sm font-semibold">Mercado 3 opciones (1X2)</div>
+            <div class="text-xs text-gray-600">Desvigoriza 1–X–2 y calcula EV para la selección con boost.</div>
           </div>
         </label>
         <label class="flex items-center gap-2 border rounded-lg p-3">
           <input type="radio" name="mode" id="mode-none" class="h-4 w-4 text-blue-600" />
           <div>
-            <div class="text-sm font-semibold">Sin mercado NO (asumir 10% comisión)</div>
-            <div class="text-xs text-gray-600">p(SÍ) = (1/SÍ)/(1+c). c por defecto 10% (editable).</div>
+            <div class="text-sm font-semibold">Sin mercado NO (asumir comisión)</div>
+            <div class="text-xs text-gray-600">p(sel) = (1/SÍ)/(1+c). c por defecto 10% (editable).</div>
           </div>
         </label>
       </div>
@@ -80,30 +87,67 @@
       <!-- Inputs por modo -->
       <section class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <!-- Exchange -->
-        <label id="wrap-no-ex" class="hidden block">
-          <span class="block text-sm font-medium text-gray-600 mb-1">Cuota Exchange (misma selección)</span>
-          <input id="odds-no-ex" inputmode="decimal" placeholder="1.52"
-                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-          <div class="text-[11px] text-gray-500 mt-1">
-            Comisión exchange (sobre ganancias):
+        <div id="wrap-ex" class="hidden">
+          <label class="block">
+            <span class="block text-sm font-medium text-gray-600 mb-1">Cuota Exchange (misma selección)</span>
+            <input id="odds-ex" inputmode="decimal" placeholder="1.98"
+                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+          </label>
+          <label class="block">
+            <span class="block text-sm font-medium text-gray-600 mb-1">Comisión exchange (%)</span>
             <input id="ex-comm" type="number" min="0" max="20" step="0.1" value="2"
-                   class="w-20 ml-1 border border-gray-300 rounded-md px-2 py-0.5 text-[11px] focus:outline-none focus:ring-2 focus:ring-blue-200" />%
-          </div>
-        </label>
+                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+          </label>
+        </div>
 
-        <!-- NO casa -->
-        <label id="wrap-no-book" class="hidden block">
-          <span class="block text-sm font-medium text-gray-600 mb-1">Cuota NO (casa)</span>
-          <input id="odds-no-book" inputmode="decimal" placeholder="2.55"
-                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-        </label>
+        <!-- Mercado 2 opciones -->
+        <div id="wrap-book2" class="hidden md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <label class="block">
+            <span class="block text-sm font-medium text-gray-600 mb-1">Cuota NO (misma casa)</span>
+            <input id="odds-no-book" inputmode="decimal" placeholder="2.55"
+                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+          </label>
+          <div class="md:col-span-2 self-end text-[12px] text-gray-500">
+            Mercado de dos opciones (ej.: “Tira a puerta / No tira a puerta”). El boost se aplica a la selección “SÍ” de la izquierda.
+          </div>
+        </div>
+
+        <!-- Mercado 3 opciones -->
+        <div id="wrap-book3" class="hidden md:col-span-3 grid grid-cols-1 md:grid-cols-4 gap-4">
+          <label class="block">
+            <span class="block text-sm font-medium text-gray-600 mb-1">Cuota 1 (local)</span>
+            <input id="odds-1" inputmode="decimal" placeholder="2.60"
+                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+          </label>
+          <label class="block">
+            <span class="block text-sm font-medium text-gray-600 mb-1">Cuota X (empate)</span>
+            <input id="odds-x" inputmode="decimal" placeholder="3.40"
+                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+          </label>
+          <label class="block">
+            <span class="block text-sm font-medium text-gray-600 mb-1">Cuota 2 (visitante)</span>
+            <input id="odds-2" inputmode="decimal" placeholder="2.75"
+                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+          </label>
+          <label class="block">
+            <span class="block text-sm font-medium text-gray-600 mb-1">Selección con boost</span>
+            <select id="boost-pick" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200">
+              <option value="1">1 (local)</option>
+              <option value="X">X (empate)</option>
+              <option value="2">2 (visitante)</option>
+            </select>
+            <p class="text-[11px] text-gray-500 mt-1">La “Cuota SÍ real” de arriba debe corresponder a esta selección.</p>
+          </label>
+        </div>
 
         <!-- Comisión asumida -->
-        <label id="wrap-assumed" class="hidden block">
-          <span class="block text-sm font-medium text-gray-600 mb-1">Comisión asumida (%)</span>
-          <input id="assumed-comm" type="number" min="0" max="30" step="0.1" value="10"
-                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-        </label>
+        <div id="wrap-assumed" class="hidden">
+          <label class="block">
+            <span class="block text-sm font-medium text-gray-600 mb-1">Comisión asumida (%)</span>
+            <input id="assumed-comm" type="number" min="0" max="30" step="0.1" value="10"
+                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+          </label>
+        </div>
       </section>
 
       <!-- Resultado principal (ROI) -->
@@ -123,7 +167,7 @@
       <!-- Secundario -->
       <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-5 text-sm">
         <div id="card-pyes" class="border rounded-lg p-4">
-          <div class="uppercase tracking-wide text-[11px] text-gray-500">Prob. justa (SÍ)</div>
+          <div class="uppercase tracking-wide text-[11px] text-gray-500">Prob. justa (selección)</div>
           <div id="p-yes" class="text-lg font-semibold">—</div>
           <p class="text-gray-500 mt-1" id="pyes-note">Estimación según modo.</p>
         </div>
@@ -172,30 +216,37 @@
       const $ = (id) => document.getElementById(id);
 
       // Fijos
-      const oYes   = $('odds-yes');
+      const oYes   = $('odds-yes');   // odds de la selección con boost (en 2-opciones es "SÍ")
       const oBoost = $('odds-boost');
       const yesNote= $('yes-note');
 
       // Modos
       const modeEx   = $('mode-ex');
-      const modeBook = $('mode-book');
+      const modeBook2= $('mode-book2');
+      const modeBook3= $('mode-book3');
       const modeNone = $('mode-none');
 
       // Inputs por modo
-      const wrapEx   = $('wrap-no-ex');
-      const wrapBook = $('wrap-no-book');
+      const wrapEx   = $('wrap-ex');
+      const wrapBook2= $('wrap-book2');
+      const wrapBook3= $('wrap-book3');
       const wrapAsm  = $('wrap-assumed');
 
-      const oNoEx   = $('odds-no-ex');
+      const oEx     = $('odds-ex');
       const exComm  = $('ex-comm');       // % (2 por defecto)
-      const oNoBook = $('odds-no-book');
+
+      const oNoBook = $('odds-no-book');  // 2 opciones
+      const o1      = $('odds-1');
+      const oX      = $('odds-x');
+      const o2      = $('odds-2');
+      const pick    = $('boost-pick');
+
       const asmComm = $('assumed-comm');  // % (10 por defecto)
 
       // Salidas
       const card   = $('ev-card'), pill = $('ev-pill'), value = $('ev-value');
       const pYesEl = $('p-yes'), fairEl = $('fair-odds'), evEuro = $('ev-euro'), commEl = $('market-comm');
       const commTitle = $('comm-title'), commNote = $('market-comm-note');
-      const cardPyes = $('card-pyes'), cardFair = $('card-fair');
 
       // Utils
       function toN(v){ const n = Number(String(v||'').trim().replace(',', '.')); return Number.isFinite(n)?n:null }
@@ -225,52 +276,54 @@
       }
 
       // Cálculos auxiliares
-      function fairP_fromYesNo(oS, oN){ const qS=1/oS, qN=1/oN, s=qS+qN; return qS/s }      // desvigoriza
-      function overround_pct(oS, oN){ const qS=1/oS, qN=1/oN; return (qS+qN-1)*100 }         // %
-      function fairP_fromYes_and_comm(oS, commPct){ const c=commPct/100; return (1/oS)/(1+c) } // asumida
-      function netExchangeOdds(Ex, cPct){ const c = cPct/100; return 1 + (Ex - 1)*(1 - c) }    // neto
+      function netExchangeOdds(Ex, cPct){ const c = (Number.isFinite(cPct)?cPct:2)/100; return 1 + (Ex - 1)*(1 - c) }
+      function fairP_2way(oS, oN){ const qS=1/oS, qN=1/oN, S=qS+qN; return qS/S }
+      function overround_2way_pct(oS, oN){ const qS=1/oS, qN=1/oN; return (qS+qN-1)*100 }
+      function fairP_3way(oSel, oOther1, oOther2){
+        const qSel=1/oSel, q1=1/oOther1, q2=1/oOther2; const S=qSel+q1+q2; return qSel/S
+      }
+      function overround_3way_pct(oA, oB, oC){ const qA=1/oA, qB=1/oB, qC=1/oC; return (qA+qB+qC-1)*100 }
+      function fairP_assumed(oSel, cPct){ const c=(Number.isFinite(cPct)?cPct:10)/100; return (1/oSel)/(1+c) }
 
       function updateVisibility(){
-        const ex = modeEx.checked, book = modeBook.checked, none = modeNone.checked;
+        const ex = modeEx.checked, b2 = modeBook2.checked, b3 = modeBook3.checked, none = modeNone.checked;
+
         wrapEx.classList.toggle('hidden', !ex);
-        wrapBook.classList.toggle('hidden', !book);
+        wrapBook2.classList.toggle('hidden', !b2);
+        wrapBook3.classList.toggle('hidden', !b3);
         wrapAsm.classList.toggle('hidden', !none);
 
-        // Nota bajo "SÍ"
         yesNote.classList.toggle('hidden', !ex);
 
-        // NO ocultamos recuadros en Exchange (pides “exactamente los mismos”)
-        cardPyes.classList.remove('hidden');
-        cardFair.classList.remove('hidden');
-
-        // Títulos/nota de comisión
         if(ex){
           commTitle.textContent = 'Comisión exchange';
           commNote.textContent  = 'Se aplica al cálculo del break-even y del EV.';
-        } else if(book){
-          commTitle.textContent = 'Comisión exacta del mercado';
+        } else if(b2){
+          commTitle.textContent = 'Comisión exacta del mercado (2 opciones)';
           commNote.textContent  = 'Overround SÍ/NO de la casa.';
+        } else if(b3){
+          commTitle.textContent = 'Comisión exacta del mercado (3 opciones)';
+          commNote.textContent  = 'Overround 1–X–2 de la casa.';
         } else {
           commTitle.textContent = 'Comisión asumida';
-          commNote.textContent  = 'Overround total asumido para estimar p(SÍ).';
+          commNote.textContent  = 'Overround total asumido para estimar la prob. de la selección.';
         }
       }
 
       function update(){
         updateVisibility();
 
-        const S = toN(oYes.value);
         const B = toN(oBoost.value);
         if(!B || B<=1){ resetOutputs(); return; }
 
-        // 1) Exchange: Boost y Exchange (aplicando comisión al neto)
+        // 1) Exchange
         if(modeEx.checked){
-          const Ex = toN(oNoEx.value);
-          const cPct = Number(exComm.value); // % (2 por defecto en el input)
+          const Ex = toN(oEx.value);
+          const cPct = toN(exComm.value);
           if(!Ex || Ex<=1){ resetOutputs(); commEl.textContent = pct(Number.isFinite(cPct)?cPct:2)+'%'; return; }
 
-          const netEx = netExchangeOdds(Ex, Number.isFinite(cPct)?cPct:2);
-          const ev1   = (B / netEx) - 1;   // €/€
+          const netEx = netExchangeOdds(Ex, cPct);
+          const ev1   = (B / netEx) - 1;
           const roi   = ev1 * 100;
           const pos   = ev1 > 0;
 
@@ -278,53 +331,81 @@
           value.textContent  = (pos? '+' : '') + pct(roi) + '%';
           evEuro.textContent = fmt(ev1,4) + ' €';
 
-          // Recuadros adicionales (mismos que en otros modos)
-          const pApprox = 1 / Ex; // prob. implícita aprox. desde Exchange (referencial)
+          // Prob. “aprox” desde exchange (referencial) y break-even neto
+          const pApprox = 1 / Ex;
           pYesEl.textContent = fmt(pApprox,4);
-          fairEl.textContent = fmt(netEx,3); // break-even del boost con comisión
-
+          fairEl.textContent = fmt(netEx,3);
           commEl.textContent = pct(Number.isFinite(cPct)?cPct:2) + '%';
           return;
         }
 
-        // 2) NO (misma casa): desvigoriza con S y NO_book
-        if(modeBook.checked){
-          if(!S || S<=1){ resetOutputs(); return; }
-          const Nbook = toN(oNoBook.value);
-          if(!Nbook || Nbook<=1){ resetOutputs(); return; }
+        // A partir de aquí necesitamos la "cuota SÍ real" (oYes) como selección con boost
+        const S = toN(oYes.value);
+        if(!S || S<=1){ resetOutputs(); return; }
 
-          const pYes = fairP_fromYesNo(S, Nbook);
-          const fair = 1 / pYes;
-          const ev1  = pYes * B - 1;
+        // 2) Mercado 2 opciones
+        if(modeBook2.checked){
+          const N = toN(oNoBook.value);
+          if(!N || N<=1){ resetOutputs(); return; }
+
+          const pSel = fairP_2way(S, N);
+          const fair = 1 / pSel;
+          const ev1  = pSel * B - 1;
           const roi  = ev1 * 100;
           const pos  = ev1 > 0;
-          const comm = overround_pct(S, Nbook);
+          const comm = overround_2way_pct(S, N);
 
           setStatus(pos);
           value.textContent  = (pos? '+' : '') + pct(roi) + '%';
           evEuro.textContent = fmt(ev1,4) + ' €';
-          pYesEl.textContent = fmt(pYes,4);
+          pYesEl.textContent = fmt(pSel,4);
           fairEl.textContent = fmt(fair,3);
           commEl.textContent = pct(comm) + '%';
           return;
         }
 
-        // 3) Sin NO: comisión asumida c%
+        // 3) Mercado 3 opciones (1X2)
+        if(modeBook3.checked){
+          const o1v = toN(o1.value), oXv = toN(oX.value), o2v = toN(o2.value);
+          if(!o1v || !oXv || !o2v || o1v<=1 || oXv<=1 || o2v<=1){ resetOutputs(); return; }
+
+          // Determinar cuáles son los "otros" según la selección con boost
+          let oSel = S, other1, other2;
+          if(pick.value === '1'){ oSel = o1v; other1 = oXv; other2 = o2v; }
+          else if(pick.value === 'X'){ oSel = oXv; other1 = o1v; other2 = o2v; }
+          else { oSel = o2v; other1 = o1v; other2 = oXv; }
+
+          const pSel = fairP_3way(oSel, other1, other2);
+          const fair = 1 / pSel;
+          const ev1  = pSel * B - 1;
+          const roi  = ev1 * 100;
+          const pos  = ev1 > 0;
+          const comm = overround_3way_pct(o1v, oXv, o2v);
+
+          setStatus(pos);
+          value.textContent  = (pos? '+' : '') + pct(roi) + '%';
+          evEuro.textContent = fmt(ev1,4) + ' €';
+          pYesEl.textContent = fmt(pSel,4);
+          fairEl.textContent = fmt(fair,3);
+          commEl.textContent = pct(comm) + '%';
+          return;
+        }
+
+        // 4) Sin NO (comisión asumida)
         if(modeNone.checked){
-          if(!S || S<=1){ resetOutputs(); return; }
           const c = toN(asmComm.value);
           const cUse = Number.isFinite(c) ? Math.max(0, c) : 10;
 
-          const pYes = fairP_fromYes_and_comm(S, cUse);
-          const fair = 1 / pYes;
-          const ev1  = pYes * B - 1;
+          const pSel = fairP_assumed(S, cUse);
+          const fair = 1 / pSel;
+          const ev1  = pSel * B - 1;
           const roi  = ev1 * 100;
           const pos  = ev1 > 0;
 
           setStatus(pos);
           value.textContent  = (pos? '+' : '') + pct(roi) + '%';
           evEuro.textContent = fmt(ev1,4) + ' €';
-          pYesEl.textContent = fmt(pYes,4);
+          pYesEl.textContent = fmt(pSel,4);
           fairEl.textContent = fmt(fair,3);
           commEl.textContent = pct(cUse) + '%';
           return;
@@ -334,19 +415,24 @@
       }
 
       // Valores demo + modo por defecto
-      oYes.value   = '1.50';
+      oYes.value   = '1.50';   // selección con boost
       oBoost.value = '2.00';
-      oNoEx.value  = '1.52';
-      oNoBook.value= '2.55';
+      oEx.value    = '1.98';
       exComm.value = '2';
-      asmComm.value= '10';
+
+      oNoBook.value= '2.55';
+
+      o1.value = '2.60';
+      oX.value = '3.40';
+      o2.value = '2.75';
+      pick.value = '1';
 
       modeEx.checked = true; // por defecto: exchange
       update();
 
       // Eventos
-      [oYes, oBoost, oNoEx, oNoBook, exComm, asmComm].forEach(el => el.addEventListener('input', update));
-      [modeEx, modeBook, modeNone].forEach(el => el.addEventListener('change', update));
+      [oYes, oBoost, oEx, exComm, oNoBook, o1, oX, o2, pick, asmComm].forEach(el => el.addEventListener('input', update));
+      [modeEx, modeBook2, modeBook3, modeNone].forEach(el => el.addEventListener('change', update));
     })();
   </script>
 
