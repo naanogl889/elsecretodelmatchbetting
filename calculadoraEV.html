@@ -4,59 +4,65 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Calculadora EV | El Secreto del Match Betting</title>
-  <meta name="description" content="Calculadora EV de Cash Boost con modos para 1 o 2 selecciones: Exchange (con comisión), 2 opciones, 3 opciones y Sin NO."/>
+  <meta name="description" content="Calculadora EV con modos Aproximado y Avanzado: Exchange, 2 opciones, 3 opciones y combinadas con cuotas máximas y comisiones asumidas."/>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
 
 <body class="font-sans antialiased text-gray-800 bg-green-100">
-<!-- BARRA DE NAVEGACIÓN DINÁMICA -->
-    <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
-        <div class="container mx-auto px-4 max-w-6xl">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-8">
-                    <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
-                    <a id="nav-guide-link" href="/guias.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guía GRATIS</a>
-                    <a href="/premium.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guías Premium</a>
-                    <!-- Calculadoras (dropdown robusto) -->
-                    <div class="relative group">
-                      <button
-                        class="flex items-center gap-1 font-medium text-gray-700 hover:text-blue-600 transition"
-                        aria-haspopup="true" aria-expanded="false">
-                        Calculadoras <i class="fas fa-chevron-down text-xs"></i>
-                      </button>
+  <!-- NAV -->
+  <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center space-x-8">
+          <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
+          <a id="nav-guide-link" href="/guias.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guía GRATIS</a>
+          <a href="/premium.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guías Premium</a>
 
-                      <!-- Menú pegado al botón, sin huecos -->
-                      <div
-                        class="absolute left-0 top-full w-56 bg-white border border-gray-200 rounded-lg shadow-md
-                              invisible opacity-0 translate-y-1
-                              group-hover:visible group-hover:opacity-100 group-hover:translate-y-0
-                              group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0
-                              transition duration-150">
-                        <a href="/calculadora.html"
-                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none">Calculadora Match Betting</a>
-                        <a href="/calculadoraEV.html"
-                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none">Calculadora EV</a>
-                      </div>
-                    </div>
-
-                    <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
-                        <i class="fab fa-telegram mr-2"></i> Telegram
-                    </a>
-                    <a href="https://www.instagram.com/naanogl" target="_blank" class="font-medium text-gray-700 hover:text-pink-600 transition flex items-center">
-                        <i class="fab fa-instagram mr-2"></i> Instagram
-                    </a>
-                </div>
-                <div id="user-status" class="flex items-center space-x-4">
-                    <!-- Contenido dinámico: Login/Logout -->
-                </div>
+          <!-- Dropdown calculadoras -->
+          <div class="relative group">
+            <button class="flex items-center gap-1 font-medium text-gray-700 hover:text-blue-600 transition">
+              Calculadoras <i class="fas fa-chevron-down text-xs"></i>
+            </button>
+            <div class="absolute left-0 top-full w-56 bg-white border border-gray-200 rounded-lg shadow-md
+                        invisible opacity-0 translate-y-1
+                        group-hover:visible group-hover:opacity-100 group-hover:translate-y-0
+                        group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0
+                        transition duration-150">
+              <a href="/calculadora.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Calculadora Match Betting</a>
+              <a href="/calculadoraEV.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Calculadora EV</a>
             </div>
+          </div>
+
+          <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
+            <i class="fab fa-telegram mr-2"></i> Telegram
+          </a>
+          <a href="https://www.instagram.com/naanogl" target="_blank" class="font-medium text-gray-700 hover:text-pink-600 transition flex items-center">
+            <i class="fab fa-instagram mr-2"></i> Instagram
+          </a>
         </div>
-    </nav>
-  <!-- CONTENIDO -->
+        <div id="user-status" class="flex items-center space-x-4"></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
   <main class="container mx-auto px-4 py-8 sm:py-16 max-w-6xl">
     <div class="bg-white p-5 sm:p-8 rounded-xl shadow-lg">
       <h1 class="text-3xl md:text-4xl font-bold text-center mb-6 text-gray-800">Calculadora EV (Valor Esperado)</h1>
+
+      <!-- Selector de nivel -->
+      <div class="mb-4 flex flex-wrap items-center gap-3">
+        <span class="text-sm text-gray-700">Modo:</span>
+        <label class="flex items-center gap-2 border rounded-lg px-3 py-2">
+          <input type="radio" name="level" id="level-basic" class="h-4 w-4 text-blue-600" checked/>
+          <span class="text-sm">Aproximado</span>
+        </label>
+        <label class="flex items-center gap-2 border rounded-lg px-3 py-2">
+          <input type="radio" name="level" id="level-adv" class="h-4 w-4 text-blue-600"/>
+          <span class="text-sm">Avanzado</span>
+        </label>
+      </div>
 
       <!-- Nº de selecciones -->
       <div class="mb-4 flex flex-wrap items-center gap-3">
@@ -71,51 +77,59 @@
         </label>
       </div>
 
-      <!-- ============ BLOQUE: 1 SELECCIÓN (como ya lo tenías) ============ -->
+      <!-- ===================== 1 SELECCIÓN ===================== -->
       <section id="one-leg">
-        <!-- Inputs fijos -->
+        <!-- Inputs base -->
         <section class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <label class="block">
             <span class="block text-sm font-medium text-gray-600 mb-1">Cuota SÍ real (misma selección sin boost)</span>
             <input id="odds-yes" inputmode="decimal" placeholder="1.50"
                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-            <div id="yes-note" class="text-[11px] text-gray-500 mt-1 hidden">En modo exchange NO se usa.</div>
+            <div id="yes-note" class="text-[11px] text-gray-500 mt-1 hidden">En modo Exchange no se usa este campo.</div>
           </label>
           <label class="block">
-            <span class="block text-sm font-medium text-gray-600 mb-1">Cuota SÍ aumentada (boost)</span>
+            <span class="block text-sm font-medium text-gray-600 mb-1">Cuota SÍ aumentada (Boost)</span>
             <input id="odds-boost" inputmode="decimal" placeholder="2.00"
                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+            <div class="text-[11px] text-gray-500 mt-1">Introduce la cuota promocionada/boost de la selección.</div>
           </label>
         </section>
 
         <!-- Selector de modo -->
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-3 mb-3">
+          <!-- Exchange (1 selección) -->
           <label class="flex items-center gap-2 border rounded-lg p-3">
             <input type="radio" name="mode" id="mode-ex" class="h-4 w-4 text-blue-600" />
             <div>
               <div class="text-sm font-semibold">Exchange (misma selección)</div>
-              <div class="text-xs text-gray-600">EV% = (Boost / Exchange_neto − 1) × 100. No usa “SÍ”.</div>
+              <div class="text-xs text-gray-600">Compara la cuota boost con la cuota del exchange (con comisión).</div>
             </div>
           </label>
+
+          <!-- 2 opciones -->
           <label class="flex items-center gap-2 border rounded-lg p-3">
             <input type="radio" name="mode" id="mode-book2" class="h-4 w-4 text-blue-600" />
             <div>
               <div class="text-sm font-semibold">Mercado 2 opciones</div>
-              <div class="text-xs text-gray-600">Desvigoriza SÍ/NO y calcula EV.</div>
+              <div class="text-xs text-gray-600">Usa SÍ y NO de la misma casa para estimar la probabilidad justa.</div>
             </div>
           </label>
+
+          <!-- 3 opciones -->
           <label class="flex items-center gap-2 border rounded-lg p-3">
             <input type="radio" name="mode" id="mode-book3" class="h-4 w-4 text-blue-600" />
             <div>
               <div class="text-sm font-semibold">Mercado 3 opciones (1X2)</div>
-              <div class="text-xs text-gray-600">Desvigoriza 1–X–2 y calcula EV.</div>
+              <div class="text-xs text-gray-600">Usa 1, X y 2 de la misma casa para “quitar vigorish” y estimar p(justa).</div>
             </div>
           </label>
+
+          <!-- Sin NO (asumido) -->
           <label class="flex items-center gap-2 border rounded-lg p-3">
             <input type="radio" name="mode" id="mode-none" class="h-4 w-4 text-blue-600" />
             <div>
-              <div class="text-sm font-semibold">Sin mercado NO (asumir comisión)</div>
-              <div class="text-xs text-gray-600">p(sel) = (1/SÍ)/(1+c). c por defecto 10% (editable).</div>
+              <div class="text-sm font-semibold">Sin mercado NO (asumido)</div>
+              <div class="text-xs text-gray-600">Asume comisión total del 10% para estimar la p(justa) a partir de la cuota SÍ.</div>
             </div>
           </label>
         </div>
@@ -133,18 +147,24 @@
               <span class="block text-sm font-medium text-gray-600 mb-1">Comisión exchange (%)</span>
               <input id="ex-comm" type="number" min="0" max="20" step="0.1" value="2"
                      class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+              <div class="text-[11px] text-gray-500 mt-1">Se aplica sobre las ganancias del exchange.</div>
             </label>
           </div>
 
           <!-- 2 opciones -->
           <div id="wrap-book2" class="hidden md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-4">
             <label class="block">
-              <span class="block text-sm font-medium text-gray-600 mb-1">Cuota NO (misma casa)</span>
-              <input id="odds-no-book" inputmode="decimal" placeholder="2.55"
+              <span class="block text-sm font-medium text-gray-600 mb-1">Cuota SÍ (misma casa)</span>
+              <input id="odds-no-book-yes" inputmode="decimal" placeholder="1.80"
                      class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
             </label>
-            <div class="md:col-span-2 self-end text-[12px] text-gray-500">
-              Mercado 2 opciones (ej.: “Tira a puerta / No tira a puerta”). El boost se aplica a la selección introducida arriba.
+            <label class="block">
+              <span class="block text-sm font-medium text-gray-600 mb-1">Cuota NO (misma casa)</span>
+              <input id="odds-no-book" inputmode="decimal" placeholder="2.05"
+                     class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+            </label>
+            <div class="self-end text-[12px] text-gray-500">
+              Mercado de dos opciones (ej. “Sí tira / No tira”). El boost se aplica a la selección “SÍ”.
             </div>
           </div>
 
@@ -176,18 +196,16 @@
             </label>
           </div>
 
-          <!-- Comisión asumida -->
+          <!-- Sin NO (asumido) -->
           <div id="wrap-assumed" class="hidden">
-            <label class="block">
-              <span class="block text-sm font-medium text-gray-600 mb-1">Comisión asumida (%)</span>
-              <input id="assumed-comm" type="number" min="0" max="30" step="0.1" value="10"
-                     class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-            </label>
+            <div class="text-sm text-gray-600">
+              Se asume **comisión total = 10%** (no editable) para estimar la probabilidad justa a partir de la cuota SÍ.
+            </div>
           </div>
         </section>
       </section>
 
-      <!-- ============ BLOQUE: 2 SELECCIONES (nuevo) ============ -->
+      <!-- ===================== 2 SELECCIONES ===================== -->
       <section id="two-legs" class="hidden">
         <!-- Boost combinado -->
         <section class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -195,13 +213,14 @@
             <span class="block text-sm font-medium text-gray-600 mb-1">Cuota boost combinada (2 selecciones)</span>
             <input id="boost-2l" inputmode="decimal" placeholder="4.50"
                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+            <p class="text-[11px] text-gray-500 mt-1">Es la cuota promocionada del parlay/SGP.</p>
           </label>
 
-          <!-- Referencia combinada opcional -->
-          <div class="border rounded-lg p-4">
+          <!-- En Avanzado: referencia combinada -->
+          <div id="combo-adv-wrap" class="border rounded-lg p-4 hidden">
             <label class="flex items-center gap-2 text-sm">
               <input type="checkbox" id="use-combo-ref" class="h-4 w-4 text-blue-600"/>
-              Usar cuota combinada de referencia (si la tienes)
+              Usar cuota combinada de referencia (builder/exchange)
             </label>
             <div id="combo-ref-wrap" class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3 hidden">
               <label class="block">
@@ -219,141 +238,195 @@
           </div>
         </section>
 
-        <!-- Pata A y Pata B -->
+        <!-- Patas -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-          <!-- LEG A -->
+          <!-- A -->
           <div class="border rounded-xl p-4">
             <div class="font-semibold mb-3">Selección A</div>
-            <label class="block mb-2 text-sm">Fuente de precio</label>
-            <select id="legA-type" class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-200">
-              <option value="ex">Exchange</option>
-              <option value="2w">Mercado 2 opciones (SÍ/NO)</option>
-              <option value="3w">Mercado 3 opciones (1X2)</option>
-            </select>
 
-            <div id="legA-ex" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <!-- Aproximado: solo tipo + cuota máxima + comisión asumida mostrada -->
+            <div id="legA-basic" class="grid grid-cols-1 md:grid-cols-2 gap-3">
               <label class="block">
-                <span class="block text-xs text-gray-600 mb-1">Cuota Exchange (A)</span>
-                <input id="legA-ex-odds" inputmode="decimal" placeholder="1.70"
-                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-              </label>
-              <label class="block">
-                <span class="block text-xs text-gray-600 mb-1">Comisión (A) %</span>
-                <input id="legA-ex-comm" type="number" min="0" max="20" step="0.1" value="2"
-                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-                <span class="text-[11px] text-gray-500">Informativa (no afecta probabilidad).</span>
-              </label>
-            </div>
-
-            <div id="legA-2w" class="hidden grid grid-cols-1 md:grid-cols-2 gap-3">
-              <label class="block">
-                <span class="block text-xs text-gray-600 mb-1">Cuota SÍ (A)</span>
-                <input id="legA-yes" inputmode="decimal" placeholder="1.80"
-                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-              </label>
-              <label class="block">
-                <span class="block text-xs text-gray-600 mb-1">Cuota NO (A)</span>
-                <input id="legA-no" inputmode="decimal" placeholder="2.10"
-                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-              </label>
-            </div>
-
-            <div id="legA-3w" class="hidden grid grid-cols-1 md:grid-cols-4 gap-3">
-              <label class="block">
-                <span class="block text-xs text-gray-600 mb-1">Cuota 1 (A)</span>
-                <input id="legA-1" inputmode="decimal" placeholder="2.60"
-                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-              </label>
-              <label class="block">
-                <span class="block text-xs text-gray-600 mb-1">Cuota X (A)</span>
-                <input id="legA-X" inputmode="decimal" placeholder="3.40"
-                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-              </label>
-              <label class="block">
-                <span class="block text-xs text-gray-600 mb-1">Cuota 2 (A)</span>
-                <input id="legA-2" inputmode="decimal" placeholder="2.75"
-                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-              </label>
-              <label class="block">
-                <span class="block text-xs text-gray-600 mb-1">Selección (A)</span>
-                <select id="legA-pick" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200">
-                  <option value="1">1</option><option value="X">X</option><option value="2">2</option>
+                <span class="block text-xs text-gray-600 mb-1">Tipo de mercado (A)</span>
+                <select id="legA-type-basic" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200">
+                  <option value="ex">Exchange</option>
+                  <option value="2w">2 opciones (SÍ/NO)</option>
+                  <option value="3w">3 opciones (1X2)</option>
                 </select>
               </label>
+              <label class="block">
+                <span class="block text-xs text-gray-600 mb-1">Cuota máxima encontrada (A)</span>
+                <input id="legA-odds-basic" inputmode="decimal" placeholder="1.70"
+                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+              </label>
+              <div class="md:col-span-2 text-[12px] text-gray-500" id="legA-comm-note">
+                Comisión asumida: 2% (Exchange). Se usa para estimar la probabilidad justa.
+              </div>
+            </div>
+
+            <!-- Avanzado: todo (igual a tu versión) -->
+            <div id="legA-adv" class="hidden">
+              <label class="block mb-2 text-sm">Fuente de precio</label>
+              <select id="legA-type" class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-200">
+                <option value="ex">Exchange</option>
+                <option value="2w">Mercado 2 opciones (SÍ/NO)</option>
+                <option value="3w">Mercado 3 opciones (1X2)</option>
+              </select>
+
+              <div id="legA-ex" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <label class="block">
+                  <span class="block text-xs text-gray-600 mb-1">Cuota Exchange (A)</span>
+                  <input id="legA-ex-odds" inputmode="decimal" placeholder="1.70"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                </label>
+                <label class="block">
+                  <span class="block text-xs text-gray-600 mb-1">Comisión (A) %</span>
+                  <input id="legA-ex-comm" type="number" min="0" max="20" step="0.1" value="2"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                  <span class="text-[11px] text-gray-500">Informativa (no afecta la probabilidad).</span>
+                </label>
+              </div>
+
+              <div id="legA-2w" class="hidden grid grid-cols-1 md:grid-cols-2 gap-3">
+                <label class="block">
+                  <span class="block text-xs text-gray-600 mb-1">Cuota SÍ (A)</span>
+                  <input id="legA-yes" inputmode="decimal" placeholder="1.80"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                </label>
+                <label class="block">
+                  <span class="block text-xs text-gray-600 mb-1">Cuota NO (A)</span>
+                  <input id="legA-no" inputmode="decimal" placeholder="2.10"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                </label>
+              </div>
+
+              <div id="legA-3w" class="hidden grid grid-cols-1 md:grid-cols-4 gap-3">
+                <label class="block">
+                  <span class="block text-xs text-gray-600 mb-1">Cuota 1 (A)</span>
+                  <input id="legA-1" inputmode="decimal" placeholder="2.60"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                </label>
+                <label class="block">
+                  <span class="block text-xs text-gray-600 mb-1">Cuota X (A)</span>
+                  <input id="legA-X" inputmode="decimal" placeholder="3.40"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                </label>
+                <label class="block">
+                  <span class="block text-xs text-gray-600 mb-1">Cuota 2 (A)</span>
+                  <input id="legA-2" inputmode="decimal" placeholder="2.75"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                </label>
+                <label class="block">
+                  <span class="block text-xs text-gray-600 mb-1">Selección (A)</span>
+                  <select id="legA-pick" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200">
+                    <option value="1">1</option><option value="X">X</option><option value="2">2</option>
+                  </select>
+                </label>
+              </div>
             </div>
           </div>
 
-          <!-- LEG B -->
+          <!-- B -->
           <div class="border rounded-xl p-4">
             <div class="font-semibold mb-3">Selección B</div>
-            <label class="block mb-2 text-sm">Fuente de precio</label>
-            <select id="legB-type" class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-200">
-              <option value="ex">Exchange</option>
-              <option value="2w">Mercado 2 opciones (SÍ/NO)</option>
-              <option value="3w">Mercado 3 opciones (1X2)</option>
-            </select>
 
-            <div id="legB-ex" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <!-- Aproximado -->
+            <div id="legB-basic" class="grid grid-cols-1 md:grid-cols-2 gap-3">
               <label class="block">
-                <span class="block text-xs text-gray-600 mb-1">Cuota Exchange (B)</span>
-                <input id="legB-ex-odds" inputmode="decimal" placeholder="1.60"
-                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-              </label>
-              <label class="block">
-                <span class="block text-xs text-gray-600 mb-1">Comisión (B) %</span>
-                <input id="legB-ex-comm" type="number" min="0" max="20" step="0.1" value="2"
-                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-                <span class="text-[11px] text-gray-500">Informativa (no afecta probabilidad).</span>
-              </label>
-            </div>
-
-            <div id="legB-2w" class="hidden grid grid-cols-1 md:grid-cols-2 gap-3">
-              <label class="block">
-                <span class="block text-xs text-gray-600 mb-1">Cuota SÍ (B)</span>
-                <input id="legB-yes" inputmode="decimal" placeholder="1.70"
-                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-              </label>
-              <label class="block">
-                <span class="block text-xs text-gray-600 mb-1">Cuota NO (B)</span>
-                <input id="legB-no" inputmode="decimal" placeholder="2.20"
-                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-              </label>
-            </div>
-
-            <div id="legB-3w" class="hidden grid grid-cols-1 md:grid-cols-4 gap-3">
-              <label class="block">
-                <span class="block text-xs text-gray-600 mb-1">Cuota 1 (B)</span>
-                <input id="legB-1" inputmode="decimal" placeholder="2.30"
-                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-              </label>
-              <label class="block">
-                <span class="block text-xs text-gray-600 mb-1">Cuota X (B)</span>
-                <input id="legB-X" inputmode="decimal" placeholder="3.60"
-                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-              </label>
-              <label class="block">
-                <span class="block text-xs text-gray-600 mb-1">Cuota 2 (B)</span>
-                <input id="legB-2" inputmode="decimal" placeholder="3.10"
-                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-              </label>
-              <label class="block">
-                <span class="block text-xs text-gray-600 mb-1">Selección (B)</span>
-                <select id="legB-pick" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200">
-                  <option value="1">1</option><option value="X">X</option><option value="2">2</option>
+                <span class="block text-xs text-gray-600 mb-1">Tipo de mercado (B)</span>
+                <select id="legB-type-basic" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200">
+                  <option value="ex">Exchange</option>
+                  <option value="2w">2 opciones (SÍ/NO)</option>
+                  <option value="3w">3 opciones (1X2)</option>
                 </select>
               </label>
+              <label class="block">
+                <span class="block text-xs text-gray-600 mb-1">Cuota máxima encontrada (B)</span>
+                <input id="legB-odds-basic" inputmode="decimal" placeholder="1.65"
+                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+              </label>
+              <div class="md:col-span-2 text-[12px] text-gray-500" id="legB-comm-note">
+                Comisión asumida: 2% (Exchange). Se usa para estimar la probabilidad justa.
+              </div>
+            </div>
+
+            <!-- Avanzado -->
+            <div id="legB-adv" class="hidden">
+              <label class="block mb-2 text-sm">Fuente de precio</label>
+              <select id="legB-type" class="w-full border border-gray-300 rounded-lg px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-blue-200">
+                <option value="ex">Exchange</option>
+                <option value="2w">Mercado 2 opciones (SÍ/NO)</option>
+                <option value="3w">Mercado 3 opciones (1X2)</option>
+              </select>
+
+              <div id="legB-ex" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <label class="block">
+                  <span class="block text-xs text-gray-600 mb-1">Cuota Exchange (B)</span>
+                  <input id="legB-ex-odds" inputmode="decimal" placeholder="1.60"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                </label>
+                <label class="block">
+                  <span class="block text-xs text-gray-600 mb-1">Comisión (B) %</span>
+                  <input id="legB-ex-comm" type="number" min="0" max="20" step="0.1" value="2"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                  <span class="text-[11px] text-gray-500">Informativa (no afecta la probabilidad).</span>
+                </label>
+              </div>
+
+              <div id="legB-2w" class="hidden grid grid-cols-1 md:grid-cols-2 gap-3">
+                <label class="block">
+                  <span class="block text-xs text-gray-600 mb-1">Cuota SÍ (B)</span>
+                  <input id="legB-yes" inputmode="decimal" placeholder="1.70"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                </label>
+                <label class="block">
+                  <span class="block text-xs text-gray-600 mb-1">Cuota NO (B)</span>
+                  <input id="legB-no" inputmode="decimal" placeholder="2.20"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                </label>
+              </div>
+
+              <div id="legB-3w" class="hidden grid grid-cols-1 md:grid-cols-4 gap-3">
+                <label class="block">
+                  <span class="block text-xs text-gray-600 mb-1">Cuota 1 (B)</span>
+                  <input id="legB-1" inputmode="decimal" placeholder="2.30"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                </label>
+                <label class="block">
+                  <span class="block text-xs text-gray-600 mb-1">Cuota X (B)</span>
+                  <input id="legB-X" inputmode="decimal" placeholder="3.60"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                </label>
+                <label class="block">
+                  <span class="block text-xs text-gray-600 mb-1">Cuota 2 (B)</span>
+                  <input id="legB-2" inputmode="decimal" placeholder="3.10"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                </label>
+                <label class="block">
+                  <span class="block text-xs text-gray-600 mb-1">Selección (B)</span>
+                  <select id="legB-pick" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200">
+                    <option value="1">1</option><option value="X">X</option><option value="2">2</option>
+                  </select>
+                </label>
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- Nota modo Aproximado para 2 selecciones -->
+        <p id="note-two-basic" class="text-xs text-gray-500 mt-3">
+          En <b>Aproximado</b> solo introduces la <b>cuota máxima encontrada</b> por evento y el <b>tipo de mercado</b>. 
+          Estimamos probabilidad justa con comisiones asumidas: Exchange <b>2%</b>, 2 opciones <b>6%</b>, 3 opciones <b>10%</b>.
+        </p>
+        <p id="note-two-adv" class="text-xs text-gray-500 mt-3 hidden">
+          En <b>Avanzado</b> puedes usar precios completos por pata (SÍ/NO o 1X2) y/o una <b>cuota combinada de referencia</b>.
+        </p>
       </section>
 
-      <!-- Resultado principal (ROI) -->
+      <!-- ===================== RESULTADOS ===================== -->
       <section id="ev-card" class="flex items-center justify-between gap-4 border rounded-xl p-5 md:p-6 bg-gray-50 mt-6">
         <div class="flex items-center gap-4">
-          <span id="ev-pill"
-                class="min-w-[64px] text-center text-sm font-extrabold tracking-wide px-3 py-2 rounded-full border">
-            -EV
-          </span>
+          <span id="ev-pill" class="min-w-[64px] text-center text-sm font-extrabold tracking-wide px-3 py-2 rounded-full border">-EV</span>
           <div>
             <div class="text-xs text-gray-500 mb-1">Valor esperado (ROI)</div>
             <div id="ev-value" class="text-4xl md:text-5xl font-black leading-none">0,00%</div>
@@ -361,32 +434,27 @@
         </div>
       </section>
 
-      <!-- Secundario -->
-      <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-5 text-sm">
-        <div id="card-pyes" class="border rounded-lg p-4">
-          <div class="uppercase tracking-wide text-[11px] text-gray-500">Prob. justa (selección)</div>
-          <div id="p-yes" class="text-lg font-semibold">—</div>
-          <p class="text-gray-500 mt-1" id="pyes-note">Estimación según modo.</p>
-        </div>
+      <!-- Tarjetas secundarias -->
+      <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5 text-sm">
         <div id="card-fair" class="border rounded-lg p-4">
-          <div class="uppercase tracking-wide text-[11px] text-gray-500">Cuota justa (break-even)</div>
+          <div class="uppercase tracking-wide text-[11px] text-gray-500">Cuota justa (umbral +EV)</div>
           <div id="fair-odds" class="text-lg font-semibold">—</div>
-          <p class="text-gray-500 mt-1" id="fair-note">Si el boost supera esta cuota, es +EV.</p>
+          <p class="text-gray-500 mt-1">Si tu boost supera esta cuota, la apuesta es +EV.</p>
         </div>
-        <div class="border rounded-lg p-4">
-          <div class="uppercase tracking-wide text-[11px] text-gray-500">EV por euro</div>
-          <div id="ev-euro" class="text-lg font-semibold">0,0000 €</div>
-          <p class="text-gray-500 mt-1">Beneficio medio por € apostado.</p>
+        <div id="card-pyes" class="border rounded-lg p-4">
+          <div class="uppercase tracking-wide text-[11px] text-gray-500">Probabilidad justa (estimada)</div>
+          <div id="p-yes" class="text-lg font-semibold">—</div>
+          <p class="text-gray-500 mt-1">Visible en Avanzado o cuando aplique el cálculo exacto.</p>
         </div>
         <div class="border rounded-lg p-4">
           <div class="uppercase tracking-wide text-[11px] text-gray-500" id="comm-title">Comisión del mercado</div>
           <div id="market-comm" class="text-lg font-semibold">0,00%</div>
-          <p class="text-gray-500 mt-1" id="market-comm-note">Overround (según modo).</p>
+          <p class="text-gray-500 mt-1" id="market-comm-note">Overround/Comisión (según modo).</p>
         </div>
       </section>
 
       <p class="text-xs text-gray-500 mt-4">
-        Nota: en 2 selecciones se asume independencia para p(A∩B)=p(A)·p(B) salvo que introduzcas una cuota combinada de referencia (builder/exchange), en cuyo caso el EV se calcula por comparación directa con su cuota neta (si aplica comisión).
+        <b>Tip:</b> En “Aproximado” las comisiones asumidas son prudentes (Exchange 2%, 2 opciones 6%, 3 opciones 10%). En “Avanzado” puedes introducir precios completos para un EV más preciso.
       </p>
     </div>
   </main>
@@ -412,64 +480,74 @@
     (function(){
       const $ = (id) => document.getElementById(id);
 
-      // Nº selecciones
+      // ====== CONTROLES DE NIVEL Y LEGS ======
+      const levelBasic = $('level-basic');
+      const levelAdv   = $('level-adv');
       const legs1 = $('legs-1');
       const legs2 = $('legs-2');
       const oneLeg = $('one-leg');
       const twoLegs = $('two-legs');
 
-      // One-leg: fijos
-      const oYes   = $('odds-yes');   // selección con boost
+      // ====== ONE-LEG fijos ======
+      const oYes   = $('odds-yes');
       const oBoost = $('odds-boost');
       const yesNote= $('yes-note');
 
-      // One-leg: modos
+      // ONE-LEG modos
       const modeEx   = $('mode-ex');
       const modeBook2= $('mode-book2');
       const modeBook3= $('mode-book3');
       const modeNone = $('mode-none');
 
-      // One-leg: inputs por modo
+      // ONE-LEG inputs por modo
       const wrapEx   = $('wrap-ex');
       const wrapBook2= $('wrap-book2');
       const wrapBook3= $('wrap-book3');
       const wrapAsm  = $('wrap-assumed');
 
       const oEx     = $('odds-ex');
-      const exComm  = $('ex-comm');       // % (2 por defecto)
-
-      const oNoBook = $('odds-no-book');  // 2 opciones
+      const exComm  = $('ex-comm'); // % (2 por defecto)
+      const oNoBookYes = $('odds-no-book-yes');
+      const oNoBook = $('odds-no-book');
       const o1      = $('odds-1');
       const oX      = $('odds-x');
       const o2      = $('odds-2');
       const pick    = $('boost-pick');
-      const asmComm = $('assumed-comm');  // % (10 por defecto)
 
-      // Two-legs
+      // ====== TWO-LEGS ======
       const boost2  = $('boost-2l');
+      // Avanzado - referencia combinada
+      const comboAdvWrap = $('combo-adv-wrap');
       const useComboRef = $('use-combo-ref');
       const comboRefWrap = $('combo-ref-wrap');
       const comboRefOdds = $('combo-ref-odds');
       const comboRefComm = $('combo-ref-comm');
 
-      // Leg A
+      // Aproximado (solo tipo + cuota máx)
+      const legATypeBasic = $('legA-type-basic');
+      const legAOddsBasic = $('legA-odds-basic');
+      const legACommNote  = $('legA-comm-note');
+      const legBTypeBasic = $('legB-type-basic');
+      const legBOddsBasic = $('legB-odds-basic');
+      const legBCommNote  = $('legB-comm-note');
+
+      // Avanzado (completo)
       const legAType = $('legA-type');
       const legA_ex  = $('legA-ex'), legA_ex_odds=$('legA-ex-odds'), legA_ex_comm=$('legA-ex-comm');
       const legA_2w  = $('legA-2w'), legA_yes=$('legA-yes'), legA_no=$('legA-no');
       const legA_3w  = $('legA-3w'), legA_1=$('legA-1'), legA_X=$('legA-X'), legA_2=$('legA-2'), legA_pick=$('legA-pick');
 
-      // Leg B
       const legBType = $('legB-type');
       const legB_ex  = $('legB-ex'), legB_ex_odds=$('legB-ex-odds'), legB_ex_comm=$('legB-ex-comm');
       const legB_2w  = $('legB-2w'), legB_yes=$('legB-yes'), legB_no=$('legB-no');
       const legB_3w  = $('legB-3w'), legB_1=$('legB-1'), legB_X=$('legB-X'), legB_2=$('legB-2'), legB_pick=$('legB-pick');
 
-      // Salidas
+      // ====== SALIDAS ======
       const card   = $('ev-card'), pill = $('ev-pill'), value = $('ev-value');
-      const pYesEl = $('p-yes'), fairEl = $('fair-odds'), evEuro = $('ev-euro'), commEl = $('market-comm');
+      const pYesEl = $('p-yes'), fairEl = $('fair-odds'), commEl = $('market-comm');
       const commTitle = $('comm-title'), commNote = $('market-comm-note');
 
-      // Utils
+      // ====== UTILS ======
       function toN(v){ const n = Number(String(v||'').trim().replace(',', '.')); return Number.isFinite(n)?n:null }
       function fmt(n,d){ n=Number.isFinite(n)?n:0; return n.toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d}) }
       function pct(n){ n=Number.isFinite(n)?n:0; return n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}) }
@@ -489,11 +567,10 @@
       }
       function resetOutputs(){
         pill.textContent='-EV'; value.textContent='0,00%';
-        pYesEl.textContent='—'; fairEl.textContent='—'; evEuro.textContent=fmt(0,4)+' €';
-        commEl.textContent='0,00%';
+        pYesEl.textContent='—'; fairEl.textContent='—'; commEl.textContent='0,00%';
       }
 
-      // Helpers prob/overround
+      // Probabilidades / overround
       function fairP_2way(oS, oN){ const qS=1/oS, qN=1/oN, S=qS+qN; return qS/S }
       function overround_2way_pct(oS, oN){ const qS=1/oS, qN=1/oN; return (qS+qN-1)*100 }
       function fairP_3way_pick(sel, o1,oX,o2){
@@ -504,7 +581,13 @@
       function fairP_assumed(oSel,cPct){ const c=(Number.isFinite(cPct)?cPct:10)/100; return (1/oSel)/(1+c) }
       function netExchangeOdds(Ex,cPct){ const c=(Number.isFinite(cPct)?cPct:2)/100; return 1 + (Ex - 1)*(1 - c) }
 
-      // LEG UI toggles
+      // ====== UI: Nivel y visibilidad ======
+      function switchLegsBlock(){
+        const isTwo = legs2.checked;
+        oneLeg.classList.toggle('hidden', isTwo);
+        twoLegs.classList.toggle('hidden', !isTwo);
+      }
+
       function toggleOneLegVisibility(){
         const ex = modeEx.checked, b2 = modeBook2.checked, b3 = modeBook3.checked, none = modeNone.checked;
         wrapEx.classList.toggle('hidden', !ex);
@@ -513,35 +596,216 @@
         wrapAsm.classList.toggle('hidden', !none);
         yesNote.classList.toggle('hidden', !ex);
 
+        // Tarjeta comisión/overround: en Aproximado la escondemos salvo cuando tenga sentido mostrar el porcentaje exacto calculado
+        const isBasic = levelBasic.checked;
+        $('card-pyes').classList.toggle('hidden', isBasic); // Prob justa no es crítica en Aproximado
+        const showComm = !isBasic; // en Aproximado la mostramos solo si estamos en Exchange (porque la comisión es explícita)
+        const forceShow = ex && isBasic;
+        $('comm-title').parentElement.parentElement.classList.toggle('hidden', !(forceShow || showComm));
+
+        // Nota del título
         if(ex){ commTitle.textContent='Comisión exchange'; commNote.textContent='Se aplica al break-even y al EV.'; }
         else if(b2){ commTitle.textContent='Comisión exacta del mercado (2 opciones)'; commNote.textContent='Overround SÍ/NO de la casa.'; }
         else if(b3){ commTitle.textContent='Comisión exacta del mercado (3 opciones)'; commNote.textContent='Overround 1–X–2 de la casa.'; }
-        else { commTitle.textContent='Comisión asumida'; commNote.textContent='Overround total asumido.'; }
+        else { commTitle.textContent='Comisión asumida'; commNote.textContent='Overround total asumido (10%).'; }
       }
+
       function toggleTwoLegVisibility(){
-        legA_ex.classList.toggle('hidden', legAType.value!=='ex');
-        legA_2w.classList.toggle('hidden', legAType.value!=='2w');
-        legA_3w.classList.toggle('hidden', legAType.value!=='3w');
+        const isBasic = levelBasic.checked;
 
-        legB_ex.classList.toggle('hidden', legBType.value!=='ex');
-        legB_2w.classList.toggle('hidden', legBType.value!=='2w');
-        legB_3w.classList.toggle('hidden', legBType.value!=='3w');
+        // Mostrar/ocultar bloques Aproximado vs Avanzado
+        $('legA-basic').classList.toggle('hidden', !isBasic);
+        $('legB-basic').classList.toggle('hidden', !isBasic);
+        $('legA-adv').classList.toggle('hidden', isBasic);
+        $('legB-adv').classList.toggle('hidden', isBasic);
 
-        comboRefWrap.classList.toggle('hidden', !useComboRef.checked);
+        // Referencia combinada solo en Avanzado
+        comboAdvWrap.classList.toggle('hidden', isBasic);
+        comboRefWrap.classList.toggle('hidden', !useComboRef.checked || isBasic);
 
-        commTitle.textContent = 'Comisión del mercado';
-        commNote.textContent  = useComboRef.checked
-          ? 'Si usas cuota combinada de referencia, se aplica su comisión (si procede).'
-          : 'Comisiones/overround de las patas (mix).';
+        // Notas explicativas
+        $('note-two-basic').classList.toggle('hidden', !isBasic);
+        $('note-two-adv').classList.toggle('hidden', isBasic);
+
+        // Tarjeta comisión/overround: en Aproximado preferimos ocultarla
+        $('comm-title').parentElement.parentElement.classList.toggle('hidden', isBasic);
       }
 
-      function switchLegsBlock(){
-        const isTwo = legs2.checked;
-        oneLeg.classList.toggle('hidden', isTwo);
-        twoLegs.classList.toggle('hidden', !isTwo);
+      function setLevelUI(){
+        switchLegsBlock();
+        toggleOneLegVisibility();
+        toggleTwoLegVisibility();
+        updateLegBasicNotes();
       }
 
-      // Probabilidad por pata (no aplicar comisión exchange a la prob.)
+      // Texto “comisión asumida” por tipo (Aproximado)
+      function assumedPctByType(t){
+        if(t==='ex') return 2;
+        if(t==='2w') return 6;
+        return 10; // 3w
+      }
+      function updateLegBasicNotes(){
+        const aPct = assumedPctByType(legATypeBasic.value);
+        const bPct = assumedPctByType(legBTypeBasic.value);
+        legACommNote.innerHTML = `Comisión asumida: <b>${aPct}%</b> (${legATypeBasic.value==='ex'?'Exchange':'mercado ' + (legATypeBasic.value==='2w'?'2 opciones':'3 opciones')}). Se usa para estimar la probabilidad justa.`;
+        legBCommNote.innerHTML = `Comisión asumida: <b>${bPct}%</b> (${legBTypeBasic.value==='ex'?'Exchange':'mercado ' + (legBTypeBasic.value==='2w'?'2 opciones':'3 opciones')}). Se usa para estimar la probabilidad justa.`;
+      }
+
+      // ====== CÁLCULO PRINCIPAL ======
+      function update(){
+        switchLegsBlock();
+
+        // ---------- 1 selección ----------
+        if(legs1.checked){
+          toggleOneLegVisibility();
+
+          const B = toN(oBoost.value);
+          if(!B || B<=1){ resetOutputs(); return; }
+
+          if(modeEx.checked){
+            const Ex = toN(oEx.value);
+            const cPct = toN(exComm.value);
+            if(!Ex || Ex<=1){ resetOutputs(); commEl.textContent=(Number.isFinite(cPct)?pct(cPct):'2,00%'); return; }
+
+            const netEx = netExchangeOdds(Ex, cPct);
+            const ev1   = (B / netEx) - 1;
+            const roi   = ev1 * 100;
+            const pos   = ev1 > 0;
+
+            setStatus(pos);
+            value.textContent  = (pos? '+' : '') + pct(roi) + '%';
+            fairEl.textContent = fmt(netEx,3);     // umbral boost neto
+            pYesEl.textContent = levelAdv.checked ? fmt(1/Ex,4) : '—';
+            commEl.textContent = pct(Number.isFinite(cPct)?cPct:2) + '%';
+            return;
+          }
+
+          // Necesitamos la cuota SÍ real si no es Exchange
+          const S = toN(oYes.value);
+          if(!S || S<=1){ resetOutputs(); return; }
+
+          if(modeBook2.checked){
+            const N = toN(oNoBook.value);
+            const Sy = toN(oNoBookYes.value);
+            if(!N||N<=1||!Sy||Sy<=1){ resetOutputs(); return; }
+            const pSel = fairP_2way(Sy,N);
+            const fair = 1/pSel;
+            const ev1  = pSel*B - 1;
+            const roi  = ev1*100;
+            const pos  = ev1>0;
+            const comm = overround_2way_pct(Sy,N);
+
+            setStatus(pos);
+            value.textContent  = (pos? '+' : '') + pct(roi) + '%';
+            fairEl.textContent = fmt(fair,3);
+            pYesEl.textContent = levelAdv.checked ? fmt(pSel,4) : '—';
+            commEl.textContent = pct(comm) + '%';
+            return;
+          }
+
+          if(modeBook3.checked){
+            const o1v=toN(o1.value), oXv=toN(oX.value), o2v=toN(o2.value);
+            if(!o1v||!oXv||!o2v||o1v<=1||oXv<=1||o2v<=1){ resetOutputs(); return; }
+            const pSel = fairP_3way_pick(pick.value, o1v,oXv,o2v);
+            const fair = 1/pSel;
+            const ev1  = pSel*B - 1;
+            const roi  = ev1*100;
+            const pos  = ev1>0;
+            const comm = overround_3way_pct(o1v,oXv,o2v);
+
+            setStatus(pos);
+            value.textContent  = (pos? '+' : '') + pct(roi) + '%';
+            fairEl.textContent = fmt(fair,3);
+            pYesEl.textContent = levelAdv.checked ? fmt(pSel,4) : '—';
+            commEl.textContent = pct(comm) + '%';
+            return;
+          }
+
+          if(modeNone.checked){
+            // Modo Aproximado/Avanzado: en Aproximado la comisión es fija al 10%
+            const cUse = 10;
+            const pSel = fairP_assumed(S,cUse);
+            const fair = 1/pSel;
+            const ev1  = pSel*B - 1;
+            const roi  = ev1*100;
+            const pos  = ev1>0;
+
+            setStatus(pos);
+            value.textContent  = (pos? '+' : '') + pct(roi) + '%';
+            fairEl.textContent = fmt(fair,3);
+            pYesEl.textContent = levelAdv.checked ? fmt(pSel,4) : '—';
+            commEl.textContent = pct(cUse) + '%';
+            return;
+          }
+
+          resetOutputs();
+          return;
+        }
+
+        // ---------- 2 selecciones ----------
+        toggleTwoLegVisibility();
+
+        const B2 = toN(boost2.value);
+        if(!B2 || B2<=1){ resetOutputs(); return; }
+
+        let ev1, fair, commText='—';
+
+        if(levelBasic.checked){
+          // Aproximado: solo odds máximas y tipo de mercado (comisión asumida por tipo)
+          const oA = toN(legAOddsBasic.value), oB = toN(legBOddsBasic.value);
+          if(!oA||oA<=1 || !oB||oB<=1){ resetOutputs(); return; }
+
+          const cA = assumedPctByType(legATypeBasic.value);
+          const cB = assumedPctByType(legBTypeBasic.value);
+
+          const pA = fairP_assumed(oA, cA);
+          const pB = fairP_assumed(oB, cB);
+          const pJoint = pA * pB;
+
+          ev1  = pJoint * B2 - 1;
+          fair = 1 / pJoint;
+          commText = `A: ${cA}% | B: ${cB}% (asumidas)`;
+        } else {
+          // Avanzado: patas completas y (opcional) referencia combinada
+          const A = legProb(legAType.value, {
+            Ex: legA_ex_odds.value, comm: legA_ex_comm.value,
+            yes: legA_yes.value, no: legA_no.value,
+            o1: legA_1.value, oX: legA_X.value, o2: legA_2.value, pick: legA_pick.value
+          });
+          const B = legProb(legBType.value, {
+            Ex: legB_ex_odds.value, comm: legB_ex_comm.value,
+            yes: legB_yes.value, no: legB_no.value,
+            o1: legB_1.value, oX: legB_X.value, o2: legB_2.value, pick: legB_pick.value
+          });
+          if(A.p==null || B.p==null){ resetOutputs(); commEl.textContent='—'; return; }
+          const pJoint = A.p * B.p;
+
+          if(useComboRef.checked){
+            const ref = toN(comboRefOdds.value);
+            const cRef = toN(comboRefComm.value);
+            if(!ref || ref<=1){ resetOutputs(); commEl.textContent = `${A.comm} | ${B.comm}`; return; }
+            const netRef = netExchangeOdds(ref, Number.isFinite(cRef)?cRef:0);
+            ev1  = (B2 / netRef) - 1;
+            fair = netRef; // break-even del boost dicho por la referencia neta
+            commText = `Ref: ${Number.isFinite(cRef)?pct(cRef):'0,00'}% | ${A.comm} | ${B.comm}`;
+          } else {
+            ev1  = pJoint * B2 - 1;
+            fair = 1 / pJoint;
+            commText = `${A.comm} | ${B.comm}`;
+          }
+        }
+
+        const roi = ev1*100;
+        const pos = ev1>0;
+
+        setStatus(pos);
+        value.textContent  = (pos? '+' : '') + pct(roi) + '%';
+        fairEl.textContent = Number.isFinite(fair)?fmt(fair,3):'—';
+        pYesEl.textContent = levelAdv.checked ? fmt((ev1+1)/B2,4) : '—'; // pJoint aprox inverso (solo informativo)
+        commEl.textContent = commText;
+      }
+
+      // Probabilidad por pata (Avanzado)
       function legProb(type, inputs){
         if(type==='ex'){
           const Ex = toN(inputs.Ex);
@@ -565,174 +829,49 @@
         return {p:null, comm:'—'};
       }
 
-      // Cálculo principal
-      function update(){
-        switchLegsBlock();
+      // ====== LISTENERS ======
+      [levelBasic, levelAdv].forEach(el => el.addEventListener('change', () => {
+        setLevelUI(); update();
+      }));
 
-        // ---- 1 selección ----
-        if(legs1.checked){
-          toggleOneLegVisibility();
+      [legs1,legs2].forEach(el=>el.addEventListener('change', () => { setLevelUI(); update(); }));
 
-          const B = toN(oBoost.value);
-          if(!B || B<=1){ resetOutputs(); return; }
+      [oYes,oBoost,oEx,exComm,oNoBook,oNoBookYes,o1,oX,o2,pick].forEach(el=>el.addEventListener('input', update));
+      [modeEx,modeBook2,modeBook3,modeNone].forEach(el=>el.addEventListener('change', () => { toggleOneLegVisibility(); update(); }));
 
-          if(modeEx.checked){
-            const Ex = toN(oEx.value);
-            const cPct = toN(exComm.value);
-            if(!Ex || Ex<=1){ resetOutputs(); commEl.textContent=(Number.isFinite(cPct)?pct(cPct):'2,00%'); return; }
+      // Two-legs (Aproximado)
+      [legATypeBasic, legAOddsBasic, legBTypeBasic, legBOddsBasic].forEach(el=>{
+        el.addEventListener('input', () => { updateLegBasicNotes(); update(); });
+        el.addEventListener('change', () => { updateLegBasicNotes(); update(); });
+      });
 
-            const netEx = netExchangeOdds(Ex, cPct);
-            const ev1   = (B / netEx) - 1;
-            const roi   = ev1 * 100;
-            const pos   = ev1 > 0;
-
-            setStatus(pos);
-            value.textContent  = (pos? '+' : '') + pct(roi) + '%';
-            evEuro.textContent = fmt(ev1,4) + ' €';
-            pYesEl.textContent = fmt(1/Ex,4);      // aprox desde Exchange
-            fairEl.textContent = fmt(netEx,3);     // umbral boost neto
-            commEl.textContent = pct(Number.isFinite(cPct)?cPct:2) + '%';
-            return;
-          }
-
-          const S = toN(oYes.value);
-          if(!S || S<=1){ resetOutputs(); return; }
-
-          if(modeBook2.checked){
-            const N = toN(oNoBook.value);
-            if(!N||N<=1){ resetOutputs(); return; }
-            const pSel = fairP_2way(S,N);
-            const fair = 1/pSel;
-            const ev1  = pSel*B - 1;
-            const roi  = ev1*100;
-            const pos  = ev1>0;
-            const comm = overround_2way_pct(S,N);
-
-            setStatus(pos);
-            value.textContent  = (pos? '+' : '') + pct(roi) + '%';
-            evEuro.textContent = fmt(ev1,4) + ' €';
-            pYesEl.textContent = fmt(pSel,4);
-            fairEl.textContent = fmt(fair,3);
-            commEl.textContent = pct(comm) + '%';
-            return;
-          }
-
-          if(modeBook3.checked){
-            const o1v=toN(o1.value), oXv=toN(oX.value), o2v=toN(o2.value);
-            if(!o1v||!oXv||!o2v||o1v<=1||oXv<=1||o2v<=1){ resetOutputs(); return; }
-            const pSel = fairP_3way_pick(pick.value, o1v,oXv,o2v);
-            const fair = 1/pSel;
-            const ev1  = pSel*B - 1;
-            const roi  = ev1*100;
-            const pos  = ev1>0;
-            const comm = overround_3way_pct(o1v,oXv,o2v);
-
-            setStatus(pos);
-            value.textContent  = (pos? '+' : '') + pct(roi) + '%';
-            evEuro.textContent = fmt(ev1,4) + ' €';
-            pYesEl.textContent = fmt(pSel,4);
-            fairEl.textContent = fmt(fair,3);
-            commEl.textContent = pct(comm) + '%';
-            return;
-          }
-
-          if(modeNone.checked){
-            const c = toN(asmComm.value);
-            const cUse = Number.isFinite(c)?Math.max(0,c):10;
-            const pSel = fairP_assumed(S,cUse);
-            const fair = 1/pSel;
-            const ev1  = pSel*B - 1;
-            const roi  = ev1*100;
-            const pos  = ev1>0;
-
-            setStatus(pos);
-            value.textContent  = (pos? '+' : '') + pct(roi) + '%';
-            evEuro.textContent = fmt(ev1,4) + ' €';
-            pYesEl.textContent = fmt(pSel,4);
-            fairEl.textContent = fmt(fair,3);
-            commEl.textContent = pct(cUse) + '%';
-            return;
-          }
-
-          resetOutputs();
-          return;
-        }
-
-        // ---- 2 selecciones ----
-        toggleTwoLegVisibility();
-
-        const B2 = toN(boost2.value);
-        if(!B2 || B2<=1){ resetOutputs(); return; }
-
-        // Pata A
-        let A = legProb(legAType.value, {
-          Ex: legA_ex_odds.value, comm: legA_ex_comm.value,
-          yes: legA_yes.value, no: legA_no.value,
-          o1: legA_1.value, oX: legA_X.value, o2: legA_2.value, pick: legA_pick.value
-        });
-        // Pata B
-        let B = legProb(legBType.value, {
-          Ex: legB_ex_odds.value, comm: legB_ex_comm.value,
-          yes: legB_yes.value, no: legB_no.value,
-          o1: legB_1.value, oX: legB_X.value, o2: legB_2.value, pick: legB_pick.value
-        });
-
-        if(A.p==null || B.p==null){ resetOutputs(); commEl.textContent='—'; return; }
-
-        const pJoint = A.p * B.p;
-
-        // ¿Usar cuota combinada de referencia?
-        let ev1, fair, commText;
-        if(useComboRef.checked){
-          const ref = toN(comboRefOdds.value);
-          const cRef = toN(comboRefComm.value);
-          if(!ref || ref<=1){ resetOutputs(); commEl.textContent = `${A.comm} | ${B.comm}`; return; }
-          const netRef = netExchangeOdds(ref, Number.isFinite(cRef)?cRef:0);
-          ev1  = (B2 / netRef) - 1;
-          fair = netRef; // break-even del boost dicho por la referencia neta
-          commText = `Ref: ${Number.isFinite(cRef)?pct(cRef):'0,00'}% | ${A.comm} | ${B.comm}`;
-        } else {
-          ev1  = pJoint * B2 - 1;
-          fair = 1 / pJoint;
-          commText = `${A.comm} | ${B.comm}`;
-        }
-
-        const roi = ev1*100;
-        const pos = ev1>0;
-
-        setStatus(pos);
-        value.textContent  = (pos? '+' : '') + pct(roi) + '%';
-        evEuro.textContent = fmt(ev1,4) + ' €';
-        pYesEl.textContent = fmt(pJoint,4);
-        fairEl.textContent = Number.isFinite(fair)?fmt(fair,3):'—';
-        commEl.textContent = commText;
-      }
-
-      // Eventos
-      [legs1,legs2].forEach(el=>el.addEventListener('change', update));
-      [oYes,oBoost,oEx,exComm,oNoBook,o1,oX,o2,pick,asmComm].forEach(el=>el.addEventListener('input', update));
-      [modeEx,modeBook2,modeBook3,modeNone].forEach(el=>el.addEventListener('change', update));
-
+      // Two-legs (Avanzado)
       [boost2,useComboRef,comboRefOdds,comboRefComm,
        legAType,legA_ex_odds,legA_ex_comm,legA_yes,legA_no,legA_1,legA_X,legA_2,legA_pick,
        legBType,legB_ex_odds,legB_ex_comm,legB_yes,legB_no,legB_1,legB_X,legB_2,legB_pick
-      ].forEach(el=>el.addEventListener('input', update));
-      [legAType,legBType,useComboRef].forEach(el=>el.addEventListener('change', update));
+      ].forEach(el=>{
+        el.addEventListener('input', update);
+        el.addEventListener('change', () => { toggleTwoLegVisibility(); update(); });
+      });
 
-      // Valores demo
+      // ====== VALORES DEMO ======
       oYes.value   = '1.50';
       oBoost.value = '2.00';
       oEx.value    = '1.98';
       exComm.value = '2';
-      oNoBook.value= '2.55';
+      oNoBookYes.value='1.80';
+      oNoBook.value= '2.05';
       o1.value='2.60'; oX.value='3.40'; o2.value='2.75'; pick.value='1';
 
       boost2.value = '4.50';
+      legAOddsBasic.value='1.70'; legBOddsBasic.value='1.65';
       legA_ex_odds.value='1.70'; legA_ex_comm.value='2';
       legB_ex_odds.value='1.60'; legB_ex_comm.value='2';
 
-      // Estado inicial: 1 selección, modo exchange
+      // Estado inicial: Aproximado, 1 selección, modo Exchange
+      levelBasic.checked = true;
       modeEx.checked = true;
+      setLevelUI();
       update();
     })();
   </script>
