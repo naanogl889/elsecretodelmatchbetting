@@ -24,8 +24,16 @@
                     <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
                     <a id="nav-guide-link" href="/guias.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guía GRATIS</a>
                     <a href="/premium.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guías Premium</a>
-                    <a href="/calculadora.html" class="font-bold text-blue-600 transition">Calculadora</a>
-                    <a href="calculadoraEV.html" class="font-bold text-blue-600 transition">Calculadora EV</a>
+                    <!-- Calculadoras con desplegable -->
+                    <div class="relative group">
+                      <button class="font-medium text-gray-700 hover:text-blue-600 transition flex items-center gap-1">
+                        Calculadoras <i class="fas fa-chevron-down text-xs"></i>
+                      </button>
+                      <div class="absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-md opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition">
+                        <a href="/calculadora.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Calculadora Match Betting</a>
+                        <a href="/calculadoraEV.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Calculadora EV</a>
+                      </div>
+                    </div>
                     <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
                         <i class="fab fa-telegram mr-2"></i> Telegram
                     </a>
