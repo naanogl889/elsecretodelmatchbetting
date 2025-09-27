@@ -10,47 +10,49 @@
 </head>
 
 <body class="font-sans antialiased text-gray-800 bg-green-100">
-  <!-- NAV (deja tu script de acceso tal cual, no se toca) -->
-  <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
-    <div class="container mx-auto px-4 max-w-6xl">
-      <div class="flex justify-between items-center">
-        <div class="flex items-center space-x-8">
-          <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
+<!-- BARRA DE NAVEGACIÓN DINÁMICA -->
+    <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-8">
+                    <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
+                    <a id="nav-guide-link" href="/guias.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guía GRATIS</a>
+                    <a href="/premium.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guías Premium</a>
+                    <!-- Calculadoras (dropdown robusto) -->
+                    <div class="relative group">
+                      <button
+                        class="flex items-center gap-1 font-medium text-gray-700 hover:text-blue-600 transition"
+                        aria-haspopup="true" aria-expanded="false">
+                        Calculadoras <i class="fas fa-chevron-down text-xs"></i>
+                      </button>
 
-          <a href="/guias.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guías</a>
+                      <!-- Menú pegado al botón, sin huecos -->
+                      <div
+                        class="absolute left-0 top-full w-56 bg-white border border-gray-200 rounded-lg shadow-md
+                              invisible opacity-0 translate-y-1
+                              group-hover:visible group-hover:opacity-100 group-hover:translate-y-0
+                              group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0
+                              transition duration-150">
+                        <a href="/calculadora.html"
+                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none">Calculadora Match Betting</a>
+                        <a href="/calculadoraEV.html"
+                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none">Calculadora EV</a>
+                      </div>
+                    </div>
 
-          <!-- Calculadoras (dropdown robusto) -->
-          <div class="relative group">
-            <button
-              class="flex items-center gap-1 font-medium text-gray-700 hover:text-blue-600 transition"
-              aria-haspopup="true" aria-expanded="false">
-              Calculadoras <i class="fas fa-chevron-down text-xs"></i>
-            </button>
-            <div
-              class="absolute left-0 top-full w-56 bg-white border border-gray-200 rounded-lg shadow-md
-                     invisible opacity-0 translate-y-1
-                     group-hover:visible group-hover:opacity-100 group-hover:translate-y-0
-                     group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0
-                     transition duration-150">
-              <a href="/calculadora.html"
-                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none">Calculadora Match Betting</a>
-              <a href="/calculadoraEV.html"
-                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none">Calculadora EV</a>
+                    <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
+                        <i class="fab fa-telegram mr-2"></i> Telegram
+                    </a>
+                    <a href="https://www.instagram.com/naanogl" target="_blank" class="font-medium text-gray-700 hover:text-pink-600 transition flex items-center">
+                        <i class="fab fa-instagram mr-2"></i> Instagram
+                    </a>
+                </div>
+                <div id="user-status" class="flex items-center space-x-4">
+                    <!-- Contenido dinámico: Login/Logout -->
+                </div>
             </div>
-          </div>
-
-          <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
-            <i class="fab fa-telegram mr-2"></i> Telegram
-          </a>
-          <a href="https://www.instagram.com/naanogl" target="_blank" class="font-medium text-gray-700 hover:text-pink-600 transition flex items-center">
-            <i class="fab fa-instagram mr-2"></i> Instagram
-          </a>
         </div>
-        <div id="user-status" class="flex items-center space-x-4"></div>
-      </div>
-    </div>
-  </nav>
-
+    </nav>
   <!-- CONTENIDO -->
   <main class="container mx-auto px-4 py-8 sm:py-16 max-w-6xl">
     <div class="bg-white p-5 sm:p-8 rounded-xl shadow-lg">
@@ -137,16 +139,10 @@
         </div>
       </div>
 
-      <!-- Botones de acción -->
+      <!-- Botones de acción (solo Calcular + Reset) -->
       <div class="mt-6 flex flex-wrap gap-3">
         <button id="btn-calcular" class="bg-blue-600 text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-blue-700">
           🔍 Calcular
-        </button>
-        <button id="btn-copy-lay" class="bg-white text-gray-800 px-4 py-2.5 rounded-lg border hover:bg-gray-50 disabled:opacity-40" disabled>
-          📋 Copiar Lay
-        </button>
-        <button id="btn-copy-expo" class="bg-white text-gray-800 px-4 py-2.5 rounded-lg border hover:bg-gray-50 disabled:opacity-40" disabled>
-          📋 Copiar Exposición
         </button>
         <button id="btn-reset" class="bg-gray-800 text-white px-4 py-2.5 rounded-lg hover:bg-gray-900">
           ♻️ Reset
@@ -155,7 +151,7 @@
 
       <!-- Toast -->
       <div id="toast" class="hidden fixed left-1/2 -translate-x-1/2 bottom-6 z-50">
-        <div class="bg-gray-900 text-white text-sm px-4 py-2 rounded-full shadow-lg" id="toast-msg">Copiado</div>
+        <div class="bg-gray-900 text-white text-sm px-4 py-2 rounded-full shadow-lg" id="toast-msg">Listo</div>
       </div>
 
       <!-- Resultado principal -->
@@ -177,21 +173,27 @@
           </div>
         </section>
 
-        <!-- Tarjetas limpias -->
+        <!-- Tarjetas -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5">
           <div class="rounded-xl p-5 border bg-blue-50">
             <div class="text-sm font-semibold mb-2">A Favor (Casa)</div>
             <div id="card-back" class="text-xl font-bold">—</div>
           </div>
+
           <div class="rounded-xl p-5 border bg-orange-50">
             <div class="text-sm font-semibold mb-2">Ganancia Estimada</div>
             <div id="card-gan" class="text-2xl font-black">—</div>
             <div id="card-rating" class="text-sm text-gray-700 mt-1">Rating —</div>
           </div>
+
           <div class="rounded-xl p-5 border bg-red-50">
             <div class="text-sm font-semibold mb-2">En Contra (Exchange)</div>
             <div id="card-lay" class="text-xl font-bold">—</div>
-            <div id="card-riesgo" class="text-sm text-gray-700 mt-1">Exposición: —</div>
+            <div id="card-riesgo" class="text-sm text-gray-700 mt-1">Riesgo: —</div>
+            <!-- Botón copiar lay debajo del importe -->
+            <button id="btn-copy-lay-inline" class="mt-3 w-full bg-white text-gray-800 px-3 py-2 rounded-md border hover:bg-gray-50 disabled:opacity-40" disabled>
+              📋 Copiar Lay
+            </button>
           </div>
         </div>
 
@@ -271,11 +273,12 @@
       const tBody   = $('tabla-body');
       const diffTxt = $('diferencia-text');
 
-      // Botones rápidos
+      // Botones
       const btnCalc = $('btn-calcular');
-      const btnCopyLay = $('btn-copy-lay');
-      const btnCopyExpo = $('btn-copy-expo');
       const btnReset = $('btn-reset');
+      const btnCopyLayInline = $('btn-copy-lay-inline');
+
+      // Toast
       const toast = $('toast');
       const toastMsg = $('toast-msg');
 
@@ -287,7 +290,7 @@
       const fmt = (n, d=2) => Number(n||0).toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d});
       const money = (n) => `${fmt(n,2)} €`;
 
-      function showToast(msg='Copiado ✅'){
+      function showToast(msg='Listo'){
         toastMsg.textContent = msg;
         toast.classList.remove('hidden');
         clearTimeout(showToast._t);
@@ -559,8 +562,7 @@
 
         if(!importe || !cb || !ce || importe<=0 || cb<=1 || ce<=1){
           resumen.classList.add('hidden');
-          btnCopyLay.disabled = true;
-          btnCopyExpo.disabled = true;
+          btnCopyLayInline.disabled = true;
           return;
         }
         c = (Number.isFinite(c) ? c : 2.0) / 100.0;
@@ -598,19 +600,13 @@
         }
         cardGan.textContent   = money(res.ganancia_casa);
         cardLay.textContent   = `${money(res.lay)} a cuota ${fmt(res.cuota_exchange,2)}`;
-        cardRiesgo.textContent= `Exposición: ${money(res.riesgo)}`;
+        cardRiesgo.textContent= `Riesgo: ${money(res.riesgo)}`;
 
         mostrarTabla(res);
 
-        // Habilitar botones copiar
-        btnCopyLay.disabled  = false;
-        btnCopyExpo.disabled = false;
-
-        // Guardar último resultado para copiar
-        calcular._last = {
-          lay: res.lay,
-          expo: res.riesgo
-        };
+        // Habilitar botón de copiar lay y guardar valor
+        btnCopyLayInline.disabled  = false;
+        calcular._last = { lay: res.lay };
       }
 
       function resetForm(){
@@ -630,8 +626,7 @@
         pRol.classList.add('hidden');
 
         resumen.classList.add('hidden');
-        btnCopyLay.disabled  = true;
-        btnCopyExpo.disabled = true;
+        btnCopyLayInline.disabled  = true;
 
         calcular._last = null;
       }
@@ -643,19 +638,13 @@
       }
 
       // Eventos
-      btnCalc.addEventListener('click', calcular);
-      btnReset.addEventListener('click', ()=>{ resetForm(); showToast('Formulario reiniciado ♻️'); });
-      btnCopyLay.addEventListener('click', async ()=>{
+      $('btn-calcular').addEventListener('click', calcular);
+      $('btn-reset').addEventListener('click', ()=>{ resetForm(); showToast('Formulario reiniciado ♻️'); });
+      btnCopyLayInline.addEventListener('click', async ()=>{
         const v = calcular._last?.lay;
         if(v==null) return;
         await navigator.clipboard.writeText(Number(v).toFixed(2));
         showToast('Lay copiado ✅');
-      });
-      btnCopyExpo.addEventListener('click', async ()=>{
-        const v = calcular._last?.expo;
-        if(v==null) return;
-        await navigator.clipboard.writeText(Number(v).toFixed(2));
-        showToast('Exposición copiada ✅');
       });
 
       [tipo, imp, bck, exo, com, rebMonto, rebRet, rolBono, rolRollover, rolRet].forEach(el=>{
