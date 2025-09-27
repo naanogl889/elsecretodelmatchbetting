@@ -251,9 +251,10 @@
         <section id="two-legs" class="hidden">
           <section class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <label class="block">
-              <span class="block text-sm font-medium text-gray-600 mb-1">Cuota boost combinada (2 selecciones)</span>
-              <input id="boost-2l" inputmode="decimal" placeholder="4,50"
+              <span class="block text-sm font-medium text-gray-600 mb-1">Cuota-Boost combinada (2 selecciones)</span>
+              <input id="boost-2l" inputmode="decimal" placeholder="4" value="2"
                     class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+              <p class="text-[11px] text-gray-500 mt-1">Cuota final promocionada de la combinada.</p>
             </label>
 
             <!-- Referencia combinada opcional -->
@@ -287,6 +288,7 @@
                 <option value="ex">Exchange</option>
                 <option value="2w">Mercado 2 opciones (SÍ/NO)</option>
                 <option value="3w">Mercado 3 opciones (1X2)</option>
+                <option value="asm">Suponer (comisión)</option>
               </select>
 
               <div id="legA-ex" class="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -302,7 +304,7 @@
                 </label>
               </div>
 
-              <div id="legA-2w" class="hidden grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div id="legA-2w" class="hidden grid grid-cols-1 md:grid-cols-3 gap-3">
                 <label class="block">
                   <span class="block text-xs text-gray-600 mb-1">Cuota SÍ (A)</span>
                   <input id="legA-yes" inputmode="decimal" placeholder="1,80"
@@ -313,6 +315,7 @@
                   <input id="legA-no" inputmode="decimal" placeholder="2,10"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
                 </label>
+                <div class="self-end text-[12px] text-gray-500" id="legA-2w-comm">Comisión A: —</div>
               </div>
 
               <div id="legA-3w" class="hidden grid grid-cols-1 md:grid-cols-4 gap-3">
@@ -337,6 +340,20 @@
                     <option value="1">1</option><option value="X">X</option><option value="2">2</option>
                   </select>
                 </label>
+                <div class="md:col-span-4 text-[12px] text-gray-500" id="legA-3w-comm">Comisión A: —</div>
+              </div>
+
+              <div id="legA-asm" class="hidden grid grid-cols-1 md:grid-cols-2 gap-3">
+                <label class="block">
+                  <span class="block text-xs text-gray-600 mb-1">Cuota (A)</span>
+                  <input id="legA-asm-odds" inputmode="decimal" placeholder="1,70"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                </label>
+                <label class="block">
+                  <span class="block text-xs text-gray-600 mb-1">Comisión asumida (A) %</span>
+                  <input id="legA-asm-comm" type="number" min="0" max="30" step="0.1" value="10"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                </label>
               </div>
             </div>
 
@@ -348,6 +365,7 @@
                 <option value="ex">Exchange</option>
                 <option value="2w">Mercado 2 opciones (SÍ/NO)</option>
                 <option value="3w">Mercado 3 opciones (1X2)</option>
+                <option value="asm">Suponer (comisión)</option>
               </select>
 
               <div id="legB-ex" class="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -363,7 +381,7 @@
                 </label>
               </div>
 
-              <div id="legB-2w" class="hidden grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div id="legB-2w" class="hidden grid grid-cols-1 md:grid-cols-3 gap-3">
                 <label class="block">
                   <span class="block text-xs text-gray-600 mb-1">Cuota SÍ (B)</span>
                   <input id="legB-yes" inputmode="decimal" placeholder="1,70"
@@ -374,6 +392,7 @@
                   <input id="legB-no" inputmode="decimal" placeholder="2,20"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
                 </label>
+                <div class="self-end text-[12px] text-gray-500" id="legB-2w-comm">Comisión B: —</div>
               </div>
 
               <div id="legB-3w" class="hidden grid grid-cols-1 md:grid-cols-4 gap-3">
@@ -397,6 +416,20 @@
                   <select id="legB-pick" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200">
                     <option value="1">1</option><option value="X">X</option><option value="2">2</option>
                   </select>
+                </label>
+                <div class="md:col-span-4 text-[12px] text-gray-500" id="legB-3w-comm">Comisión B: —</div>
+              </div>
+
+              <div id="legB-asm" class="hidden grid grid-cols-1 md:grid-cols-2 gap-3">
+                <label class="block">
+                  <span class="block text-xs text-gray-600 mb-1">Cuota (B)</span>
+                  <input id="legB-asm-odds" inputmode="decimal" placeholder="1,60"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                </label>
+                <label class="block">
+                  <span class="block text-xs text-gray-600 mb-1">Comisión asumida (B) %</span>
+                  <input id="legB-asm-comm" type="number" min="0" max="30" step="0.1" value="10"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
                 </label>
               </div>
             </div>
@@ -423,9 +456,12 @@
             <div class="uppercase tracking-wide text-[11px] text-gray-500">Probabilidad justa (estimada)</div>
             <div id="p-yes-adv" class="text-lg font-semibold">—</div>
           </div>
+          <!-- En 2 selecciones este recuadro mostrará las 3 comisiones juntas -->
           <div class="border rounded-lg p-4">
-            <div class="uppercase tracking-wide text-[11px] text-gray-500">Comisión del mercado</div>
-            <div id="market-comm-adv" class="text-lg font-semibold">0,00%</div>
+            <div class="uppercase tracking-wide text-[11px] text-gray-500">Comisiones</div>
+            <div id="market-comm-adv" class="text-sm font-medium leading-relaxed">
+              0,00%
+            </div>
           </div>
         </section>
       </section>
@@ -499,6 +535,7 @@
       const asmYes  = $('assumed-yes');
       const asmComm = $('assumed-comm');
 
+      // Avanzado: 2 selecciones
       const boost2  = $('boost-2l');
       const useComboRef = $('use-combo-ref');
       const comboRefWrap = $('combo-ref-wrap');
@@ -509,11 +546,15 @@
       const legA_ex_odds=$('legA-ex-odds'), legA_ex_comm=$('legA-ex-comm');
       const legA_yes=$('legA-yes'), legA_no=$('legA-no');
       const legA_1=$('legA-1'), legA_X=$('legA-X'), legA_2=$('legA-2'), legA_pick=$('legA-pick');
+      const legA_2w_comm = $('legA-2w-comm'), legA_3w_comm = $('legA-3w-comm');
+      const legA_asm_odds = $('legA-asm-odds'), legA_asm_comm = $('legA-asm-comm');
 
       const legBType = $('legB-type');
       const legB_ex_odds=$('legB-ex-odds'), legB_ex_comm=$('legB-ex-comm');
       const legB_yes=$('legB-yes'), legB_no=$('legB-no');
       const legB_1=$('legB-1'), legB_X=$('legB-X'), legB_2=$('legB-2'), legB_pick=$('legB-pick');
+      const legB_2w_comm = $('legB-2w-comm'), legB_3w_comm = $('legB-3w-comm');
+      const legB_asm_odds = $('legB-asm-odds'), legB_asm_comm = $('legB-asm-comm');
 
       const pillA  = $('ev-pill-adv');
       const valueA = $('ev-value-adv');
@@ -586,30 +627,49 @@
       function fairP_assumed(oSel,cPct){ const c=(Number.isFinite(cPct)?cPct:10)/100; return (1/oSel)/(1+c) }
       function netExchangeOdds(Ex,cPct){ const c=(Number.isFinite(cPct)?cPct:2)/100; return 1 + (Ex - 1)*(1 - c) }
 
+      // Prob/comm por pata
       function legProb(type, inputs){
         if(type==='ex'){
-          const Ex = toN(inputs.Ex);
-          if(!Ex || Ex<=1) return {p:null, comm:'Ex: —'};
-          return {p: 1/Ex, comm: `Ex: ${(Number(inputs.comm)||2).toFixed(2)}%`};
+          const Ex = toN(inputs.Ex), cIn = toN(inputs.comm);
+          if(!Ex || Ex<=1) return {p:null, commPct:null, commText:'Exchange: —'};
+          return {p:1/Ex, commPct:Number.isFinite(cIn)?cIn:0, commText:`Exchange: ${fmt(Number.isFinite(cIn)?cIn:0,2)}%`};
         }
         if(type==='2w'){
-          const S = toN(inputs.yes), N = toN(inputs.no);
-          if(!S || !N || S<=1 || N<=1) return {p:null, comm:'2-way: —'};
-          const p = fairP_2way(S,N);
-          const c = overround_2way_pct(S,N);
-          return {p, comm: `2-way: ${c.toFixed(2)}%`};
+          const S=toN(inputs.yes), N=toN(inputs.no);
+          if(!S||!N||S<=1||N<=1) return {p:null, commPct:null, commText:'2 opciones: —'};
+          const p=fairP_2way(S,N), c=overround_2way_pct(S,N);
+          return {p, commPct:c, commText:`2 opciones: ${fmt(c,2)}%`};
         }
         if(type==='3w'){
-          const o1=toN(inputs.o1), oX=toN(inputs.oX), o2=toN(inputs.o2);
-          if(!o1||!oX||!o2||o1<=1||oX<=1||o2<=1) return {p:null, comm:'3-way: —'};
-          const p = fairP_3way_pick(inputs.pick, o1,oX,o2);
-          const c = overround_3way_pct(o1,oX,o2);
-          return {p, comm: `3-way: ${c.toFixed(2)}%`};
+          const o1=toN(inputs.o1), oX=toN(inputs.oX), o2=toN(inputs.o2), pick=inputs.pick;
+          if(!o1||!oX||!o2||o1<=1||oX<=1||o2<=1) return {p:null, commPct:null, commText:'3 opciones: —'};
+          const p=fairP_3way_pick(pick,o1,oX,o2), c=overround_3way_pct(o1,oX,o2);
+          return {p, commPct:c, commText:`3 opciones: ${fmt(c,2)}%`};
         }
-        return {p:null, comm:'—'};
+        if(type==='asm'){
+          const Os=toN(inputs.odds), cIn=toN(inputs.comm);
+          if(!Os||Os<=1) return {p:null, commPct:null, commText:'Asumida: —'};
+          const cUse=Number.isFinite(cIn)?cIn:10;
+          const p=fairP_assumed(Os,cUse);
+          return {p, commPct:cUse, commText:`Asumida: ${fmt(cUse,2)}%`};
+        }
+        return {p:null, commPct:null, commText:'—'};
       }
 
       function setStatusAdv(pos){ setStatus(pillA, valueA, pos); }
+
+      function toggleLegBlocks(){
+        // A
+        $('legA-ex').classList.toggle('hidden', legAType.value!=='ex');
+        $('legA-2w').classList.toggle('hidden', legAType.value!=='2w');
+        $('legA-3w').classList.toggle('hidden', legAType.value!=='3w');
+        $('legA-asm').classList.toggle('hidden', legAType.value!=='asm');
+        // B
+        $('legB-ex').classList.toggle('hidden', legBType.value!=='ex');
+        $('legB-2w').classList.toggle('hidden', legBType.value!=='2w');
+        $('legB-3w').classList.toggle('hidden', legBType.value!=='3w');
+        $('legB-asm').classList.toggle('hidden', legBType.value!=='asm');
+      }
 
       function updateAdvanced(){
         const isTwo = legs2.checked;
@@ -626,37 +686,29 @@
           }
 
           if(modeEx.checked){
-            const Ex = toN(oEx.value);
-            const cPct = toN(exComm.value);
-            if(!Ex || Ex<=1){ setStatusAdv(false); valueA.textContent='0,00%'; fairA.textContent='—'; commA.textContent=pct(cPct??2)+'%'; return; }
-
+            const Ex = toN(oEx.value), cPct = toN(exComm.value);
+            if(!Ex || Ex<=1){ setStatusAdv(false); valueA.textContent='0,00%'; fairA.textContent='—'; pYesA.textContent='—'; commA.textContent=fmt(cPct??2,2)+'%'; return; }
             const netEx = netExchangeOdds(Ex, cPct);
             const ev1   = (B / netEx) - 1;
-            const roi   = ev1 * 100;
             const pos   = ev1 > 0;
-
             setStatusAdv(pos);
-            valueA.textContent  = (pos? '+' : '') + pct(roi) + '%';
+            valueA.textContent  = (pos? '+' : '') + pct(ev1*100) + '%';
             fairA.textContent   = fmt(netEx,3);
             pYesA.textContent   = fmt(1/Ex,4);
-            commA.textContent   = pct(cPct??2)+'%';
+            commA.textContent   = fmt(cPct??2,2)+'%';
             return;
           }
 
           if(modeBook2.checked){
-            const Sy = toN(oNoBookYes.value);
-            const N  = toN(oNoBook.value);
+            const Sy = toN(oNoBookYes.value), N = toN(oNoBook.value);
             if(!Sy||Sy<=1||!N||N<=1){ setStatusAdv(false); valueA.textContent='0,00%'; fairA.textContent='—'; pYesA.textContent='—'; commA.textContent='0,00%'; return; }
             const pSel = fairP_2way(Sy,N);
-            const fair = 1/pSel;
             const ev1  = pSel*B - 1;
-            const roi  = ev1*100;
-
             setStatusAdv(ev1>0);
-            valueA.textContent  = (ev1>0? '+' : '') + pct(roi) + '%';
-            fairA.textContent   = fmt(fair,3);
+            valueA.textContent  = (ev1>0? '+' : '') + pct(ev1*100) + '%';
+            fairA.textContent   = fmt(1/pSel,3);
             pYesA.textContent   = fmt(pSel,4);
-            commA.textContent   = pct(overround_2way_pct(Sy,N)) + '%';
+            commA.textContent   = fmt(overround_2way_pct(Sy,N),2) + '%';
             return;
           }
 
@@ -664,15 +716,12 @@
             const o1v=toN(o1.value), oXv=toN(oX.value), o2v=toN(o2.value);
             if(!o1v||!oXv||!o2v||o1v<=1||oXv<=1||o2v<=1){ setStatusAdv(false); valueA.textContent='0,00%'; fairA.textContent='—'; pYesA.textContent='—'; commA.textContent='0,00%'; return; }
             const pSel = fairP_3way_pick(pick.value, o1v,oXv,o2v);
-            const fair = 1/pSel;
             const ev1  = pSel*B - 1;
-            const roi  = ev1*100;
-
             setStatusAdv(ev1>0);
-            valueA.textContent  = (ev1>0? '+' : '') + pct(roi) + '%';
-            fairA.textContent   = fmt(fair,3);
+            valueA.textContent  = (ev1>0? '+' : '') + pct(ev1*100) + '%';
+            fairA.textContent   = fmt(1/pSel,3);
             pYesA.textContent   = fmt(pSel,4);
-            commA.textContent   = pct(overround_3way_pct(o1v,oXv,o2v)) + '%';
+            commA.textContent   = fmt(overround_3way_pct(o1v,oXv,o2v),2) + '%';
             return;
           }
 
@@ -680,18 +729,16 @@
             const S   = toN(asmYes.value);
             const c   = toN(asmComm.value);
             const cUse= Number.isFinite(c)?c:10;
-            if(!S || S<=1){ setStatusAdv(false); valueA.textContent='0,00%'; fairA.textContent='—'; pYesA.textContent='—'; commA.textContent=pct(cUse)+'%'; return; }
+            if(!S || S<=1){ setStatusAdv(false); valueA.textContent='0,00%'; fairA.textContent='—'; pYesA.textContent='—'; commA.textContent=fmt(cUse,2)+'%'; return; }
 
             const pSel = fairP_assumed(S,cUse);
-            const fair = 1/pSel;
             const ev1  = pSel*B - 1;
-            const roi  = ev1*100;
 
             setStatusAdv(ev1>0);
-            valueA.textContent  = (ev1>0? '+' : '') + pct(roi) + '%';
-            fairA.textContent   = fmt(fair,3);
+            valueA.textContent  = (ev1>0? '+' : '') + pct(ev1*100) + '%';
+            fairA.textContent   = fmt(1/pSel,3);
             pYesA.textContent   = fmt(pSel,4);
-            commA.textContent   = pct(cUse) + '%';
+            commA.textContent   = fmt(cUse,2) + '%';
             return;
           }
 
@@ -700,43 +747,111 @@
         }
 
         // ----- 2 selecciones -----
+        toggleLegBlocks();
         const B2 = toN(boost2.value);
-        if(!B2 || B2<=1){ setStatusAdv(false); valueA.textContent='0,00%'; fairA.textContent='—'; pYesA.textContent='—'; commA.textContent='—'; return; }
+        // Mostrar/ocultar ref builder
+        comboRefWrap.classList.toggle('hidden', !useComboRef.checked);
 
+        if(!B2 || B2<=1){
+          setStatusAdv(false);
+          valueA.textContent='0,00%'; fairA.textContent='—'; pYesA.textContent='—';
+          commA.innerHTML = '—';
+          return;
+        }
+
+        // A
         const A = legProb(legAType.value, {
           Ex: legA_ex_odds.value, comm: legA_ex_comm.value,
           yes: legA_yes.value, no: legA_no.value,
-          o1: legA_1.value, oX: legA_X.value, o2: legA_2.value, pick: legA_pick.value
+          o1: legA_1.value, oX: legA_X.value, o2: legA_2.value, pick: legA_pick.value,
+          odds: legA_asm_odds.value
         });
+        // B
         const B = legProb(legBType.value, {
           Ex: legB_ex_odds.value, comm: legB_ex_comm.value,
           yes: legB_yes.value, no: legB_no.value,
-          o1: legB_1.value, oX: legB_X.value, o2: legB_2.value, pick: legB_pick.value
+          o1: legB_1.value, oX: legB_X.value, o2: legB_2.value, pick: legB_pick.value,
+          odds: legB_asm_odds.value
         });
-        if(A.p==null || B.p==null){ setStatusAdv(false); valueA.textContent='0,00%'; fairA.textContent='—'; pYesA.textContent='—'; commA.textContent='—'; return; }
 
-        let ev1, fair, commText;
+        // Actualizar comisiones por selección (texto bajo inputs) si procede
+        if(legAType.value==='2w'){
+          const c = overround_2way_pct(toN(legA_yes.value), toN(legA_no.value));
+          legA_2w_comm.textContent = Number.isFinite(c) ? `Comisión A: ${fmt(c,2)}%` : 'Comisión A: —';
+        } else if(legAType.value==='3w'){
+          const c = overround_3way_pct(toN(legA_1.value), toN(legA_X.value), toN(legA_2.value));
+          legA_3w_comm.textContent = Number.isFinite(c) ? `Comisión A: ${fmt(c,2)}%` : 'Comisión A: —';
+        } else {
+          legA_2w_comm.textContent = 'Comisión A: —';
+          legA_3w_comm.textContent = 'Comisión A: —';
+        }
+
+        if(legBType.value==='2w'){
+          const c = overround_2way_pct(toN(legB_yes.value), toN(legB_no.value));
+          legB_2w_comm.textContent = Number.isFinite(c) ? `Comisión B: ${fmt(c,2)}%` : 'Comisión B: —';
+        } else if(legBType.value==='3w'){
+          const c = overround_3way_pct(toN(legB_1.value), toN(legB_X.value), toN(legB_2.value));
+          legB_3w_comm.textContent = Number.isFinite(c) ? `Comisión B: ${fmt(c,2)}%` : 'Comisión B: —';
+        } else {
+          legB_2w_comm.textContent = 'Comisión B: —';
+          legB_3w_comm.textContent = 'Comisión B: —';
+        }
+
+        if(A.p==null || B.p==null){
+          setStatusAdv(false);
+          valueA.textContent='0,00%'; fairA.textContent='—'; pYesA.textContent='—';
+          commA.innerHTML = `
+            <div>Comisión selección 1: ${A.commText}</div>
+            <div>Comisión selección 2: ${B.commText}</div>
+            <div>Comisión total: —</div>`;
+          return;
+        }
+
+        let ev1, fair, commText1, commText2, commTotal;
         if(useComboRef.checked){
           const ref = toN(comboRefOdds.value);
           const cRef = toN(comboRefComm.value) ?? 0;
-          if(!ref || ref<=1){ setStatusAdv(false); valueA.textContent='0,00%'; fairA.textContent='—'; pYesA.textContent='—'; commA.textContent=`${A.comm} | ${B.comm}`; return; }
-          const netRef = 1 + (ref-1) * (1 - (cRef/100));
+          if(!ref || ref<=1){
+            setStatusAdv(false);
+            valueA.textContent='0,00%'; fairA.textContent='—'; pYesA.textContent='—';
+            commA.innerHTML = `
+              <div>Comisión selección 1: ${A.commText}</div>
+              <div>Comisión selección 2: ${B.commText}</div>
+              <div>Comisión total: —</div>`;
+            return;
+          }
+          const netRef = netExchangeOdds(ref, cRef);
           ev1  = (B2 / netRef) - 1;
           fair = netRef;
-          commText = `Ref: ${pct(cRef)}% | ${A.comm} | ${B.comm}`;
+          // Para comisión total en este caso mostramos “Ref … | A … | B …”
+          commText1 = A.commText;
+          commText2 = B.commText;
+          commTotal = `Referencia: ${fmt(cRef,2)}%`;
+          // La prob justa no viene del ref, mostramos la combinada estimada con p(A)·p(B)
+          pYesA.textContent = fmt(A.p * B.p, 4);
         } else {
           const pJoint = A.p * B.p;
           ev1  = pJoint * B2 - 1;
           fair = 1/pJoint;
-          commText = `${A.comm} | ${B.comm}`;
           pYesA.textContent = fmt(pJoint,4);
+          commText1 = A.commText;
+          commText2 = B.commText;
+          const cA = Number.isFinite(A.commPct) ? A.commPct : 0;
+          const cB = Number.isFinite(B.commPct) ? B.commPct : 0;
+          commTotal = `${fmt(cA + cB,2)}% (A+B)`;
         }
 
-        const roi = ev1*100, pos = ev1>0;
+        const pos = ev1>0;
         setStatusAdv(pos);
-        valueA.textContent  = (pos? '+' : '') + pct(roi) + '%';
-        fairA.textContent   = fmt(fair,3);
-        commA.textContent   = commText;
+        valueA.textContent = (pos? '+' : '') + pct(ev1*100) + '%';
+        fairA.textContent  = fmt(fair,3);
+
+        // Un solo recuadro con las tres comisiones
+        commA.innerHTML = `
+          <div>Comisión selección 1: ${commText1}</div>
+          <div>Comisión selección 2: ${commText2}</div>
+          <div class="mt-1 border-t pt-2">Comisión total: ${commTotal}</div>
+        `;
       }
 
       // ====== VISIBILIDAD MODO ======
@@ -755,8 +870,8 @@
       [legs1,legs2].forEach(el=>el.addEventListener('change', updateAdvanced));
       [oBoost,oEx,exComm,oNoBook,oNoBookYes,o1,oX,o2,pick,asmYes,asmComm,
        boost2,useComboRef,comboRefOdds,comboRefComm,
-       legAType,legA_ex_odds,legA_ex_comm,legA_yes,legA_no,legA_1,legA_X,legA_2,legA_pick,
-       legBType,legB_ex_odds,legB_ex_comm,legB_yes,legB_no,legB_1,legB_X,legB_2,legB_pick
+       legAType,legA_ex_odds,legA_ex_comm,legA_yes,legA_no,legA_1,legA_X,legA_2,legA_pick,legA_asm_odds,legA_asm_comm,
+       legBType,legB_ex_odds,legB_ex_comm,legB_yes,legB_no,legB_1,legB_X,legB_2,legB_pick,legB_asm_odds,legB_asm_comm
       ].forEach(el=>el.addEventListener('input', updateAdvanced));
       [modeEx,modeBook2,modeBook3,modeNone,useComboRef,legAType,legBType].forEach(el=>el.addEventListener('change', ()=>{ toggleOneLegVisibility(); updateAdvanced(); }));
 
@@ -775,10 +890,8 @@
       o1.value='1,54'; oX.value='4,50'; o2.value='5,50'; pick.value='1';
       asmYes.value='1,50'; asmComm.value='10';
 
-      // Two legs (sin cambios específicos)
-      boost2.value='4,50';
-      legA_ex_odds.value='1,70'; legA_ex_comm.value='2';
-      legB_ex_odds.value='1,60'; legB_ex_comm.value='2';
+      // Avanzado (2 selecciones)
+      boost2.value='2'; // valor por defecto 2, placeholder 4
 
       // Estado inicial
       setLevelUI();
