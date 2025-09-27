@@ -10,49 +10,47 @@
 </head>
 
 <body class="font-sans antialiased text-gray-800 bg-green-100">
-<!-- BARRA DE NAVEGACIÓN DINÁMICA -->
-    <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
-        <div class="container mx-auto px-4 max-w-6xl">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-8">
-                    <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
-                    <a id="nav-guide-link" href="/guias.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guía GRATIS</a>
-                    <a href="/premium.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guías Premium</a>
-                    <!-- Calculadoras (dropdown robusto) -->
-                    <div class="relative group">
-                      <button
-                        class="flex items-center gap-1 font-medium text-gray-700 hover:text-blue-600 transition"
-                        aria-haspopup="true" aria-expanded="false">
-                        Calculadoras <i class="fas fa-chevron-down text-xs"></i>
-                      </button>
+  <!-- NAV (deja tu script de acceso tal cual, no se toca) -->
+  <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center space-x-8">
+          <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
 
-                      <!-- Menú pegado al botón, sin huecos -->
-                      <div
-                        class="absolute left-0 top-full w-56 bg-white border border-gray-200 rounded-lg shadow-md
-                              invisible opacity-0 translate-y-1
-                              group-hover:visible group-hover:opacity-100 group-hover:translate-y-0
-                              group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0
-                              transition duration-150">
-                        <a href="/calculadora.html"
-                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none">Calculadora Match Betting</a>
-                        <a href="/calculadoraEV.html"
-                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none">Calculadora EV</a>
-                      </div>
-                    </div>
+          <a href="/guias.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guías</a>
 
-                    <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
-                        <i class="fab fa-telegram mr-2"></i> Telegram
-                    </a>
-                    <a href="https://www.instagram.com/naanogl" target="_blank" class="font-medium text-gray-700 hover:text-pink-600 transition flex items-center">
-                        <i class="fab fa-instagram mr-2"></i> Instagram
-                    </a>
-                </div>
-                <div id="user-status" class="flex items-center space-x-4">
-                    <!-- Contenido dinámico: Login/Logout -->
-                </div>
+          <!-- Calculadoras (dropdown robusto) -->
+          <div class="relative group">
+            <button
+              class="flex items-center gap-1 font-medium text-gray-700 hover:text-blue-600 transition"
+              aria-haspopup="true" aria-expanded="false">
+              Calculadoras <i class="fas fa-chevron-down text-xs"></i>
+            </button>
+            <div
+              class="absolute left-0 top-full w-56 bg-white border border-gray-200 rounded-lg shadow-md
+                     invisible opacity-0 translate-y-1
+                     group-hover:visible group-hover:opacity-100 group-hover:translate-y-0
+                     group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0
+                     transition duration-150">
+              <a href="/calculadora.html"
+                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none">Calculadora Match Betting</a>
+              <a href="/calculadoraEV.html"
+                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none">Calculadora EV</a>
             </div>
+          </div>
+
+          <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
+            <i class="fab fa-telegram mr-2"></i> Telegram
+          </a>
+          <a href="https://www.instagram.com/naanogl" target="_blank" class="font-medium text-gray-700 hover:text-pink-600 transition flex items-center">
+            <i class="fab fa-instagram mr-2"></i> Instagram
+          </a>
         </div>
-    </nav>
+        <div id="user-status" class="flex items-center space-x-4"></div>
+      </div>
+    </div>
+  </nav>
+
   <!-- CONTENIDO -->
   <main class="container mx-auto px-4 py-8 sm:py-16 max-w-6xl">
     <div class="bg-white p-5 sm:p-8 rounded-xl shadow-lg">
@@ -66,7 +64,7 @@
           <span class="block text-sm font-medium text-gray-600 mb-1">Tipo de apuesta</span>
           <select id="tipo-apuesta" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200">
             <option value="real">Dinero Real</option>
-            <option value="freebet">Freebet</option>
+            <option value="freebet">Freebet (SNR)</option>
             <option value="reembolso">Reembolso</option>
             <option value="rollover">Rollover</option>
           </select>
@@ -74,75 +72,90 @@
       </section>
 
       <!-- Parámetros generales -->
-      <h2 class="text-xl font-semibold mt-4 mb-2">Parámetros generales</h2>
-      <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <label class="block">
-          <span class="block text-sm font-medium text-gray-600 mb-1">💰 Importe apostado (€)</span>
-          <input id="importe" inputmode="decimal" placeholder="10.00"
-                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-        </label>
-        <label class="block">
-          <span class="block text-sm font-medium text-gray-600 mb-1">📈 Cuota en casa (Back)</span>
-          <input id="cuota-back" inputmode="decimal" placeholder="1.55"
-                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-        </label>
-        <label class="block">
-          <span class="block text-sm font-medium text-gray-600 mb-1">📉 Cuota en Exchange (Lay)</span>
-          <input id="cuota-ex" inputmode="decimal" placeholder="1.60"
-                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-        </label>
-        <label class="block">
-          <span class="block text-sm font-medium text-gray-600 mb-1">🏦 Comisión del Exchange (%)</span>
-          <input id="comision" type="number" min="0" max="100" step="0.1" value="2.0"
-                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-          <span class="text-[11px] text-gray-500">Por defecto 2% (se aplica a las ganancias del lay).</span>
-        </label>
-      </section>
+      <div class="bg-gray-50 border rounded-xl p-4 sm:p-5 mb-4">
+        <h2 class="text-lg font-semibold mb-3">Parámetros generales</h2>
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <label class="block">
+            <span class="block text-sm font-medium text-gray-600 mb-1">💰 Importe apostado (€)</span>
+            <input id="importe" inputmode="decimal" placeholder="10.00"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+          </label>
+          <label class="block">
+            <span class="block text-sm font-medium text-gray-600 mb-1">📈 Cuota en casa (Back)</span>
+            <input id="cuota-back" inputmode="decimal" placeholder="1.55"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+          </label>
+          <label class="block">
+            <span class="block text-sm font-medium text-gray-600 mb-1">📉 Cuota en Exchange (Lay)</span>
+            <input id="cuota-ex" inputmode="decimal" placeholder="1.60"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+          </label>
+          <label class="block">
+            <span class="block text-sm font-medium text-gray-600 mb-1">🏦 Comisión del Exchange (%)</span>
+            <input id="comision" type="number" min="0" max="100" step="0.1" value="2.0"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+            <span class="text-[11px] text-gray-500">Por defecto 2% (se aplica a las ganancias del lay).</span>
+          </label>
+        </section>
+      </div>
 
       <!-- Parámetros específicos -->
-      <div id="panel-reembolso" class="hidden mt-4 border rounded-lg p-4 bg-gray-50">
+      <div id="panel-reembolso" class="hidden mt-4 border rounded-xl p-4 bg-gray-50">
         <h3 class="font-semibold mb-2">⚙️ Parámetros para Reembolso</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <label class="block">
             <span class="block text-sm font-medium text-gray-600 mb-1">💵 Monto reembolsado si pierdes (€)</span>
             <input id="reb-monto" inputmode="decimal" placeholder="10.00"
-                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
           </label>
           <label class="block">
             <span class="block text-sm font-medium text-gray-600 mb-1">🔁 Retención esperada de la freebet (0-1)</span>
-            <input id="reb-retencion" inputmode="decimal" placeholder="0.70"
-                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-            <span class="text-[11px] text-gray-500">Por defecto 0.75 en tus funciones (en Streamlit usabas 0.7).</span>
+            <input id="reb-retencion" inputmode="decimal" placeholder="0.75"
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
           </label>
         </div>
       </div>
 
-      <div id="panel-rollover" class="hidden mt-4 border rounded-lg p-4 bg-gray-50">
+      <div id="panel-rollover" class="hidden mt-4 border rounded-xl p-4 bg-gray-50">
         <h3 class="font-semibold mb-2">⚙️ Parámetros para Rollover</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <label class="block">
             <span class="block text-sm font-medium text-gray-600 mb-1">🎁 Importe del bono (€)</span>
             <input id="rol-bono" inputmode="decimal" placeholder="100"
-                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
           </label>
           <label class="block">
             <span class="block text-sm font-medium text-gray-600 mb-1">🔄 Rollover total requerido (€)</span>
             <input id="rol-rollover" inputmode="decimal" placeholder="600"
-                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
           </label>
           <label class="block">
             <span class="block text-sm font-medium text-gray-600 mb-1">🧲 Retención estimada tras rollover (0-1)</span>
             <input id="rol-retencion" inputmode="decimal" placeholder="0.95"
-                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                  class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
           </label>
         </div>
       </div>
 
-      <!-- Botón calcular -->
-      <div class="mt-6">
-        <button id="btn-calcular" class="w-full sm:w-auto bg-blue-600 text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-blue-700">
+      <!-- Botones de acción -->
+      <div class="mt-6 flex flex-wrap gap-3">
+        <button id="btn-calcular" class="bg-blue-600 text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-blue-700">
           🔍 Calcular
         </button>
+        <button id="btn-copy-lay" class="bg-white text-gray-800 px-4 py-2.5 rounded-lg border hover:bg-gray-50 disabled:opacity-40" disabled>
+          📋 Copiar Lay
+        </button>
+        <button id="btn-copy-expo" class="bg-white text-gray-800 px-4 py-2.5 rounded-lg border hover:bg-gray-50 disabled:opacity-40" disabled>
+          📋 Copiar Exposición
+        </button>
+        <button id="btn-reset" class="bg-gray-800 text-white px-4 py-2.5 rounded-lg hover:bg-gray-900">
+          ♻️ Reset
+        </button>
+      </div>
+
+      <!-- Toast -->
+      <div id="toast" class="hidden fixed left-1/2 -translate-x-1/2 bottom-6 z-50">
+        <div class="bg-gray-900 text-white text-sm px-4 py-2 rounded-full shadow-lg" id="toast-msg">Copiado</div>
       </div>
 
       <!-- Resultado principal -->
@@ -164,21 +177,21 @@
           </div>
         </section>
 
-        <!-- Tres tarjetas -->
+        <!-- Tarjetas limpias -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5">
           <div class="rounded-xl p-5 border bg-blue-50">
             <div class="text-sm font-semibold mb-2">A Favor (Casa)</div>
-            <div id="card-back" class="text-lg font-bold">—</div>
+            <div id="card-back" class="text-xl font-bold">—</div>
           </div>
           <div class="rounded-xl p-5 border bg-orange-50">
             <div class="text-sm font-semibold mb-2">Ganancia Estimada</div>
-            <div id="card-gan" class="text-xl font-black">—</div>
+            <div id="card-gan" class="text-2xl font-black">—</div>
             <div id="card-rating" class="text-sm text-gray-700 mt-1">Rating —</div>
           </div>
           <div class="rounded-xl p-5 border bg-red-50">
             <div class="text-sm font-semibold mb-2">En Contra (Exchange)</div>
-            <div id="card-lay" class="text-lg font-bold">—</div>
-            <div id="card-riesgo" class="text-sm text-gray-700 mt-1">Riesgo: —</div>
+            <div id="card-lay" class="text-xl font-bold">—</div>
+            <div id="card-riesgo" class="text-sm text-gray-700 mt-1">Exposición: —</div>
           </div>
         </div>
 
@@ -221,7 +234,7 @@
     </div>
   </footer>
 
-  <!-- LÓGICA (réplica exacta de tu Python) -->
+  <!-- LÓGICA -->
   <script>
     (function(){
       const $ = id => document.getElementById(id);
@@ -258,6 +271,14 @@
       const tBody   = $('tabla-body');
       const diffTxt = $('diferencia-text');
 
+      // Botones rápidos
+      const btnCalc = $('btn-calcular');
+      const btnCopyLay = $('btn-copy-lay');
+      const btnCopyExpo = $('btn-copy-expo');
+      const btnReset = $('btn-reset');
+      const toast = $('toast');
+      const toastMsg = $('toast-msg');
+
       // Utils
       const toN = (v) => {
         const n = Number(String(v||'').trim().replace(',', '.'));
@@ -266,8 +287,14 @@
       const fmt = (n, d=2) => Number(n||0).toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d});
       const money = (n) => `${fmt(n,2)} €`;
 
+      function showToast(msg='Copiado ✅'){
+        toastMsg.textContent = msg;
+        toast.classList.remove('hidden');
+        clearTimeout(showToast._t);
+        showToast._t = setTimeout(()=>toast.classList.add('hidden'), 1300);
+      }
+
       function setBadge(pct, clas){
-        // Colorea el pill según clasificación (siguiendo tu idea)
         pill.className = "min-w-[92px] text-center text-sm font-extrabold tracking-wide px-3 py-2 rounded-full border";
         evCard.className = "flex items-center justify-between gap-4 border rounded-xl p-5 md:p-6 bg-gray-50";
 
@@ -281,7 +308,6 @@
           pill.classList.add('text-red-700','border-red-300','bg-red-100/70');
           evVal.classList.add('text-red-700'); evVal.classList.remove('text-green-700');
         }
-        pill.textContent = 'Rating';
         evVal.textContent = fmt(pct,2) + '%';
         evClas.textContent = clas;
         cardRating.textContent = 'Rating ' + fmt(pct,2) + '%';
@@ -376,8 +402,8 @@
         let mejor_lay = 0, mejor_diferencia = Infinity, mejor_ganancia_casa = 0, mejor_ganancia_exchange = 0;
 
         const valor_freebet = cantidad_reembolso * porcentaje_uso_freebet;
-
         const max = Math.max(1, Math.floor(importe * 200));
+
         for(let x=1; x<=max; x++){
           const lay = x / 100;
           const riesgo = lay * (cuota_exchange - 1);
@@ -421,15 +447,15 @@
       function calcular_rollover(importe, cuota_a_favor, cuota_exchange, comision, bono, rollover, porcentaje_retencion){
         let mejor_lay = 0, mejor_diferencia = Infinity, mejor_ganancia_casa = 0, mejor_ganancia_exchange = 0;
 
-        const beneficio_apuesta = importe * cuota_a_favor;    // (importe) * cuota_back
-        const bono_convertido   = bono * cuota_a_favor;       // bono * cuota_back
+        const beneficio_apuesta = importe * cuota_a_favor;
+        const bono_convertido   = bono * cuota_a_favor;
 
         let rollover_pendiente = rollover - importe - bono;
         if (rollover_pendiente < 0) rollover_pendiente = 0;
 
         const perdida_rollover = rollover_pendiente * (1 - porcentaje_retencion);
 
-        const max_lay = Math.max(1, Math.floor((importe + rollover) * 300)); // como tu Python
+        const max_lay = Math.max(1, Math.floor((importe + rollover) * 300));
         for(let x=1; x<=max_lay; x++){
           const lay = x / 100;
           const riesgo = lay * (cuota_exchange - 1);
@@ -448,7 +474,6 @@
 
         const riesgo = mejor_lay * (cuota_exchange - 1);
         const beneficio_promedio = (mejor_ganancia_casa + mejor_ganancia_exchange) / 2;
-
         const porcentaje_valor = (beneficio_promedio / bono) * 100;
 
         let clasificacion;
@@ -484,7 +509,6 @@
       // ====== Fin réplica ======
 
       function mostrarTabla(result){
-        // Construye la tabla como en tu Streamlit
         let casa_gana, casa_pierde, exchange_gana, exchange_pierde;
 
         if(result.tipo === 'freebet'){
@@ -495,9 +519,9 @@
           casa_gana   = result.importe * (result.cuota_a_favor - 1);
           casa_pierde = -result.importe + valor_reembolso;
         } else if(result.tipo === 'rollover'){
-          casa_gana   = result.ganancia_casa_real; // incluye riesgo
+          casa_gana   = result.ganancia_casa_real;
           casa_pierde = -result.importe_real;
-        } else { // real
+        } else {
           casa_gana   = result.importe * (result.cuota_a_favor - 1);
           casa_pierde = -result.importe;
         }
@@ -510,13 +534,13 @@
 
         tBody.innerHTML = `
           <tr class="border-t">
-            <td class="px-3 py-2">✅ Si ganas en la casa</td>
+            <td class="px-3 py-2">✅ Si gana la casa</td>
             <td class="px-3 py-2 ${casa_gana>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(casa_gana)}</td>
             <td class="px-3 py-2 ${exchange_gana>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(exchange_gana)}</td>
             <td class="px-3 py-2 ${total_gana>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(total_gana)}</td>
           </tr>
           <tr class="border-t">
-            <td class="px-3 py-2">❌ Si pierdes en la casa</td>
+            <td class="px-3 py-2">❌ Si gana el exchange</td>
             <td class="px-3 py-2 ${casa_pierde>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(casa_pierde)}</td>
             <td class="px-3 py-2 ${exchange_pierde>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(exchange_pierde)}</td>
             <td class="px-3 py-2 ${total_pierde>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(total_pierde)}</td>
@@ -527,7 +551,6 @@
       }
 
       function calcular(){
-        // Leer valores
         const t = tipo.value;
         const importe = toN(imp.value);
         const cb = toN(bck.value);
@@ -536,6 +559,8 @@
 
         if(!importe || !cb || !ce || importe<=0 || cb<=1 || ce<=1){
           resumen.classList.add('hidden');
+          btnCopyLay.disabled = true;
+          btnCopyExpo.disabled = true;
           return;
         }
         c = (Number.isFinite(c) ? c : 2.0) / 100.0;
@@ -571,11 +596,44 @@
         } else {
           cardBack.textContent = `${money(res.importe)} a cuota ${fmt(res.cuota_a_favor,2)}`;
         }
-        cardGan.textContent   = money(res.ganancia_casa); // como en tu UI montabas Ganancia Estimada con ganancia_casa
+        cardGan.textContent   = money(res.ganancia_casa);
         cardLay.textContent   = `${money(res.lay)} a cuota ${fmt(res.cuota_exchange,2)}`;
-        cardRiesgo.textContent= `Riesgo: ${money(res.riesgo)}`;
+        cardRiesgo.textContent= `Exposición: ${money(res.riesgo)}`;
 
         mostrarTabla(res);
+
+        // Habilitar botones copiar
+        btnCopyLay.disabled  = false;
+        btnCopyExpo.disabled = false;
+
+        // Guardar último resultado para copiar
+        calcular._last = {
+          lay: res.lay,
+          expo: res.riesgo
+        };
+      }
+
+      function resetForm(){
+        // Inputs por defecto
+        tipo.value = 'real';
+        imp.value = '10.00';
+        bck.value = '1.55';
+        exo.value = '1.60';
+        com.value = '2.0';
+        rebMonto.value = '10.00';
+        rebRet.value   = '0.75';
+        rolBono.value = '100';
+        rolRollover.value = '600';
+        rolRet.value = '0.95';
+
+        pReb.classList.add('hidden');
+        pRol.classList.add('hidden');
+
+        resumen.classList.add('hidden');
+        btnCopyLay.disabled  = true;
+        btnCopyExpo.disabled = true;
+
+        calcular._last = null;
       }
 
       function togglePanels(){
@@ -584,28 +642,32 @@
         pRol.classList.toggle('hidden', t !== 'rollover');
       }
 
-      // Defaults
-      imp.value = '10.00';
-      bck.value = '1.55';
-      exo.value = '1.60';
-      com.value = '2.0';
-      rebMonto.value = '10.00';
-      rebRet.value   = '0.75';
-      rolBono.value = '100';
-      rolRollover.value = '600';
-      rolRet.value = '0.95';
-
       // Eventos
-      $('btn-calcular').addEventListener('click', calcular);
-      [tipo, imp, bck, exo, com, rebMonto, rebRet, rolBono, rolRollover, rolRet].forEach(el => {
-        el.addEventListener('input', ()=>{ /* opcional live */ });
+      btnCalc.addEventListener('click', calcular);
+      btnReset.addEventListener('click', ()=>{ resetForm(); showToast('Formulario reiniciado ♻️'); });
+      btnCopyLay.addEventListener('click', async ()=>{
+        const v = calcular._last?.lay;
+        if(v==null) return;
+        await navigator.clipboard.writeText(Number(v).toFixed(2));
+        showToast('Lay copiado ✅');
+      });
+      btnCopyExpo.addEventListener('click', async ()=>{
+        const v = calcular._last?.expo;
+        if(v==null) return;
+        await navigator.clipboard.writeText(Number(v).toFixed(2));
+        showToast('Exposición copiada ✅');
+      });
+
+      [tipo, imp, bck, exo, com, rebMonto, rebRet, rolBono, rolRollover, rolRet].forEach(el=>{
         el.addEventListener('change', togglePanels);
       });
-      togglePanels();
+
+      // Defaults iniciales
+      resetForm();
     })();
   </script>
 
-  <!-- FIREBASE / AUTH UI (igual a tu sitio) -->
+  <!-- Tu script de Firebase/login original va aquí, sin cambios -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
