@@ -10,29 +10,49 @@
 </head>
 
 <body class="font-sans antialiased text-gray-800 bg-green-100">
-  <!-- NAV (igual estilo que tu sitio) -->
-  <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
-    <div class="container mx-auto px-4 max-w-6xl">
-      <div class="flex justify-between items-center">
-        <div class="flex items-center space-x-8">
-          <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
-          <a href="/guias.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guía GRATIS</a>
-          <a href="/premium.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guías Premium</a>
-          <a href="/calculadora.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Calculadora</a>
-          <a href="/calculadoraev.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Calculadora EV</a>
-          <a href="/calculadora-mb.html" class="font-bold text-blue-600 transition">Match Betting</a>
-          <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
-            <i class="fab fa-telegram mr-2"></i> Telegram
-          </a>
-          <a href="https://www.instagram.com/naanogl" target="_blank" class="font-medium text-gray-700 hover:text-pink-600 transition flex items-center">
-            <i class="fab fa-instagram mr-2"></i> Instagram
-          </a>
-        </div>
-        <div id="user-status" class="flex items-center space-x-4"></div>
-      </div>
-    </div>
-  </nav>
+<!-- BARRA DE NAVEGACIÓN DINÁMICA -->
+    <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-8">
+                    <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
+                    <a id="nav-guide-link" href="/guias.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guía GRATIS</a>
+                    <a href="/premium.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guías Premium</a>
+                    <!-- Calculadoras (dropdown robusto) -->
+                    <div class="relative group">
+                      <button
+                        class="flex items-center gap-1 font-medium text-gray-700 hover:text-blue-600 transition"
+                        aria-haspopup="true" aria-expanded="false">
+                        Calculadoras <i class="fas fa-chevron-down text-xs"></i>
+                      </button>
 
+                      <!-- Menú pegado al botón, sin huecos -->
+                      <div
+                        class="absolute left-0 top-full w-56 bg-white border border-gray-200 rounded-lg shadow-md
+                              invisible opacity-0 translate-y-1
+                              group-hover:visible group-hover:opacity-100 group-hover:translate-y-0
+                              group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0
+                              transition duration-150">
+                        <a href="/calculadora.html"
+                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none">Calculadora Match Betting</a>
+                        <a href="/calculadoraEV.html"
+                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none">Calculadora EV</a>
+                      </div>
+                    </div>
+
+                    <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
+                        <i class="fab fa-telegram mr-2"></i> Telegram
+                    </a>
+                    <a href="https://www.instagram.com/naanogl" target="_blank" class="font-medium text-gray-700 hover:text-pink-600 transition flex items-center">
+                        <i class="fab fa-instagram mr-2"></i> Instagram
+                    </a>
+                </div>
+                <div id="user-status" class="flex items-center space-x-4">
+                    <!-- Contenido dinámico: Login/Logout -->
+                </div>
+            </div>
+        </div>
+    </nav>
   <!-- CONTENIDO -->
   <main class="container mx-auto px-4 py-8 sm:py-16 max-w-6xl">
     <div class="bg-white p-5 sm:p-8 rounded-xl shadow-lg">
