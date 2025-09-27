@@ -759,20 +759,19 @@
           return;
         }
 
-        // A
-        const A = legProb(legAType.value, {
-          Ex: legA_ex_odds.value, comm: legA_ex_comm.value,
-          yes: legA_yes.value, no: legA_no.value,
-          o1: legA_1.value, oX: legA_X.value, o2: legA_2.value, pick: legA_pick.value,
-          odds: legA_asm_odds.value
-        });
-        // B
-        const B = legProb(legBType.value, {
-          Ex: legB_ex_odds.value, comm: legB_ex_comm.value,
-          yes: legB_yes.value, no: legB_no.value,
-          o1: legB_1.value, oX: legB_X.value, o2: legB_2.value, pick: legB_pick.value,
-          odds: legB_asm_odds.value
-        });
+            const A = legProb(legAType.value, {
+            Ex: legA_ex_odds.value, comm: legA_ex_comm.value,
+            yes: legA_yes.value, no: legA_no.value,
+            o1: legA_1.value, oX: legA_X.value, o2: legA_2.value, pick: legA_pick.value,
+            odds: legA_asm_odds.value, commAsm: legA_asm_comm.value, comm: legA_asm_comm.value
+            });
+
+            const B = legProb(legBType.value, {
+            Ex: legB_ex_odds.value, comm: legB_ex_comm.value,
+            yes: legB_yes.value, no: legB_no.value,
+            o1: legB_1.value, oX: legB_X.value, o2: legB_2.value, pick: legB_pick.value,
+            odds: legB_asm_odds.value, commAsm: legB_asm_comm.value, comm: legB_asm_comm.value
+            });
 
         // Actualizar comisiones por selección (texto bajo inputs) si procede
         if(legAType.value==='2w'){
