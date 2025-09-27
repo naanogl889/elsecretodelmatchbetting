@@ -654,7 +654,7 @@
         }
 
         // Render tarjetas: Casa 1
-        cardBack.textContent = `${money(importe)} a cuota ${fmt(O1,2)}`;
+        
 
         let res, copyVal;
 
@@ -678,6 +678,8 @@
           // Mostrar
           resumen.classList.remove('hidden');
           setBadge(res.porcentaje_valor, res.clasificacion);
+          // ⬇️ AÑADE ESTA LÍNEA AQUÍ
+          cardBack.textContent = `${money(t === 'rollover' ? res.total : importe)} a cuota ${fmt(O1,2)}`;
           cardGan.textContent   = money(res.ganancia_casa);
           cardLay.textContent   = `${money(res.lay)} a cuota ${fmt(Ov,2)}`;
           cardRiesgo.textContent= `Riesgo: ${money(res.riesgo)}`;
@@ -703,6 +705,8 @@
           // Mostrar
           resumen.classList.remove('hidden');
           setBadge(res.porcentaje_valor, res.clasificacion);
+          // ⬇️ AÑADE ESTA LÍNEA AQUÍ
+          cardBack.textContent = `${money(t === 'rollover' ? res.total : importe)} a cuota ${fmt(O1,2)}`;
           cardGan.textContent   = money(res.beneficio);
           cardLay.textContent   = `${money(res.stake2)} a cuota ${fmt(Ov,2)}`;
           cardRiesgo.classList.add('hidden'); // no hay riesgo en Casa2
