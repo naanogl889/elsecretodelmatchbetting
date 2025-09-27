@@ -637,6 +637,80 @@
 
             diffTxt.textContent = `📊 Diferencia entre escenarios: ${fmt(res.diferencia, 4)} €`;
           }
+        function mostrarTabla_favor(res, importe, O1, O2){
+          // res.tipo ∈ { 'real','freebet','reembolso','rollover' }
+          // res.stake2 = s2, res.beneficio = beneficio total equilibrado
+          const s1 = importe;
+          const s2 = res.stake2;
+          const prof = res.beneficio;
+
+          let c1_gana, c2_gana, tot_gana;
+          let c1_pierde, c2_pierde, tot_pierde;
+
+          if (res.tipo === 'real') {
+            // Casa 1 gana
+            c1_gana = s1 * (O1 - 1);
+            c2_gana = -s2;
+            tot_gana = prof; // debe coincidir por equilibrio
+            // Casa 2 gana
+            c1_pierde = -s1;
+            c2_pierde = s2 * (O2 - 1);
+            tot_pierde = prof;
+
+          } else if (res.tipo === 'freebet') {
+            // Importe = valor de la freebet en Casa 1
+            // Casa 1 gana
+            c1_gana = (O1 - 1) * s1;
+            c2_gana = -s2;
+            tot_gana = prof;
+            // Casa 2 gana
+            c1_pierde = 0.00; // freebet se pierde sin coste
+            c2_pierde = s2 * (O2 - 1);
+            tot_pierde = prof;
+
+          } else if (res.tipo === 'reembolso') {
+            // Reembolso -> valor de freebet con retención
+            const V = res.valor_freebet || 0;
+            // Casa 1 gana
+            c1_gana = s1 * (O1 - 1);
+            c2_gana = -s2;
+            tot_gana = prof;
+            // Casa 2 gana
+            c1_pierde = -s1 + V;    // recuperas V como valor de freebet
+            c2_pierde = s2 * (O2 - 1);
+            tot_pierde = prof;
+
+          } else if (res.tipo === 'rollover') {
+            // Rollover a favor: reconstruimos la parte de Casa 1 sin hedge:
+            // prof = gCasa_1gana_sinHedge - s2  => gCasa_1gana_sinHedge = prof + s2
+            const gCasa_1gana_sinHedge = prof + s2;
+
+            // Casa 1 gana
+            c1_gana = gCasa_1gana_sinHedge; // beneficio de Casa 1 sin restar s2
+            c2_gana = -s2;
+            tot_gana = prof;
+
+            // Casa 2 gana
+            c1_pierde = -s1;                 // pérdida del stake en Casa 1
+            c2_pierde = s2 * (O2 - 1);
+            tot_pierde = prof;
+          }
+
+          const row = (label, c1, c2, tot) => `
+            <tr class="border-t">
+              <td class="px-3 py-2">${label}</td>
+              <td class="px-3 py-2 ${c1>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(c1)}</td>
+              <td class="px-3 py-2 ${c2>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(c2)}</td>
+              <td class="px-3 py-2 ${tot>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(tot)}</td>
+            </tr>
+          `;
+
+          tBody.innerHTML =
+            row('✅ Si gana Casa 1', c1_gana, c2_gana, tot_gana) +
+            row('❌ Si gana Casa 2', c1_pierde, c2_pierde, tot_pierde);
+
+          diffTxt.textContent = `📊 Diferencia entre escenarios: ${fmt(res.diferencia || 0, 4)} €`;
+        }
 
 
       function calcular(){
@@ -710,7 +784,7 @@
           cardGan.textContent   = money(res.beneficio);
           cardLay.textContent   = `${money(res.stake2)} a cuota ${fmt(Ov,2)}`;
           cardRiesgo.classList.add('hidden'); // no hay riesgo en Casa2
-          mostrarTabla_favor(res.beneficio);
+          mostrarTabla_favor(res, importe, O1, Ov);
           btnCopy.disabled = false;
           copyVal = res.stake2;
         }
