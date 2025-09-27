@@ -57,7 +57,7 @@
   <main class="container mx-auto px-4 py-8 sm:py-16 max-w-6xl">
     <div class="bg-white p-5 sm:p-8 rounded-xl shadow-lg">
       <h1 class="text-3xl md:text-4xl font-bold text-center mb-6 text-gray-800">
-        💸 Calculadora de Match Betting
+         Calculadora de Match Betting
       </h1>
 
       <!-- NUEVO: selector de MODO (En contra / A favor) -->
@@ -555,53 +555,73 @@
         btnCopy.textContent = isContra ? '📋 Copiar Lay' : '📋 Copiar Stake Casa 2';
       }
 
-      function mostrarTabla_contra(res, importe, O1, EX, comision){
-        // Casa 1 (siempre)
-        const casa_gana = importe*(O1-1);
-        const casa_pierde = -importe;
+        function mostrarTabla_contra(res, importe, O1, EX, comision){
+            let casa_gana, casa_pierde, ex_gana, ex_pierde, total_gana, total_pierde;
 
-        // Exchange
-        const ex_gana = -res.riesgo;
-        const ex_pierde = res.lay*(1-comision);
+            if (res.tipo === 'real') {
+              // Casa gana
+              casa_gana   = importe * (O1 - 1);
+              ex_gana     = -res.riesgo;
+              total_gana  = res.ganancia_casa;
 
-        const total_gana = casa_gana + ex_gana;
-        const total_pierde = casa_pierde + ex_pierde;
+              // Gana Exchange
+              casa_pierde   = -importe;
+              ex_pierde     = res.lay * (1 - comision);
+              total_pierde  = res.ganancia_ex;
 
-        tBody.innerHTML = `
-          <tr class="border-t">
-            <td class="px-3 py-2">✅ Si gana Casa 1</td>
-            <td class="px-3 py-2 ${casa_gana>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(casa_gana)}</td>
-            <td class="px-3 py-2 ${ex_gana>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(ex_gana)}</td>
-            <td class="px-3 py-2 ${total_gana>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(total_gana)}</td>
-          </tr>
-          <tr class="border-t">
-            <td class="px-3 py-2">❌ Si gana Exchange</td>
-            <td class="px-3 py-2 ${casa_pierde>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(casa_pierde)}</td>
-            <td class="px-3 py-2 ${ex_pierde>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(ex_pierde)}</td>
-            <td class="px-3 py-2 ${total_pierde>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(total_pierde)}</td>
-          </tr>
-        `;
-        diffTxt.textContent = `📊 Diferencia entre escenarios: ${fmt(res.diferencia,4)} €`;
-      }
+            } else if (res.tipo === 'freebet') {
+              // Casa gana
+              casa_gana   = importe * (O1 - 1);
+              ex_gana     = -res.riesgo;
+              total_gana  = res.ganancia_casa;
 
-      function mostrarTabla_favor(prof){
-        // Ambos escenarios dan el mismo beneficio “prof”
-        tBody.innerHTML = `
-          <tr class="border-t">
-            <td class="px-3 py-2">✅ Si gana Casa 1</td>
-            <td class="px-3 py-2 ${prof>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(prof)}</td>
-            <td class="px-3 py-2 ${(-prof)>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(0)}</td>
-            <td class="px-3 py-2 ${prof>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(prof)}</td>
-          </tr>
-          <tr class="border-t">
-            <td class="px-3 py-2">❌ Si gana Casa 2</td>
-            <td class="px-3 py-2 ${(-prof)>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(0)}</td>
-            <td class="px-3 py-2 ${prof>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(prof)}</td>
-            <td class="px-3 py-2 ${prof>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(prof)}</td>
-          </tr>
-        `;
-        diffTxt.textContent = `📊 Diferencia entre escenarios: 0.0000 €`;
-      }
+              // Gana Exchange
+              casa_pierde   = 0.00; // Freebet: no pierdes en la casa
+              ex_pierde     = res.lay * (1 - comision);
+              total_pierde  = res.ganancia_ex;
+
+            } else if (res.tipo === 'reembolso') {
+              const V = res.valor_freebet || 0; // valor_freebet = reembolso * retención
+
+              // Casa gana
+              casa_gana   = importe * (O1 - 1);
+              ex_gana     = -res.riesgo;
+              total_gana  = res.ganancia_casa;
+
+              // Gana Exchange
+              casa_pierde   = -importe;
+              // En la columna del exchange sumamos lo cobrado + valor de la freebet (igual que en tu Python)
+              ex_pierde     = res.lay * (1 - comision) + V;
+              total_pierde  = res.ganancia_ex;
+
+            } else if (res.tipo === 'rollover') {
+              // Casa gana: la columna "Casa 1" muestra la ganancia que ya incluye el riesgo (ganancia_casa_real)
+              casa_gana   = res.ganancia_casa_real;
+              ex_gana     = -res.riesgo;
+              total_gana  = res.ganancia_casa;
+
+              // Gana Exchange: reconstruimos la columna del exchange como en tu Python
+              casa_pierde   = -importe;                         // importe_real
+              ex_pierde     = res.ganancia_ex + importe;        // (lay*(1-com) - importe) + importe = lay*(1-com)
+              total_pierde  = res.ganancia_ex;
+            }
+
+            const row = (label, c1, c2, tot) => `
+              <tr class="border-t">
+                <td class="px-3 py-2">${label}</td>
+                <td class="px-3 py-2 ${c1>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(c1)}</td>
+                <td class="px-3 py-2 ${c2>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(c2)}</td>
+                <td class="px-3 py-2 ${tot>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(tot)}</td>
+              </tr>
+            `;
+
+            tBody.innerHTML =
+              row('✅ Si gana Casa 1', casa_gana, ex_gana, total_gana) +
+              row('❌ Si gana Exchange', casa_pierde, ex_pierde, total_pierde);
+
+            diffTxt.textContent = `📊 Diferencia entre escenarios: ${fmt(res.diferencia, 4)} €`;
+          }
+
 
       function calcular(){
         const isContra = modo.value === 'contra';
