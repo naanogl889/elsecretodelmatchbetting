@@ -129,14 +129,8 @@
 
         <!-- ========= ONE LEG (Avanzado) ========= -->
         <section id="one-leg">
-          <!-- Inputs fijos -->
+          <!-- Inputs fijos (solo BOOST aquí) -->
           <section class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <label class="block">
-              <span class="block text-sm font-medium text-gray-600 mb-1">Cuota SÍ real (misma selección sin boost)</span>
-              <input id="odds-yes" inputmode="decimal" placeholder="1.50"
-                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-              <div id="yes-note" class="text-[11px] text-gray-500 mt-1 hidden">En modo Exchange no se usa este campo.</div>
-            </label>
             <label class="block">
               <span class="block text-sm font-medium text-gray-600 mb-1">Cuota SÍ aumentada (Boost)</span>
               <input id="odds-boost" inputmode="decimal" placeholder="2.00"
@@ -151,21 +145,21 @@
               <input type="radio" name="mode" id="mode-ex" class="h-4 w-4 text-blue-600" />
               <div>
                 <div class="text-sm font-semibold">Exchange (misma selección)</div>
-                <div class="text-xs text-gray-600">Compara el boost con exchange (con comisión).</div>
+                <div class="text-xs text-gray-600">Compara Boost vs Exchange (con comisión).</div>
               </div>
             </label>
             <label class="flex items-center gap-2 border rounded-lg p-3">
               <input type="radio" name="mode" id="mode-book2" class="h-4 w-4 text-blue-600" />
               <div>
                 <div class="text-sm font-semibold">Mercado 2 opciones</div>
-                <div class="text-xs text-gray-600">Usa SÍ y NO (desvigoriza) y calcula EV.</div>
+                <div class="text-xs text-gray-600">Introduce SÍ y NO de la misma casa.</div>
               </div>
             </label>
             <label class="flex items-center gap-2 border rounded-lg p-3">
               <input type="radio" name="mode" id="mode-book3" class="h-4 w-4 text-blue-600" />
               <div>
                 <div class="text-sm font-semibold">Mercado 3 opciones (1X2)</div>
-                <div class="text-xs text-gray-600">Usa 1–X–2 (desvigoriza) y calcula EV.</div>
+                <div class="text-xs text-gray-600">Introduce 1–X–2 y la selección boosted.</div>
               </div>
             </label>
             <label class="flex items-center gap-2 border rounded-lg p-3">
@@ -205,6 +199,7 @@
                 <input id="odds-no-book" inputmode="decimal" placeholder="2.05"
                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
               </label>
+              <div class="self-end text-[12px] text-gray-500">El boost se aplica a la selección SÍ indicada arriba.</div>
             </div>
 
             <!-- 3 opciones -->
@@ -235,11 +230,18 @@
             </div>
 
             <!-- Sin NO (asumido) -->
-            <div id="wrap-assumed" class="hidden">
+            <div id="wrap-assumed" class="hidden md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-4">
+              <label class="block">
+                <span class="block text-sm font-medium text-gray-600 mb-1">Cuota SÍ (real)</span>
+                <input id="assumed-yes" inputmode="decimal" placeholder="1.50"
+                      class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                <p class="text-[11px] text-gray-500 mt-1">La cuota SÍ de la selección (sin boost).</p>
+              </label>
               <label class="block">
                 <span class="block text-sm font-medium text-gray-600 mb-1">Comisión asumida (%)</span>
                 <input id="assumed-comm" type="number" min="0" max="30" step="0.1" value="10"
                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+                <p class="text-[11px] text-gray-500 mt-1">Overround total estimado del mercado.</p>
               </label>
             </div>
           </section>
@@ -457,24 +459,21 @@
       const basicBox   = $('basic-box');
       const advBox     = $('advanced-box');
 
-      // ====== APROXIMADO (3 campos) ======
+      // ====== APROXIMADO ======
       const bestOdds  = $('basic-best-odds');
       const boostOdds = $('basic-boost-odds');
       const basicComm = $('basic-assumed-comm');
 
-      const evCardB  = $('ev-card-basic');
-      const pillB    = $('ev-pill-basic');
-      const valueB   = $('ev-value-basic');
-      const fairB    = $('fair-odds-basic');
-      const commB    = $('comm-basic');
+      const pillB  = $('ev-pill-basic');
+      const valueB = $('ev-value-basic');
+      const fairB  = $('fair-odds-basic');
+      const commB  = $('comm-basic');
 
-      // ====== AVANZADO (tu bloque completo) ======
+      // ====== AVANZADO ======
       const legs1 = $('legs-1');
       const legs2 = $('legs-2');
 
-      const oYes   = $('odds-yes');
       const oBoost = $('odds-boost');
-      const yesNote= $('yes-note');
 
       const modeEx   = $('mode-ex');
       const modeBook2= $('mode-book2');
@@ -488,12 +487,17 @@
 
       const oEx     = $('odds-ex');
       const exComm  = $('ex-comm');
+
       const oNoBookYes = $('odds-no-book-yes');
-      const oNoBook = $('odds-no-book');
-      const o1      = $('odds-1');
-      const oX      = $('odds-x');
-      const o2      = $('odds-2');
-      const pick    = $('boost-pick');
+      const oNoBook    = $('odds-no-book');
+
+      const o1 = $('odds-1');
+      const oX = $('odds-x');
+      const o2 = $('odds-2');
+      const pick = $('boost-pick');
+
+      const asmYes  = $('assumed-yes');
+      const asmComm = $('assumed-comm');
 
       const boost2  = $('boost-2l');
       const useComboRef = $('use-combo-ref');
@@ -549,7 +553,6 @@
         }
 
         const c = (Number.isFinite(cPct)?cPct:10)/100;
-        // p(justa) asumida desde la mejor cuota del mercado
         const pSel = (1/oBest) / (1+c);
         const fair = 1 / pSel;
 
@@ -563,14 +566,13 @@
         commB.textContent  = fmt(cPct ?? 10,2) + '%';
       }
 
-      // ====== LÓGICA AVANZADA (igual a la tuya, resumida) ======
+      // ====== LÓGICA AVANZADA ======
       function toggleOneLegVisibility(){
         const ex = modeEx.checked, b2 = modeBook2.checked, b3 = modeBook3.checked, none = modeNone.checked;
         wrapEx.classList.toggle('hidden', !ex);
         wrapBook2.classList.toggle('hidden', !b2);
         wrapBook3.classList.toggle('hidden', !b3);
         wrapAsm.classList.toggle('hidden', !none);
-        yesNote.classList.toggle('hidden', !ex);
         comboRefWrap.classList.toggle('hidden', !useComboRef.checked);
       }
 
@@ -607,12 +609,9 @@
         return {p:null, comm:'—'};
       }
 
-      function setStatusAdv(pos){
-        setStatus(pillA, valueA, pos);
-      }
+      function setStatusAdv(pos){ setStatus(pillA, valueA, pos); }
 
       function updateAdvanced(){
-        // ¿1 o 2 selecciones?
         const isTwo = legs2.checked;
         $('one-leg').classList.toggle('hidden', isTwo);
         $('two-legs').classList.toggle('hidden', !isTwo);
@@ -644,13 +643,10 @@
             return;
           }
 
-          const S = toN(oYes.value);
-          if(!S || S<=1){ setStatusAdv(false); valueA.textContent='0,00%'; fairA.textContent='—'; pYesA.textContent='—'; commA.textContent='0,00%'; return; }
-
           if(modeBook2.checked){
-            const N = toN(oNoBook.value);
             const Sy = toN(oNoBookYes.value);
-            if(!N||N<=1||!Sy||Sy<=1){ setStatusAdv(false); valueA.textContent='0,00%'; fairA.textContent='—'; pYesA.textContent='—'; commA.textContent='0,00%'; return; }
+            const N  = toN(oNoBook.value);
+            if(!Sy||Sy<=1||!N||N<=1){ setStatusAdv(false); valueA.textContent='0,00%'; fairA.textContent='—'; pYesA.textContent='—'; commA.textContent='0,00%'; return; }
             const pSel = fairP_2way(Sy,N);
             const fair = 1/pSel;
             const ev1  = pSel*B - 1;
@@ -681,8 +677,12 @@
           }
 
           if(modeNone.checked){
-            const c = toN($('assumed-comm').value) ?? 10;
-            const pSel = fairP_assumed(S,c);
+            const S   = toN(asmYes.value);
+            const c   = toN(asmComm.value);
+            const cUse= Number.isFinite(c)?c:10;
+            if(!S || S<=1){ setStatusAdv(false); valueA.textContent='0,00%'; fairA.textContent='—'; pYesA.textContent='—'; commA.textContent=pct(cUse)+'%'; return; }
+
+            const pSel = fairP_assumed(S,cUse);
             const fair = 1/pSel;
             const ev1  = pSel*B - 1;
             const roi  = ev1*100;
@@ -691,7 +691,7 @@
             valueA.textContent  = (ev1>0? '+' : '') + pct(roi) + '%';
             fairA.textContent   = fmt(fair,3);
             pYesA.textContent   = fmt(pSel,4);
-            commA.textContent   = pct(c) + '%';
+            commA.textContent   = pct(cUse) + '%';
             return;
           }
 
@@ -753,24 +753,27 @@
 
       // Avanzado
       [legs1,legs2].forEach(el=>el.addEventListener('change', updateAdvanced));
-      [oYes,oBoost,oEx,exComm,oNoBook,oNoBookYes,o1,oX,o2,pick,boost2,useComboRef,comboRefOdds,comboRefComm,
+      [oBoost,oEx,exComm,oNoBook,oNoBookYes,o1,oX,o2,pick,asmYes,asmComm,
+       boost2,useComboRef,comboRefOdds,comboRefComm,
        legAType,legA_ex_odds,legA_ex_comm,legA_yes,legA_no,legA_1,legA_X,legA_2,legA_pick,
        legBType,legB_ex_odds,legB_ex_comm,legB_yes,legB_no,legB_1,legB_X,legB_2,legB_pick
       ].forEach(el=>el.addEventListener('input', updateAdvanced));
       [modeEx,modeBook2,modeBook3,modeNone,useComboRef,legAType,legBType].forEach(el=>el.addEventListener('change', ()=>{ toggleOneLegVisibility(); updateAdvanced(); }));
 
       // ====== DEMO INICIAL ======
+      // Aproximado
       bestOdds.value = '1.80';
       boostOdds.value= '2.10';
       basicComm.value= '10';
 
-      oYes.value   = '1.50';
+      // Avanzado
       oBoost.value = '2.00';
       oEx.value    = '1.98';
       exComm.value = '2';
       oNoBookYes.value='1.80';
       oNoBook.value= '2.05';
       o1.value='2.60'; oX.value='3.40'; o2.value='2.75'; pick.value='1';
+      asmYes.value='1.50'; asmComm.value='10';
 
       boost2.value='4.50';
       legA_ex_odds.value='1.70'; legA_ex_comm.value='2';
