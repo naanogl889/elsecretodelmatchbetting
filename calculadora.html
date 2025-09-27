@@ -1,53 +1,191 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Calculadora Match Betting | El Secreto del Match Betting</title>
-    <meta name="description" content="Calculadora de Matched Betting gratuita para calcular tus apuestas a favor (back) y en contra (lay)."/>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora Match Betting | El Secreto del Match Betting</title>
+  <meta name="description" content="Calculadora de Match Betting: Dinero Real, Freebet, Reembolso y Rollover con lay óptimo y rating."/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
+
 <body class="font-sans antialiased text-gray-800 bg-green-100">
-
-    <!-- BARRA DE NAVEGACIÓN DINÁMICA -->
-    <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
-        <div class="container mx-auto px-4 max-w-6xl">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-8">
-                    <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
-                    <a href="/guias.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guía GRATIS</a>
-                    <a href="/premium.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guías Premium</a>
-                    <a href="/calculadora.html" class="font-bold text-blue-600 transition">Calculadora</a>
-                    <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
-                        <i class="fab fa-telegram mr-2"></i> Telegram
-                    </a>
-                    <a href="https://www.instagram.com/naanogl" target="_blank" class="font-medium text-gray-700 hover:text-pink-600 transition flex items-center">
-                        <i class="fab fa-instagram mr-2"></i> Instagram
-                    </a>
-                </div>
-                <div id="user-status" class="flex items-center space-x-4">
-                    <!-- Contenido dinámico: Login/Logout -->
-                </div>
-            </div>
+  <!-- NAV (igual estilo que tu sitio) -->
+  <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center space-x-8">
+          <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
+          <a href="/guias.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guía GRATIS</a>
+          <a href="/premium.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guías Premium</a>
+          <a href="/calculadora.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Calculadora</a>
+          <a href="/calculadoraev.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Calculadora EV</a>
+          <a href="/calculadora-mb.html" class="font-bold text-blue-600 transition">Match Betting</a>
+          <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
+            <i class="fab fa-telegram mr-2"></i> Telegram
+          </a>
+          <a href="https://www.instagram.com/naanogl" target="_blank" class="font-medium text-gray-700 hover:text-pink-600 transition flex items-center">
+            <i class="fab fa-instagram mr-2"></i> Instagram
+          </a>
         </div>
-    </nav>
-
-  <main class="container mx-auto px-4 py-8 sm:py-16">
-    <div class="bg-white p-4 sm:p-8 rounded-xl shadow-lg">
-      <h1 class="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800">Calculadora de Matched Betting</h1>
-      
-      <div class="overflow-hidden rounded-lg border border-gray-200">
-        <iframe
-          src="https://calculadoramatchbetting2.streamlit.app/?embed=true&theme=light"
-          style="width: 100%; height: 650px; border: none;"
-          title="Calculadora de Matched Betting">
-        </iframe>
+        <div id="user-status" class="flex items-center space-x-4"></div>
       </div>
-      
+    </div>
+  </nav>
+
+  <!-- CONTENIDO -->
+  <main class="container mx-auto px-4 py-8 sm:py-16 max-w-6xl">
+    <div class="bg-white p-5 sm:p-8 rounded-xl shadow-lg">
+      <h1 class="text-3xl md:text-4xl font-bold text-center mb-6 text-gray-800">
+        💸 Calculadora de Match Betting
+      </h1>
+
+      <!-- Tipo de apuesta -->
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <label class="block">
+          <span class="block text-sm font-medium text-gray-600 mb-1">Tipo de apuesta</span>
+          <select id="tipo-apuesta" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200">
+            <option value="real">Dinero Real</option>
+            <option value="freebet">Freebet</option>
+            <option value="reembolso">Reembolso</option>
+            <option value="rollover">Rollover</option>
+          </select>
+        </label>
+      </section>
+
+      <!-- Parámetros generales -->
+      <h2 class="text-xl font-semibold mt-4 mb-2">Parámetros generales</h2>
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <label class="block">
+          <span class="block text-sm font-medium text-gray-600 mb-1">💰 Importe apostado (€)</span>
+          <input id="importe" inputmode="decimal" placeholder="10.00"
+                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+        </label>
+        <label class="block">
+          <span class="block text-sm font-medium text-gray-600 mb-1">📈 Cuota en casa (Back)</span>
+          <input id="cuota-back" inputmode="decimal" placeholder="1.55"
+                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+        </label>
+        <label class="block">
+          <span class="block text-sm font-medium text-gray-600 mb-1">📉 Cuota en Exchange (Lay)</span>
+          <input id="cuota-ex" inputmode="decimal" placeholder="1.60"
+                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+        </label>
+        <label class="block">
+          <span class="block text-sm font-medium text-gray-600 mb-1">🏦 Comisión del Exchange (%)</span>
+          <input id="comision" type="number" min="0" max="100" step="0.1" value="2.0"
+                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+          <span class="text-[11px] text-gray-500">Por defecto 2% (se aplica a las ganancias del lay).</span>
+        </label>
+      </section>
+
+      <!-- Parámetros específicos -->
+      <div id="panel-reembolso" class="hidden mt-4 border rounded-lg p-4 bg-gray-50">
+        <h3 class="font-semibold mb-2">⚙️ Parámetros para Reembolso</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <label class="block">
+            <span class="block text-sm font-medium text-gray-600 mb-1">💵 Monto reembolsado si pierdes (€)</span>
+            <input id="reb-monto" inputmode="decimal" placeholder="10.00"
+                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+          </label>
+          <label class="block">
+            <span class="block text-sm font-medium text-gray-600 mb-1">🔁 Retención esperada de la freebet (0-1)</span>
+            <input id="reb-retencion" inputmode="decimal" placeholder="0.70"
+                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+            <span class="text-[11px] text-gray-500">Por defecto 0.75 en tus funciones (en Streamlit usabas 0.7).</span>
+          </label>
+        </div>
+      </div>
+
+      <div id="panel-rollover" class="hidden mt-4 border rounded-lg p-4 bg-gray-50">
+        <h3 class="font-semibold mb-2">⚙️ Parámetros para Rollover</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <label class="block">
+            <span class="block text-sm font-medium text-gray-600 mb-1">🎁 Importe del bono (€)</span>
+            <input id="rol-bono" inputmode="decimal" placeholder="100"
+                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+          </label>
+          <label class="block">
+            <span class="block text-sm font-medium text-gray-600 mb-1">🔄 Rollover total requerido (€)</span>
+            <input id="rol-rollover" inputmode="decimal" placeholder="600"
+                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+          </label>
+          <label class="block">
+            <span class="block text-sm font-medium text-gray-600 mb-1">🧲 Retención estimada tras rollover (0-1)</span>
+            <input id="rol-retencion" inputmode="decimal" placeholder="0.95"
+                   class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
+          </label>
+        </div>
+      </div>
+
+      <!-- Botón calcular -->
+      <div class="mt-6">
+        <button id="btn-calcular" class="w-full sm:w-auto bg-blue-600 text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-blue-700">
+          🔍 Calcular
+        </button>
+      </div>
+
+      <!-- Resultado principal -->
+      <section id="resumen" class="hidden mt-6">
+        <section id="ev-card" class="flex items-center justify-between gap-4 border rounded-xl p-5 md:p-6 bg-gray-50">
+          <div class="flex items-center gap-4">
+            <span id="ev-pill"
+                  class="min-w-[92px] text-center text-sm font-extrabold tracking-wide px-3 py-2 rounded-full border">
+              Rating
+            </span>
+            <div>
+              <div class="text-xs text-gray-500 mb-1">Porcentaje de valor del cruce</div>
+              <div id="ev-value" class="text-4xl md:text-5xl font-black leading-none">0,00%</div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-xs text-gray-500 mb-1">Clasificación</div>
+            <div id="ev-clas" class="text-lg font-bold">—</div>
+          </div>
+        </section>
+
+        <!-- Tres tarjetas -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5">
+          <div class="rounded-xl p-5 border bg-blue-50">
+            <div class="text-sm font-semibold mb-2">A Favor (Casa)</div>
+            <div id="card-back" class="text-lg font-bold">—</div>
+          </div>
+          <div class="rounded-xl p-5 border bg-orange-50">
+            <div class="text-sm font-semibold mb-2">Ganancia Estimada</div>
+            <div id="card-gan" class="text-xl font-black">—</div>
+            <div id="card-rating" class="text-sm text-gray-700 mt-1">Rating —</div>
+          </div>
+          <div class="rounded-xl p-5 border bg-red-50">
+            <div class="text-sm font-semibold mb-2">En Contra (Exchange)</div>
+            <div id="card-lay" class="text-lg font-bold">—</div>
+            <div id="card-riesgo" class="text-sm text-gray-700 mt-1">Riesgo: —</div>
+          </div>
+        </div>
+
+        <!-- Tabla escenarios -->
+        <div class="mt-6">
+          <h3 class="font-semibold mb-2">📊 ¿Qué pasa si gana la casa o si gana el exchange?</h3>
+          <div class="overflow-x-auto">
+            <table class="min-w-full text-sm text-left border rounded-lg overflow-hidden">
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="px-3 py-2">Resultado</th>
+                  <th class="px-3 py-2">Casa de apuestas</th>
+                  <th class="px-3 py-2">Exchange</th>
+                  <th class="px-3 py-2">Total</th>
+                </tr>
+              </thead>
+              <tbody id="tabla-body"></tbody>
+            </table>
+          </div>
+
+          <div class="mt-3 text-sm text-gray-600" id="diferencia-text">—</div>
+        </div>
+      </section>
     </div>
   </main>
 
+  <!-- FOOTER -->
   <footer class="py-8 bg-gray-800 text-white">
     <div class="container mx-auto px-4 max-w-6xl">
       <div class="flex flex-col md:flex-row justify-between items-center">
@@ -62,48 +200,429 @@
       </div>
     </div>
   </footer>
-  
-<!-- SCRIPT DE FIREBASE Y LÓGICA DE UI -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-        // Tu configuración personal de Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyBpvJVoiEe_ELuJGtDt7wfpkDSDK77gmqc",
-            authDomain: "secreto-matchbetting.firebaseapp.com",
-            projectId: "secreto-matchbetting",
-            storageBucket: "secreto-matchbetting.appspot.com",
-            messagingSenderId: "742895000020",
-            appId: "1:742895000020:web:6d5e5f43df2706e0f95e41",
-            measurementId: "G-E9R9X4D48D"
+  <!-- LÓGICA (réplica exacta de tu Python) -->
+  <script>
+    (function(){
+      const $ = id => document.getElementById(id);
+
+      // Inputs base
+      const tipo = $('tipo-apuesta');
+      const imp  = $('importe');
+      const bck  = $('cuota-back');
+      const exo  = $('cuota-ex');
+      const com  = $('comision');
+
+      // Paneles específicos
+      const pReb = $('panel-reembolso');
+      const rebMonto = $('reb-monto');
+      const rebRet   = $('reb-retencion');
+
+      const pRol = $('panel-rollover');
+      const rolBono = $('rol-bono');
+      const rolRollover = $('rol-rollover');
+      const rolRet = $('rol-retencion');
+
+      // Resultados
+      const resumen = $('resumen');
+      const evCard  = $('ev-card');
+      const pill    = $('ev-pill');
+      const evVal   = $('ev-value');
+      const evClas  = $('ev-clas');
+
+      const cardBack = $('card-back');
+      const cardGan  = $('card-gan');
+      const cardRating = $('card-rating');
+      const cardLay  = $('card-lay');
+      const cardRiesgo = $('card-riesgo');
+      const tBody   = $('tabla-body');
+      const diffTxt = $('diferencia-text');
+
+      // Utils
+      const toN = (v) => {
+        const n = Number(String(v||'').trim().replace(',', '.'));
+        return Number.isFinite(n) ? n : null;
+      };
+      const fmt = (n, d=2) => Number(n||0).toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d});
+      const money = (n) => `${fmt(n,2)} €`;
+
+      function setBadge(pct, clas){
+        // Colorea el pill según clasificación (siguiendo tu idea)
+        pill.className = "min-w-[92px] text-center text-sm font-extrabold tracking-wide px-3 py-2 rounded-full border";
+        evCard.className = "flex items-center justify-between gap-4 border rounded-xl p-5 md:p-6 bg-gray-50";
+
+        if(/🟢/.test(clas)){
+          pill.classList.add('text-green-700','border-green-300','bg-green-100/70');
+          evVal.classList.add('text-green-700'); evVal.classList.remove('text-red-700');
+        }else if(/🟠/.test(clas)){
+          pill.classList.add('text-orange-700','border-orange-300','bg-orange-100/70');
+          evVal.classList.remove('text-red-700','text-green-700');
+        }else{
+          pill.classList.add('text-red-700','border-red-300','bg-red-100/70');
+          evVal.classList.add('text-red-700'); evVal.classList.remove('text-green-700');
+        }
+        pill.textContent = 'Rating';
+        evVal.textContent = fmt(pct,2) + '%';
+        evClas.textContent = clas;
+        cardRating.textContent = 'Rating ' + fmt(pct,2) + '%';
+      }
+
+      // ====== Réplica exacta de tus funciones Python ======
+      function calcular_dinero_real(importe, cuota_a_favor, cuota_exchange, comision){
+        let mejor_lay = 0, mejor_diferencia = Infinity, mejor_ganancia_casa = 0, mejor_ganancia_exchange = 0;
+
+        const max = Math.max(1, Math.floor(importe * 200));
+        for(let x=1; x<=max; x++){
+          const lay = x / 100;
+          const ganancia_casa = importe * (cuota_a_favor - 1) - lay * (cuota_exchange - 1);
+          const ganancia_exchange = lay * (1 - comision) - importe;
+          const diferencia = Math.abs(ganancia_casa - ganancia_exchange);
+          if(diferencia < mejor_diferencia){
+            mejor_diferencia = diferencia;
+            mejor_lay = lay;
+            mejor_ganancia_casa = ganancia_casa;
+            mejor_ganancia_exchange = ganancia_exchange;
+          }
+        }
+
+        const riesgo = mejor_lay * (cuota_exchange - 1);
+        const beneficio_promedio = (mejor_ganancia_casa + mejor_ganancia_exchange) / 2;
+        const porcentaje_valor = 100 + (beneficio_promedio / importe) * 100;
+
+        let clasificacion;
+        if (porcentaje_valor >= 98){
+          clasificacion = "🟢 Excelente";
+        } else if (porcentaje_valor >= 95){
+          clasificacion = "🟢 Muy Bueno";
+        } else if (porcentaje_valor >= 90){
+          clasificacion = "🟠 Regular (Busca cuotas mas bajas y mas parejas)";
+        } else {
+          clasificacion = "🔴 Malo (Busca cuotas mas bajas y mas parejas)";
+        }
+
+        return {
+          tipo: 'real', importe, cuota_a_favor, cuota_exchange, comision,
+          lay: mejor_lay, riesgo,
+          ganancia_casa: mejor_ganancia_casa,
+          ganancia_exchange: mejor_ganancia_exchange,
+          diferencia: mejor_diferencia,
+          porcentaje_valor, clasificacion
         };
+      }
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
+      function calcular_freebet(importe, cuota_a_favor, cuota_exchange, comision){
+        let mejor_lay = 0, mejor_diferencia = Infinity, mejor_ganancia_casa = 0, mejor_ganancia_exchange = 0;
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const userStatusDiv = document.getElementById('user-status');
+        const max = Math.max(1, Math.floor(importe * 200));
+        for(let x=1; x<=max; x++){
+          const lay = x / 100;
+          const ganancia_casa = (cuota_a_favor - 1) * importe - lay * (cuota_exchange - 1);
+          const ganancia_exchange = lay * (1 - comision);
+          const diferencia = Math.abs(ganancia_casa - ganancia_exchange);
+          if(diferencia < mejor_diferencia){
+            mejor_diferencia = diferencia;
+            mejor_lay = lay;
+            mejor_ganancia_casa = ganancia_casa;
+            mejor_ganancia_exchange = ganancia_exchange;
+          }
+        }
 
-            onAuthStateChanged(auth, user => {
-                userStatusDiv.innerHTML = '';
-                if (user) {
-                    userStatusDiv.innerHTML = `
-                        <span class="text-sm text-gray-600 hidden sm:inline">${user.email}</span>
-                        <button id="logout-button" class="bg-gray-200 text-gray-700 px-3 py-1 rounded-md text-sm font-semibold hover:bg-gray-300">Salir</button>
-                    `;
-                    document.getElementById('logout-button').addEventListener('click', () => {
-                        signOut(auth).then(() => {
-                            window.location.href = '/index.html';
-                        });
-                    });
-                } else {
-                    userStatusDiv.innerHTML = `
-                        <a href="/index.html" class="bg-blue-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-700">Acceder</a>
-                    `;
-                }
-            });
-        });
-    </script>
+        const riesgo = mejor_lay * (cuota_exchange - 1);
+        const beneficio_promedio = (mejor_ganancia_casa + mejor_ganancia_exchange) / 2;
+        const porcentaje_valor = (beneficio_promedio / importe) * 100;
+
+        let clasificacion;
+        if (porcentaje_valor >= 75){
+          clasificacion = "🟢 Excelente";
+        } else if (porcentaje_valor >= 70){
+          clasificacion = "🟢 Muy Bueno";
+        } else if (porcentaje_valor >= 65){
+          clasificacion = "🟠 Regular (Busca cuotas mas altas y mas parejas)";
+        } else {
+          clasificacion = "🔴 Malo (Busca cuotas mas altas y mas parejas)";
+        }
+
+        return {
+          tipo: 'freebet', importe, cuota_a_favor, cuota_exchange, comision,
+          lay: mejor_lay, riesgo,
+          ganancia_casa: mejor_ganancia_casa,
+          ganancia_exchange: mejor_ganancia_exchange,
+          diferencia: mejor_diferencia,
+          porcentaje_valor, clasificacion
+        };
+      }
+
+      function calcular_reembolso(importe, cuota_a_favor, cuota_exchange, comision, cantidad_reembolso, porcentaje_uso_freebet=0.75){
+        let mejor_lay = 0, mejor_diferencia = Infinity, mejor_ganancia_casa = 0, mejor_ganancia_exchange = 0;
+
+        const valor_freebet = cantidad_reembolso * porcentaje_uso_freebet;
+
+        const max = Math.max(1, Math.floor(importe * 200));
+        for(let x=1; x<=max; x++){
+          const lay = x / 100;
+          const riesgo = lay * (cuota_exchange - 1);
+          const ganancia_casa = (cuota_a_favor - 1) * importe - riesgo;
+          const ganancia_exchange = lay * (1 - comision) + valor_freebet - importe;
+          const diferencia = Math.abs(ganancia_casa - ganancia_exchange);
+          if(diferencia < mejor_diferencia){
+            mejor_diferencia = diferencia;
+            mejor_lay = lay;
+            mejor_ganancia_casa = ganancia_casa;
+            mejor_ganancia_exchange = ganancia_exchange;
+          }
+        }
+
+        const riesgo_final = mejor_lay * (cuota_exchange - 1);
+        const beneficio_promedio = (mejor_ganancia_casa + mejor_ganancia_exchange) / 2;
+        const porcentaje_valor = (100 + (beneficio_promedio / importe) * 100) - 100;
+
+        let clasificacion;
+        if (porcentaje_valor >= 50){
+          clasificacion = "🟢 Excelente";
+        } else if (porcentaje_valor >= 45){
+          clasificacion = "🟢 Muy Bueno";
+        } else if (porcentaje_valor >= 40){
+          clasificacion = "🟠 Regular (Busca cuotas mas altas y mas parejas)";
+        } else {
+          clasificacion = "🔴 Malo (Busca cuotas mas altas y mas parejas)";
+        }
+
+        return {
+          tipo: 'reembolso', importe, cuota_a_favor, cuota_exchange, comision,
+          cantidad_reembolso, porcentaje_uso_freebet,
+          lay: mejor_lay, riesgo: riesgo_final,
+          ganancia_casa: mejor_ganancia_casa,
+          ganancia_exchange: mejor_ganancia_exchange,
+          diferencia: mejor_diferencia,
+          porcentaje_valor, clasificacion
+        };
+      }
+
+      function calcular_rollover(importe, cuota_a_favor, cuota_exchange, comision, bono, rollover, porcentaje_retencion){
+        let mejor_lay = 0, mejor_diferencia = Infinity, mejor_ganancia_casa = 0, mejor_ganancia_exchange = 0;
+
+        const beneficio_apuesta = importe * cuota_a_favor;    // (importe) * cuota_back
+        const bono_convertido   = bono * cuota_a_favor;       // bono * cuota_back
+
+        let rollover_pendiente = rollover - importe - bono;
+        if (rollover_pendiente < 0) rollover_pendiente = 0;
+
+        const perdida_rollover = rollover_pendiente * (1 - porcentaje_retencion);
+
+        const max_lay = Math.max(1, Math.floor((importe + rollover) * 300)); // como tu Python
+        for(let x=1; x<=max_lay; x++){
+          const lay = x / 100;
+          const riesgo = lay * (cuota_exchange - 1);
+
+          const beneficio_neto_casa = beneficio_apuesta + bono_convertido - perdida_rollover - importe - riesgo;
+          const ganancia_exchange   = lay * (1 - comision) - importe;
+
+          const diferencia = Math.abs(beneficio_neto_casa - ganancia_exchange);
+          if(diferencia < mejor_diferencia){
+            mejor_diferencia = diferencia;
+            mejor_lay = lay;
+            mejor_ganancia_casa = beneficio_neto_casa;
+            mejor_ganancia_exchange = ganancia_exchange;
+          }
+        }
+
+        const riesgo = mejor_lay * (cuota_exchange - 1);
+        const beneficio_promedio = (mejor_ganancia_casa + mejor_ganancia_exchange) / 2;
+
+        const porcentaje_valor = (beneficio_promedio / bono) * 100;
+
+        let clasificacion;
+        if (porcentaje_valor >= 75){
+          clasificacion = "🟢 Excelente";
+        } else if (porcentaje_valor >= 70){
+          clasificacion = "🟢 Muy Bueno";
+        } else if (porcentaje_valor >= 60){
+          clasificacion = "🟠 Regular";
+        } else {
+          clasificacion = "🔴 Malo";
+        }
+
+        return {
+          tipo: 'rollover',
+          importe_real: importe,
+          importe: importe + bono,
+          bono: bono,
+          total: importe + bono,
+          rollover: rollover,
+          porcentaje_retencion: porcentaje_retencion,
+          cuota_a_favor, cuota_exchange, comision,
+          lay: mejor_lay,
+          riesgo,
+          beneficio_promedio,
+          ganancia_casa: mejor_ganancia_casa,
+          ganancia_casa_real: mejor_ganancia_casa + riesgo,
+          ganancia_exchange: mejor_ganancia_exchange,
+          diferencia: mejor_diferencia,
+          porcentaje_valor, clasificacion
+        };
+      }
+      // ====== Fin réplica ======
+
+      function mostrarTabla(result){
+        // Construye la tabla como en tu Streamlit
+        let casa_gana, casa_pierde, exchange_gana, exchange_pierde;
+
+        if(result.tipo === 'freebet'){
+          casa_gana   = result.importe * (result.cuota_a_favor - 1);
+          casa_pierde = 0.00;
+        } else if(result.tipo === 'reembolso'){
+          const valor_reembolso = result.cantidad_reembolso * result.porcentaje_uso_freebet;
+          casa_gana   = result.importe * (result.cuota_a_favor - 1);
+          casa_pierde = -result.importe + valor_reembolso;
+        } else if(result.tipo === 'rollover'){
+          casa_gana   = result.ganancia_casa_real; // incluye riesgo
+          casa_pierde = -result.importe_real;
+        } else { // real
+          casa_gana   = result.importe * (result.cuota_a_favor - 1);
+          casa_pierde = -result.importe;
+        }
+
+        exchange_gana   = -result.riesgo;
+        exchange_pierde = result.lay * (1 - result.comision);
+
+        const total_gana   = casa_gana + exchange_gana;
+        const total_pierde = casa_pierde + exchange_pierde;
+
+        tBody.innerHTML = `
+          <tr class="border-t">
+            <td class="px-3 py-2">✅ Si ganas en la casa</td>
+            <td class="px-3 py-2 ${casa_gana>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(casa_gana)}</td>
+            <td class="px-3 py-2 ${exchange_gana>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(exchange_gana)}</td>
+            <td class="px-3 py-2 ${total_gana>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(total_gana)}</td>
+          </tr>
+          <tr class="border-t">
+            <td class="px-3 py-2">❌ Si pierdes en la casa</td>
+            <td class="px-3 py-2 ${casa_pierde>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(casa_pierde)}</td>
+            <td class="px-3 py-2 ${exchange_pierde>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(exchange_pierde)}</td>
+            <td class="px-3 py-2 ${total_pierde>=0?'text-green-700 font-semibold':'text-red-700 font-semibold'}">${money(total_pierde)}</td>
+          </tr>
+        `;
+
+        diffTxt.textContent = `📊 Diferencia entre escenarios: ${fmt(result.diferencia, 4)} €`;
+      }
+
+      function calcular(){
+        // Leer valores
+        const t = tipo.value;
+        const importe = toN(imp.value);
+        const cb = toN(bck.value);
+        const ce = toN(exo.value);
+        let c  = toN(com.value);
+
+        if(!importe || !cb || !ce || importe<=0 || cb<=1 || ce<=1){
+          resumen.classList.add('hidden');
+          return;
+        }
+        c = (Number.isFinite(c) ? c : 2.0) / 100.0;
+
+        let res;
+        if(t === 'real'){
+          res = calcular_dinero_real(importe, cb, ce, c);
+        }else if(t === 'freebet'){
+          res = calcular_freebet(importe, cb, ce, c);
+        }else if(t === 'reembolso'){
+          let m = toN(rebMonto.value);
+          let r = toN(rebRet.value);
+          if(!Number.isFinite(m)) m = importe;
+          if(!Number.isFinite(r)) r = 0.75;
+          res = calcular_reembolso(importe, cb, ce, c, m, r);
+        }else{
+          let bono = toN(rolBono.value);
+          let roll = toN(rolRollover.value);
+          let pret = toN(rolRet.value);
+          if(!Number.isFinite(bono)) bono = importe;
+          if(!Number.isFinite(roll)) roll = 600;
+          if(!Number.isFinite(pret)) pret = 0.95;
+          res = calcular_rollover(importe, cb, ce, c, bono, roll, pret);
+        }
+
+        // Mostrar resumen
+        resumen.classList.remove('hidden');
+        setBadge(res.porcentaje_valor, res.clasificacion);
+
+        // Tarjetas
+        if(res.tipo === 'rollover'){
+          cardBack.textContent = `${money(res.total)} a cuota ${fmt(res.cuota_a_favor,2)}`;
+        } else {
+          cardBack.textContent = `${money(res.importe)} a cuota ${fmt(res.cuota_a_favor,2)}`;
+        }
+        cardGan.textContent   = money(res.ganancia_casa); // como en tu UI montabas Ganancia Estimada con ganancia_casa
+        cardLay.textContent   = `${money(res.lay)} a cuota ${fmt(res.cuota_exchange,2)}`;
+        cardRiesgo.textContent= `Riesgo: ${money(res.riesgo)}`;
+
+        mostrarTabla(res);
+      }
+
+      function togglePanels(){
+        const t = tipo.value;
+        pReb.classList.toggle('hidden', t !== 'reembolso');
+        pRol.classList.toggle('hidden', t !== 'rollover');
+      }
+
+      // Defaults
+      imp.value = '10.00';
+      bck.value = '1.55';
+      exo.value = '1.60';
+      com.value = '2.0';
+      rebMonto.value = '10.00';
+      rebRet.value   = '0.75';
+      rolBono.value = '100';
+      rolRollover.value = '600';
+      rolRet.value = '0.95';
+
+      // Eventos
+      $('btn-calcular').addEventListener('click', calcular);
+      [tipo, imp, bck, exo, com, rebMonto, rebRet, rolBono, rolRollover, rolRet].forEach(el => {
+        el.addEventListener('input', ()=>{ /* opcional live */ });
+        el.addEventListener('change', togglePanels);
+      });
+      togglePanels();
+    })();
+  </script>
+
+  <!-- FIREBASE / AUTH UI (igual a tu sitio) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBpvJVoiEe_ELuJGtDt7wfpkDSDK77gmqc",
+      authDomain: "secreto-matchbetting.firebaseapp.com",
+      projectId: "secreto-matchbetting",
+      storageBucket: "secreto-matchbetting.appspot.com",
+      messagingSenderId: "742895000020",
+      appId: "1:742895000020:web:6d5e5f43df2706e0f95e41",
+      measurementId: "G-E9R9X4D48D"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const userStatusDiv = document.getElementById('user-status');
+
+      onAuthStateChanged(auth, user => {
+        userStatusDiv.innerHTML = '';
+        if (user) {
+          userStatusDiv.innerHTML = `
+            <span class="text-sm text-gray-600 hidden sm:inline">\${user.email}</span>
+            <button id="logout-button" class="bg-gray-200 text-gray-700 px-3 py-1 rounded-md text-sm font-semibold hover:bg-gray-300">Salir</button>
+          `;
+          document.getElementById('logout-button').addEventListener('click', () => {
+            signOut(auth).then(() => { window.location.href = '/index.html'; });
+          });
+        } else {
+          userStatusDiv.innerHTML = `
+            <a href="/index.html" class="bg-blue-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-700">Acceder</a>
+          `;
+        }
+      });
+    });
+  </script>
 </body>
 </html>
