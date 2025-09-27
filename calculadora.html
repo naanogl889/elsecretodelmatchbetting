@@ -413,40 +413,56 @@
       }
 
       function calc_contra_rollover(importe, O1, EX, comision, bono, rollover, pret){
-        let mejor_lay = 0, mejor_dif = Infinity, gCasa = 0, gEx = 0;
+        let mejor_lay = 0, mejor_dif = Infinity;
+        let bestCasa = 0, bestEx = 0;
 
         const beneficio_apuesta = importe * O1;
         const bono_convertido   = bono * O1;
         let rollover_pendiente  = rollover - importe - bono;
-        if(rollover_pendiente < 0) rollover_pendiente = 0;
+        if (rollover_pendiente < 0) rollover_pendiente = 0;
         const perdida_rollover  = rollover_pendiente * (1 - pret);
 
         const max = Math.max(1, Math.floor((importe + rollover) * 300));
-        for(let x=1; x<=max; x++){
-          const lay = x/100;
-          const riesgo = lay*(EX-1);
-          const gCasaN = beneficio_apuesta + bono_convertido - perdida_rollover - importe - riesgo;
-          const gEx    = lay*(1-comision) - importe;
-          const dif    = Math.abs(gCasaN - gEx);
-          if(dif < mejor_dif){ mejor_dif=dif; mejor_lay=lay; gCasa=gCasaN; gEx=gEx; }
+        for (let x = 1; x <= max; x++){
+          const lay = x / 100;
+
+          const riesgoIter   = lay * (EX - 1);
+          const ganCasaIter  = beneficio_apuesta + bono_convertido - perdida_rollover - importe - riesgoIter;
+          const ganExIter    = lay * (1 - comision) - importe;
+
+          const dif = Math.abs(ganCasaIter - ganExIter);
+          if (dif < mejor_dif){
+            mejor_dif = dif;
+            mejor_lay = lay;
+            bestCasa  = ganCasaIter;
+            bestEx    = ganExIter;
+          }
         }
 
-        const riesgo = mejor_lay*(EX-1);
-        const benef  = (gCasa+gEx)/2;
-        const rating = (benef/bono)*100;
+        const riesgo = mejor_lay * (EX - 1);
+        const benef  = (bestCasa + bestEx) / 2;
+        const rating = (benef / bono) * 100;
 
         let clas;
-        if(rating>=75) clas="🟢 Excelente";
-        else if(rating>=70) clas="🟢 Muy Bueno";
-        else if(rating>=60) clas="🟠 Regular";
-        else clas="🔴 Malo";
+        if (rating >= 75)      clas = "🟢 Excelente";
+        else if (rating >= 70) clas = "🟢 Muy Bueno";
+        else if (rating >= 60) clas = "🟠 Regular";
+        else                   clas = "🔴 Malo";
 
         return {
-          tipo:'rollover', lay:mejor_lay, riesgo, ganancia_casa:gCasa, ganancia_casa_real:gCasa+riesgo,
-          ganancia_ex:gEx, diferencia:mejor_dif, porcentaje_valor:rating, clasificacion:clas,
+          tipo: 'rollover',
+          lay: mejor_lay,
+          riesgo,
+          ganancia_casa: bestCasa,                // sin el riesgo añadido
+          ganancia_casa_real: bestCasa + riesgo,  // para la fila "Si gana Casa 1"
+          ganancia_ex: bestEx,
+          diferencia: mejor_dif,
+          porcentaje_valor: rating,
+          clasificacion: clas,
           total: importe + bono
         };
       }
+
 
       // ====== LÓGICA "A FAVOR" (Casa vs Casa) ======
       // Variables: Casa1 (importe = s1, cuota O1) y Casa2 (stake s2, cuota O2).
