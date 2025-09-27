@@ -69,13 +69,13 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <label class="block">
             <span class="block text-sm font-medium text-gray-600 mb-1">Cuota máxima encontrada (sin boost)</span>
-            <input id="basic-best-odds" inputmode="decimal" placeholder="1.80"
+            <input id="basic-best-odds" inputmode="decimal" placeholder="1,60"
                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
             <p class="text-[11px] text-gray-500 mt-1">La mejor cuota que viste para esa apuesta en cualquier casa.</p>
           </label>
           <label class="block">
             <span class="block text-sm font-medium text-gray-600 mb-1">Cuota aumentada (boost)</span>
-            <input id="basic-boost-odds" inputmode="decimal" placeholder="2.10"
+            <input id="basic-boost-odds" inputmode="decimal" placeholder="2"
                    class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
             <p class="text-[11px] text-gray-500 mt-1">La cuota promocionada que te ofrecen.</p>
           </label>
@@ -133,7 +133,7 @@
           <section class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <label class="block">
               <span class="block text-sm font-medium text-gray-600 mb-1">Cuota SÍ aumentada (Boost)</span>
-              <input id="odds-boost" inputmode="decimal" placeholder="2.00"
+              <input id="odds-boost" inputmode="decimal" placeholder="2"
                     class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
               <div class="text-[11px] text-gray-500 mt-1">Introduce la cuota promocionada/boost de la selección.</div>
             </label>
@@ -177,7 +177,7 @@
             <div id="wrap-ex" class="hidden">
               <label class="block">
                 <span class="block text-sm font-medium text-gray-600 mb-1">Cuota Exchange</span>
-                <input id="odds-ex" inputmode="decimal" placeholder="1.98"
+                <input id="odds-ex" inputmode="decimal" placeholder="1,54"
                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
               </label>
               <label class="block">
@@ -191,12 +191,12 @@
             <div id="wrap-book2" class="hidden md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-4">
               <label class="block">
                 <span class="block text-sm font-medium text-gray-600 mb-1">Cuota SÍ (misma casa)</span>
-                <input id="odds-no-book-yes" inputmode="decimal" placeholder="1.80"
+                <input id="odds-no-book-yes" inputmode="decimal" placeholder="1,44"
                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
               </label>
               <label class="block">
                 <span class="block text-sm font-medium text-gray-600 mb-1">Cuota NO (misma casa)</span>
-                <input id="odds-no-book" inputmode="decimal" placeholder="2.05"
+                <input id="odds-no-book" inputmode="decimal" placeholder="2,55"
                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
               </label>
               <div class="self-end text-[12px] text-gray-500">El boost se aplica a la selección SÍ indicada arriba.</div>
@@ -206,17 +206,17 @@
             <div id="wrap-book3" class="hidden md:col-span-3 grid grid-cols-1 md:grid-cols-4 gap-4">
               <label class="block">
                 <span class="block text-sm font-medium text-gray-600 mb-1">Cuota 1 (local)</span>
-                <input id="odds-1" inputmode="decimal" placeholder="2.60"
+                <input id="odds-1" inputmode="decimal" placeholder="1,54"
                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
               </label>
               <label class="block">
                 <span class="block text-sm font-medium text-gray-600 mb-1">Cuota X (empate)</span>
-                <input id="odds-x" inputmode="decimal" placeholder="3.40"
+                <input id="odds-x" inputmode="decimal" placeholder="4,50"
                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
               </label>
               <label class="block">
                 <span class="block text-sm font-medium text-gray-600 mb-1">Cuota 2 (visitante)</span>
-                <input id="odds-2" inputmode="decimal" placeholder="2.75"
+                <input id="odds-2" inputmode="decimal" placeholder="5,50"
                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
               </label>
               <label class="block">
@@ -233,9 +233,9 @@
             <div id="wrap-assumed" class="hidden md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-4">
               <label class="block">
                 <span class="block text-sm font-medium text-gray-600 mb-1">Cuota SÍ (real)</span>
-                <input id="assumed-yes" inputmode="decimal" placeholder="1.50"
+                <input id="assumed-yes" inputmode="decimal" placeholder="1,50"
                       class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-                <p class="text-[11px] text-gray-500 mt-1">La cuota SÍ de la selección (sin boost).</p>
+                <p class="text:[11px] text-gray-500 mt-1">La cuota SÍ de la selección (sin boost).</p>
               </label>
               <label class="block">
                 <span class="block text-sm font-medium text-gray-600 mb-1">Comisión asumida (%)</span>
@@ -252,7 +252,7 @@
           <section class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <label class="block">
               <span class="block text-sm font-medium text-gray-600 mb-1">Cuota boost combinada (2 selecciones)</span>
-              <input id="boost-2l" inputmode="decimal" placeholder="4.50"
+              <input id="boost-2l" inputmode="decimal" placeholder="4,50"
                     class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
             </label>
 
@@ -265,7 +265,7 @@
               <div id="combo-ref-wrap" class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3 hidden">
                 <label class="block">
                   <span class="block text-xs text-gray-600 mb-1">Cuota combinada (ref)</span>
-                  <input id="combo-ref-odds" inputmode="decimal" placeholder="4.10"
+                  <input id="combo-ref-odds" inputmode="decimal" placeholder="4,10"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
                 </label>
                 <label class="block">
@@ -292,7 +292,7 @@
               <div id="legA-ex" class="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <label class="block">
                   <span class="block text-xs text-gray-600 mb-1">Cuota Exchange (A)</span>
-                  <input id="legA-ex-odds" inputmode="decimal" placeholder="1.70"
+                  <input id="legA-ex-odds" inputmode="decimal" placeholder="1,70"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
                 </label>
                 <label class="block">
@@ -305,12 +305,12 @@
               <div id="legA-2w" class="hidden grid grid-cols-1 md:grid-cols-2 gap-3">
                 <label class="block">
                   <span class="block text-xs text-gray-600 mb-1">Cuota SÍ (A)</span>
-                  <input id="legA-yes" inputmode="decimal" placeholder="1.80"
+                  <input id="legA-yes" inputmode="decimal" placeholder="1,80"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
                 </label>
                 <label class="block">
                   <span class="block text-xs text-gray-600 mb-1">Cuota NO (A)</span>
-                  <input id="legA-no" inputmode="decimal" placeholder="2.10"
+                  <input id="legA-no" inputmode="decimal" placeholder="2,10"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
                 </label>
               </div>
@@ -318,17 +318,17 @@
               <div id="legA-3w" class="hidden grid grid-cols-1 md:grid-cols-4 gap-3">
                 <label class="block">
                   <span class="block text-xs text-gray-600 mb-1">Cuota 1 (A)</span>
-                  <input id="legA-1" inputmode="decimal" placeholder="2.60"
+                  <input id="legA-1" inputmode="decimal" placeholder="2,60"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
                 </label>
                 <label class="block">
                   <span class="block text-xs text-gray-600 mb-1">Cuota X (A)</span>
-                  <input id="legA-X" inputmode="decimal" placeholder="3.40"
+                  <input id="legA-X" inputmode="decimal" placeholder="3,40"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
                 </label>
                 <label class="block">
                   <span class="block text-xs text-gray-600 mb-1">Cuota 2 (A)</span>
-                  <input id="legA-2" inputmode="decimal" placeholder="2.75"
+                  <input id="legA-2" inputmode="decimal" placeholder="2,75"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
                 </label>
                 <label class="block">
@@ -353,7 +353,7 @@
               <div id="legB-ex" class="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <label class="block">
                   <span class="block text-xs text-gray-600 mb-1">Cuota Exchange (B)</span>
-                  <input id="legB-ex-odds" inputmode="decimal" placeholder="1.60"
+                  <input id="legB-ex-odds" inputmode="decimal" placeholder="1,60"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
                 </label>
                 <label class="block">
@@ -366,12 +366,12 @@
               <div id="legB-2w" class="hidden grid grid-cols-1 md:grid-cols-2 gap-3">
                 <label class="block">
                   <span class="block text-xs text-gray-600 mb-1">Cuota SÍ (B)</span>
-                  <input id="legB-yes" inputmode="decimal" placeholder="1.70"
+                  <input id="legB-yes" inputmode="decimal" placeholder="1,70"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
                 </label>
                 <label class="block">
                   <span class="block text-xs text-gray-600 mb-1">Cuota NO (B)</span>
-                  <input id="legB-no" inputmode="decimal" placeholder="2.20"
+                  <input id="legB-no" inputmode="decimal" placeholder="2,20"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
                 </label>
               </div>
@@ -379,17 +379,17 @@
               <div id="legB-3w" class="hidden grid grid-cols-1 md:grid-cols-4 gap-3">
                 <label class="block">
                   <span class="block text-xs text-gray-600 mb-1">Cuota 1 (B)</span>
-                  <input id="legB-1" inputmode="decimal" placeholder="2.30"
+                  <input id="legB-1" inputmode="decimal" placeholder="2,30"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
                 </label>
                 <label class="block">
                   <span class="block text-xs text-gray-600 mb-1">Cuota X (B)</span>
-                  <input id="legB-X" inputmode="decimal" placeholder="3.60"
+                  <input id="legB-X" inputmode="decimal" placeholder="3,60"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
                 </label>
                 <label class="block">
                   <span class="block text-xs text-gray-600 mb-1">Cuota 2 (B)</span>
-                  <input id="legB-2" inputmode="decimal" placeholder="3.10"
+                  <input id="legB-2" inputmode="decimal" placeholder="3,10"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
                 </label>
                 <label class="block">
@@ -760,29 +760,29 @@
       ].forEach(el=>el.addEventListener('input', updateAdvanced));
       [modeEx,modeBook2,modeBook3,modeNone,useComboRef,legAType,legBType].forEach(el=>el.addEventListener('change', ()=>{ toggleOneLegVisibility(); updateAdvanced(); }));
 
-      // ====== DEMO INICIAL ======
+      // ====== DEMO INICIAL (por defecto que me pediste) ======
       // Aproximado
-      bestOdds.value = '1.80';
-      boostOdds.value= '2.10';
+      bestOdds.value = '1,6';
+      boostOdds.value= '2';
       basicComm.value= '10';
 
-      // Avanzado
-      oBoost.value = '2.00';
-      oEx.value    = '1.98';
+      // Avanzado (1 selección)
+      oBoost.value = '2';
+      oEx.value    = '1,54';
       exComm.value = '2';
-      oNoBookYes.value='1.80';
-      oNoBook.value= '2.05';
-      o1.value='2.60'; oX.value='3.40'; o2.value='2.75'; pick.value='1';
-      asmYes.value='1.50'; asmComm.value='10';
+      oNoBookYes.value='1,44';
+      oNoBook.value= '2,55';
+      o1.value='1,54'; oX.value='4,50'; o2.value='5,50'; pick.value='1';
+      asmYes.value='1,50'; asmComm.value='10';
 
-      boost2.value='4.50';
-      legA_ex_odds.value='1.70'; legA_ex_comm.value='2';
-      legB_ex_odds.value='1.60'; legB_ex_comm.value='2';
+      // Two legs (sin cambios específicos)
+      boost2.value='4,50';
+      legA_ex_odds.value='1,70'; legA_ex_comm.value='2';
+      legB_ex_odds.value='1,60'; legB_ex_comm.value='2';
 
       // Estado inicial
       setLevelUI();
-      // Modo por defecto en Avanzado: Exchange 1 selección
-      modeEx.checked = true;
+      modeEx.checked = true; // Avanzado: por defecto Exchange
       updateBasic();
       updateAdvanced();
     })();
