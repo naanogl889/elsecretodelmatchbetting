@@ -100,7 +100,7 @@
 
         <section class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5 text-sm">
           <div class="border rounded-lg p-4">
-            <div class="uppercase tracking-wide text-[11px] text-gray-500">Cuota justa (umbral +EV)</div>
+            <div class="uppercase tracking-wide text-[11px] text-gray-500">Cuota real (umbral +EV)</div>
             <div id="fair-odds-basic" class="text-lg font-semibold">—</div>
             <p class="text-gray-500 mt-1">Si tu boost supera esta cuota, la apuesta es +EV.</p>
           </div>
@@ -449,7 +449,7 @@
 
         <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5 text-sm">
           <div class="border rounded-lg p-4">
-            <div class="uppercase tracking-wide text-[11px] text-gray-500">Cuota justa (umbral +EV)</div>
+            <div class="uppercase tracking-wide text-[11px] text-gray-500">Cuota real (umbral +EV)</div>
             <div id="fair-odds-adv" class="text-lg font-semibold">—</div>
           </div>
           <div class="border rounded-lg p-4">
@@ -625,7 +625,11 @@
       }
       function overround_3way_pct(o1,oX,o2){ const q1=1/o1, qx=1/oX, q2=1/o2; return (q1+qx+q2-1)*100 }
       function fairP_assumed(oSel,cPct){ const c=(Number.isFinite(cPct)?cPct:10)/100; return (1/oSel)/(1+c) }
-      function netExchangeOdds(Ex,cPct){ const c=(Number.isFinite(cPct)?cPct:2)/100; return 1 + (Ex - 1)*(1 - c) }
+      function netExchangeOdds(Ex, cPct){
+        const c = (Number.isFinite(cPct)?cPct:2)/100;
+        if(!Ex || Ex <= 1) return null;
+        return 1 / ( (1/Ex) + (c/(Ex-1)) );
+      }
 
       // Prob/comm por pata
       function legProb(type, inputs){
