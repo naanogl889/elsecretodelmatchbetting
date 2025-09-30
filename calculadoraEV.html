@@ -634,10 +634,12 @@
       // Prob/comm por pata
       function legProb(type, inputs){
         if(type==='ex'){
-          const Ex = toN(inputs.Ex), cIn = toN(inputs.comm);
+          const Ex = toN(inputs.Ex);
           if(!Ex || Ex<=1) return {p:null, commPct:null, commText:'Exchange: —'};
-          return {p:1/Ex, commPct:Number.isFinite(cIn)?cIn:0, commText:`Exchange: ${fmt(Number.isFinite(cIn)?cIn:0,2)}%`};
+          // Siempre mostrar 0% para Exchange (aunque haya valor en el input)
+          return {p:1/Ex, commPct:0, commText:`Exchange: 0,00%`};
         }
+
         if(type==='2w'){
           const S=toN(inputs.yes), N=toN(inputs.no);
           if(!S||!N||S<=1||N<=1) return {p:null, commPct:null, commText:'2 opciones: —'};
