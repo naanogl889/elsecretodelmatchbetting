@@ -1124,7 +1124,10 @@
             const cA = Number.isFinite(A.commPct) ? A.commPct : 0;
             const cB = Number.isFinite(B.commPct) ? B.commPct : 0;
             const cC = Number.isFinite(C.commPct) ? C.commPct : 0;
-            commTotal = `${fmt(cA + cB + cC,2)}% (A+B+C)`;
+            // Comisión global multiplicativa: (1+cA/100)*(1+cB/100)*(1+cC/100)-1
+            const factorABC = (1 + cA/100) * (1 + cB/100) * (1 + cC/100);
+            const globalPctABC = (factorABC - 1) * 100;
+            commTotal = `${fmt(globalPctABC,2)}% (A×B×C)`;
           }
 
           const pos = ev1>0;
@@ -1312,7 +1315,10 @@
           commText2 = B.commText;
           const cA = Number.isFinite(A.commPct) ? A.commPct : 0;
           const cB = Number.isFinite(B.commPct) ? B.commPct : 0;
-          commTotal = `${fmt(cA + cB,2)}% (A+B)`;
+          // Comisión global multiplicativa: (1+cA/100)*(1+cB/100)-1
+          const factorAB = (1 + cA/100) * (1 + cB/100);
+          const globalPctAB = (factorAB - 1) * 100;
+          commTotal = `${fmt(globalPctAB,2)}% (A×B)`;
         }
 
         const pos = ev1>0;
