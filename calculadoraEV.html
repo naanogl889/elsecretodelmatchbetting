@@ -55,7 +55,7 @@
           href="tutorial.html"
           class="inline-block bg-emerald-500 text-slate-950 px-5 py-2 rounded-lg font-semibold hover:bg-emerald-400 transition"
         >
-          📘 Ver tutorial de uso
+           Ver tutorial de uso
         </a>
       </div>
 
@@ -130,7 +130,7 @@
             <span class="block text-sm font-medium text-slate-200 mb-1">Comisión asumida (%)</span>
             <input id="basic-assumed-comm" type="number" min="0" max="30" step="0.1" value="10"
                    class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500/60 text-slate-100" />
-            <p class="text-[11px] text-slate-400 mt-1">Ajuste “vigorish” / overround total del mercado (por defecto 10%).</p>
+            <p class="text-[11px] text-slate-400 mt-1">Si comparas con exchange(smarkets) pon 0% de comision, smarkets te da la cuota real.</p>
           </label>
         </div>
 
@@ -184,7 +184,7 @@
           <!-- Inputs fijos (solo BOOST aquí) -->
           <section class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <label class="block">
-              <span class="block text-sm font-medium text-slate-200 mb-1">Cuota SÍ aumentada (Boost)</span>
+              <span class="block text-sm font-medium text-slate-200 mb-1">Cuota aumentada (Boost)</span>
               <input id="odds-boost" inputmode="decimal" placeholder="2"
                     class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500/60 text-slate-100" />
               <div class="text-[11px] text-slate-400 mt-1">Introduce la cuota promocionada/boost de la selección.</div>
@@ -234,10 +234,10 @@
               </label>
               <label class="block mt-3">
                 <span class="block text-sm font-medium text-slate-200 mb-1">Comisión exchange (%)</span>
-                <input id="ex-comm" type="number" min="0" max="20" step="0.1" value="2"
+                <input id="ex-comm" type="number" min="0" max="20" step="0.1" value="0"
                       class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500/60 text-slate-100" />
                 <p class="text-[11px] text-slate-400 mt-1">
-                  En caso de comparar con exchange puro, pon 0% de comisión. Para casas o modelos híbridos, usa su margen aproximado.
+                  En caso de comparar con exchange puro, pon 0% de comisión. 
                 </p>
               </label>
             </div>
