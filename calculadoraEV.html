@@ -148,8 +148,8 @@
           </label>
         </div>
 
-        <!-- BLOQUE EXCHANGE (nuevo) -->
-        <div id="simple-ex-block" class="grid grid-cols-1 md:grid-cols-4 gap-4 hidden">
+        <!-- BLOQUE EXCHANGE (Smarkets) -->
+        <div id="simple-ex-block" class="grid grid-cols-1 md:grid-cols-3 gap-4 hidden">
           <label class="block">
             <span class="block text-sm font-medium text-slate-200 mb-1">Back (a favor) Smarkets</span>
             <input id="basic-ex-back" inputmode="decimal" placeholder="4"
@@ -163,18 +163,13 @@
             <p class="text-[11px] text-slate-400 mt-1">Cuota LAY (en contra) para esta selección.</p>
           </label>
           <label class="block">
-            <span class="block text-sm font-medium text-slate-200 mb-1">Cuota real (Smarkets)</span>
-            <input id="basic-ex-fair" inputmode="decimal" placeholder="4,3"
-                   class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500/60 text-slate-100" />
-            <p class="text-[11px] text-slate-400 mt-1">Puedes introducirla o dejar que se aproxime con Back/Lay.</p>
-          </label>
-          <label class="block">
-            <span class="block text-sm font-medium text-slate-200 mb-1">Supercuota (boost)</span>
+            <span class="block text-sm font-medium text-slate-200 mb-1">Supercuota (cuota aumentada)</span>
             <input id="basic-ex-boost" inputmode="decimal" placeholder="4,75"
                    class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500/60 text-slate-100" />
-            <p class="text-[11px] text-slate-400 mt-1">Cuota promocionada que quieres evaluar.</p>
+            <p class="text-[11px] text-slate-400 mt-1">Cuota aumentada que quieres evaluar.</p>
           </label>
         </div>
+
 
         <!-- RESULTADO (Sencillo) -->
         <section id="ev-card-basic" class="flex items-center justify-between gap-4 border border-slate-700 rounded-xl p-5 md:p-6 bg-slate-900 mt-6">
@@ -850,7 +845,7 @@
 
   <!-- LÓGICA CALCULADORA -->
   <script>
-    (function(){
+    (function() {
       const $ = id => document.getElementById(id);
 
       // ====== SELECTOR DE MODO ======
@@ -868,8 +863,8 @@
       const simpleEx   = $('simple-ex');
       const exBack     = $('basic-ex-back');
       const exLay      = $('basic-ex-lay');
-      const exFair     = $('basic-ex-fair');
       const exBoost    = $('basic-ex-boost');
+
       const simpleBookBlock = $('simple-book-block');
       const simpleExBlock   = $('simple-ex-block');
 
@@ -1022,25 +1017,24 @@
           return;
         }
 
-        // EXCHANGE (Smarkets): EV = supercuota / cuota_real - 1, comisión 0
+        // EXCHANGE (Smarkets): Back, Lay, Supercuota
         const b = toN(exBack.value);
         const l = toN(exLay.value);
-        const fairInput = toN(exFair.value);
         const sBoost = toN(exBoost.value);
 
-        let fair = fairInput;
-        if(!fair && b && l && b>1 && l>1){
-          // Aproximación simple con back y lay
-          fair = 2 / (1/b + 1/l);
-        }
-
-        if(!fair || fair<=1 || !sBoost || sBoost<=1){
+        // Necesitamos los tres campos
+        if(!b || b<=1 || !l || l<=1 || !sBoost || sBoost<=1){
           setStatus(pillB, valueB, false);
           valueB.textContent = '0,00%';
-          fairB.textContent  = fair ? fmt(fair,3) : '—';
+          fairB.textContent  = '—';
           commB.textContent  = '0,00%';
+        }
           return;
         }
+
+        // Cuota real según tu hoja:
+        // fair = (((Back + Lay)/2) + Lay) / 2
+        const fair = (((b + l) / 2) + l) / 2;
 
         const ev  = (sBoost / fair) - 1;
         const roi = ev * 100;
@@ -1050,7 +1044,7 @@
         valueB.textContent = (pos? '+' : '') + pct(roi) + '%';
         fairB.textContent  = fmt(fair,3);
         commB.textContent  = '0,00%';
-      }
+
 
 
       // ====== LÓGICA AVANZADA ======
@@ -1479,7 +1473,7 @@
       [levelBasic, levelAdv].forEach(el=>el.addEventListener('change', ()=>{ setLevelUI(); updateBasic(); updateAdvanced(); }));
 
       // Sencillo
-      [bestOdds, boostOdds, basicComm, exBack, exLay, exFair, exBoost].forEach(
+      [bestOdds, boostOdds, basicComm, exBack, exLay, exBoost].forEach(
         el => el && el.addEventListener('input', updateBasic)
       );
       [simpleBook, simpleEx].forEach(
