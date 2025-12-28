@@ -111,9 +111,23 @@
         </div>
       </div>
 
-      <!-- ===================== APROXIMADO (SÚPER SIMPLE) ===================== -->
+      <!-- ===================== SENCILLO (CASAS / EXCHANGE) ===================== -->
       <section id="basic-box">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Submodo dentro de Sencillo -->
+        <div class="mb-4 flex flex-wrap items-center gap-3">
+          <span class="text-sm text-slate-300">Dentro de Sencillo:</span>
+          <label class="flex items-center gap-2 border border-slate-700 rounded-lg px-3 py-2 bg-slate-900/70">
+            <input type="radio" name="simple-mode" id="simple-book" class="h-4 w-4 text-emerald-500" checked>
+            <span class="text-sm text-slate-100">Comparar con casas (Oddschecker)</span>
+          </label>
+          <label class="flex items-center gap-2 border border-slate-700 rounded-lg px-3 py-2 bg-slate-900/70">
+            <input type="radio" name="simple-mode" id="simple-ex" class="h-4 w-4 text-emerald-500">
+            <span class="text-sm text-slate-100">Comparar con exchange (Smarkets)</span>
+          </label>
+        </div>
+
+        <!-- BLOQUE CASAS (tu cálculo actual) -->
+        <div id="simple-book-block" class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <label class="block">
             <span class="block text-sm font-medium text-slate-200 mb-1">Cuota máxima encontrada (sin boost)</span>
             <input id="basic-best-odds" inputmode="decimal" placeholder="1,60"
@@ -130,11 +144,39 @@
             <span class="block text-sm font-medium text-slate-200 mb-1">Comisión asumida (%)</span>
             <input id="basic-assumed-comm" type="number" min="0" max="30" step="0.1" value="10"
                    class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500/60 text-slate-100" />
-            <p class="text-[11px] text-slate-400 mt-1">Si comparas con exchange(smarkets) pon 0% de comision, smarkets te da la cuota real.</p>
+            <p class="text-[11px] text-slate-400 mt-1">Si comparas con exchange puro, pon 0% de comisión.</p>
           </label>
         </div>
 
-        <!-- RESULTADO (Aproximado) -->
+        <!-- BLOQUE EXCHANGE (nuevo) -->
+        <div id="simple-ex-block" class="grid grid-cols-1 md:grid-cols-4 gap-4 hidden">
+          <label class="block">
+            <span class="block text-sm font-medium text-slate-200 mb-1">Back (a favor) Smarkets</span>
+            <input id="basic-ex-back" inputmode="decimal" placeholder="4"
+                   class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500/60 text-slate-100" />
+            <p class="text-[11px] text-slate-400 mt-1">Cuota BACK (a favor) en el exchange.</p>
+          </label>
+          <label class="block">
+            <span class="block text-sm font-medium text-slate-200 mb-1">Lay (en contra) Smarkets</span>
+            <input id="basic-ex-lay" inputmode="decimal" placeholder="4,4"
+                   class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500/60 text-slate-100" />
+            <p class="text-[11px] text-slate-400 mt-1">Cuota LAY (en contra) para esta selección.</p>
+          </label>
+          <label class="block">
+            <span class="block text-sm font-medium text-slate-200 mb-1">Cuota real (Smarkets)</span>
+            <input id="basic-ex-fair" inputmode="decimal" placeholder="4,3"
+                   class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500/60 text-slate-100" />
+            <p class="text-[11px] text-slate-400 mt-1">Puedes introducirla o dejar que se aproxime con Back/Lay.</p>
+          </label>
+          <label class="block">
+            <span class="block text-sm font-medium text-slate-200 mb-1">Supercuota (boost)</span>
+            <input id="basic-ex-boost" inputmode="decimal" placeholder="4,75"
+                   class="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500/60 text-slate-100" />
+            <p class="text-[11px] text-slate-400 mt-1">Cuota promocionada que quieres evaluar.</p>
+          </label>
+        </div>
+
+        <!-- RESULTADO (Sencillo) -->
         <section id="ev-card-basic" class="flex items-center justify-between gap-4 border border-slate-700 rounded-xl p-5 md:p-6 bg-slate-900 mt-6">
           <div class="flex items-center gap-4">
             <span id="ev-pill-basic" class="min-w-[64px] text-center text-sm font-extrabold tracking-wide px-3 py-2 rounded-full border border-slate-700 bg-slate-900 text-slate-300">-EV</span>
@@ -149,15 +191,16 @@
           <div class="border border-slate-700 rounded-lg p-4 bg-slate-900/80">
             <div class="uppercase tracking-wide text-[11px] text-slate-400">Cuota real (umbral +EV)</div>
             <div id="fair-odds-basic" class="text-lg font-semibold text-slate-100">—</div>
-            <p class="text-slate-400 mt-1">Si tu boost supera esta cuota, la apuesta es +EV.</p>
+            <p class="text-slate-400 mt-1">Si tu boost/supercuota supera esta cuota, la apuesta es +EV.</p>
           </div>
           <div class="border border-slate-700 rounded-lg p-4 bg-slate-900/80">
             <div class="uppercase tracking-wide text-[11px] text-slate-400">Comisión asumida usada</div>
             <div id="comm-basic" class="text-lg font-semibold text-slate-100">10,00%</div>
-            <p class="text-slate-400 mt-1">Puedes modificarla si crees que el mercado está más “caro” o “barato”.</p>
+            <p class="text-slate-400 mt-1">En el modo Smarkets se fuerza a 0%.</p>
           </div>
         </section>
       </section>
+
 
       <!-- ===================== AVANZADO (COMPLETO) ===================== -->
       <section id="advanced-box" class="hidden">
@@ -816,15 +859,25 @@
       const basicBox   = $('basic-box');
       const advBox     = $('advanced-box');
 
-      // ====== APROXIMADO ======
+      // ====== SENCILLO ======
       const bestOdds  = $('basic-best-odds');
       const boostOdds = $('basic-boost-odds');
       const basicComm = $('basic-assumed-comm');
+
+      const simpleBook = $('simple-book');
+      const simpleEx   = $('simple-ex');
+      const exBack     = $('basic-ex-back');
+      const exLay      = $('basic-ex-lay');
+      const exFair     = $('basic-ex-fair');
+      const exBoost    = $('basic-ex-boost');
+      const simpleBookBlock = $('simple-book-block');
+      const simpleExBlock   = $('simple-ex-block');
 
       const pillB  = $('ev-pill-basic');
       const valueB = $('ev-value-basic');
       const fairB  = $('fair-odds-basic');
       const commB  = $('comm-basic');
+
 
       // ====== AVANZADO ======
       const legs1 = $('legs-1');
@@ -929,33 +982,76 @@
         }
       }
 
-      // ====== CÁLCULO APROXIMADO ======
-      function updateBasic(){
-        const oBest = toN(bestOdds.value);
-        const oBoost = toN(boostOdds.value);
-        const cPct = toN(basicComm.value);
+      // ====== UI submodo sencillo ======
+      function setSimpleModeUI(){
+        const useExchange = simpleEx && simpleEx.checked;
+        simpleBookBlock.classList.toggle('hidden', useExchange);
+        simpleExBlock.classList.toggle('hidden', !useExchange);
+      }
 
-        if(!oBest || oBest<=1 || !oBoost || oBoost<=1){
-          setStatus(pillB, valueB, false);
-          valueB.textContent = '0,00%';
-          fairB.textContent  = '—';
-          commB.textContent  = fmt(Number.isFinite(cPct)?cPct:10,2) + '%';
+      // ====== CÁLCULO MODO SENCILLO ======
+      function updateBasic(){
+        const useExchange = simpleEx && simpleEx.checked;
+
+        // CASAS (tu cálculo original)
+        if(!useExchange){
+          const oBest = toN(bestOdds.value);
+          const oBoost = toN(boostOdds.value);
+          const cPct = toN(basicComm.value);
+
+          if(!oBest || oBest<=1 || !oBoost || oBoost<=1){
+            setStatus(pillB, valueB, false);
+            valueB.textContent = '0,00%';
+            fairB.textContent  = '—';
+            commB.textContent  = fmt(Number.isFinite(cPct)?cPct:10,2) + '%';
+            return;
+          }
+
+          const c = (Number.isFinite(cPct)?cPct:10)/100;
+          const pSel = (1/oBest) / (1+c);
+          const fair = 1 / pSel;
+
+          const ev  = pSel * oBoost - 1;
+          const roi = ev * 100;
+          const pos = ev > 0;
+
+          setStatus(pillB, valueB, pos);
+          valueB.textContent = (pos? '+' : '') + pct(roi) + '%';
+          fairB.textContent  = fmt(fair,3);
+          commB.textContent  = fmt(cPct ?? 10,2) + '%';
           return;
         }
 
-        const c = (Number.isFinite(cPct)?cPct:10)/100;
-        const pSel = (1/oBest) / (1+c);
-        const fair = 1 / pSel;
+        // EXCHANGE (Smarkets): EV = supercuota / cuota_real - 1, comisión 0
+        const b = toN(exBack.value);
+        const l = toN(exLay.value);
+        const fairInput = toN(exFair.value);
+        const sBoost = toN(exBoost.value);
 
-        const ev  = pSel * oBoost - 1;
+        let fair = fairInput;
+        if(!fair && b && l && b>1 && l>1){
+          // Aproximación simple con back y lay
+          fair = 2 / (1/b + 1/l);
+        }
+
+        if(!fair || fair<=1 || !sBoost || sBoost<=1){
+          setStatus(pillB, valueB, false);
+          valueB.textContent = '0,00%';
+          fairB.textContent  = fair ? fmt(fair,3) : '—';
+          commB.textContent  = '0,00%';
+          return;
+        }
+
+        const ev  = (sBoost / fair) - 1;
         const roi = ev * 100;
         const pos = ev > 0;
 
         setStatus(pillB, valueB, pos);
         valueB.textContent = (pos? '+' : '') + pct(roi) + '%';
         fairB.textContent  = fmt(fair,3);
-        commB.textContent  = fmt(cPct ?? 10,2) + '%';
+        commB.textContent  = '0,00%';
       }
+
 
       // ====== LÓGICA AVANZADA ======
       function toggleOneLegVisibility(){
@@ -1382,8 +1478,14 @@
       // ====== EVENTOS ======
       [levelBasic, levelAdv].forEach(el=>el.addEventListener('change', ()=>{ setLevelUI(); updateBasic(); updateAdvanced(); }));
 
-      // Aproximado
-      [bestOdds, boostOdds, basicComm].forEach(el=>el.addEventListener('input', updateBasic));
+      // Sencillo
+      [bestOdds, boostOdds, basicComm, exBack, exLay, exFair, exBoost].forEach(
+        el => el && el.addEventListener('input', updateBasic)
+      );
+      [simpleBook, simpleEx].forEach(
+        el => el && el.addEventListener('change', ()=>{ setSimpleModeUI(); updateBasic(); })
+      );
+
 
       // Avanzado
       [legs1,legs2,legs3].forEach(el=>el.addEventListener('change', updateAdvanced)); // [3L] añadido legs3
@@ -1424,6 +1526,7 @@
       if (boost3) boost3.value = '3';
 
       setLevelUI();
+      setSimpleModeUI();
       modeEx.checked = true;
       updateBasic();
       updateAdvanced();
