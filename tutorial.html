@@ -6,106 +6,186 @@
   <title>Tutorial | Calculadora EV</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="font-sans antialiased text-gray-800 bg-green-100">
   <main class="container mx-auto px-4 py-10 max-w-4xl">
     <div class="bg-white p-6 sm:p-10 rounded-xl shadow-lg">
-      <h1 class="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800">Calculadora EV — Tutorial de uso</h1>
+
+      <h1 class="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800">
+        Calculadora EV — Tutorial completo de uso
+      </h1>
 
       <!-- Acordeones -->
       <div class="space-y-4">
+
         <!-- Introducción -->
         <details class="border rounded-lg p-4 bg-gray-50">
-          <summary class="cursor-pointer font-semibold text-lg text-gray-800">1️⃣ Introducción</summary>
+          <summary class="cursor-pointer font-semibold text-lg text-gray-800">
+            1️⃣ Introducción
+          </summary>
           <p class="mt-3 text-gray-700 leading-relaxed">
-            La <strong>Calculadora de Valor Esperado (EV)</strong> te ayuda a determinar si una apuesta tiene valor o no. El valor esperado indica si, en promedio, una apuesta te generará beneficio a largo plazo. <br><br>
-            Si el EV es <span class="text-green-600 font-semibold">positivo (+EV)</span>, significa que la apuesta es rentable. Si es <span class="text-red-600 font-semibold">negativo (-EV)</span>, no lo es.
+            La <strong>Calculadora de Valor Esperado (EV)</strong> permite evaluar si una apuesta es rentable a largo plazo.
+            El valor esperado indica si, en promedio, una apuesta generará beneficio.
+            <br><br>
+            Un EV <span class="text-green-600 font-semibold">positivo (+EV)</span> indica valor.
+            Un EV <span class="text-red-600 font-semibold">negativo (-EV)</span> indica que no lo hay.
           </p>
+        </details>
+
+        <!-- Premisas -->
+        <details class="border rounded-lg p-4 bg-gray-50">
+          <summary class="cursor-pointer font-semibold text-lg text-gray-800">
+            2️⃣ Premisas fundamentales sobre las Value Bets
+          </summary>
+          <ul class="mt-3 list-disc ml-6 space-y-2 text-gray-700 leading-relaxed">
+            <li>Apostar a value bets implica hacerlo solo cuando la cuota ofrecida supera la probabilidad real estimada.</li>
+            <li>No existe una probabilidad exacta; siempre trabajamos con aproximaciones.</li>
+            <li>Existen múltiples metodologías para estimar probabilidades.</li>
+            <li>Las casas incluyen margen, por lo que es imprescindible ajustar por comisión.</li>
+            <li>Esta calculadora ofrece un criterio unificado y reproducible.</li>
+          </ul>
+        </details>
+
+        <!-- Dónde encontrar value -->
+        <details class="border rounded-lg p-4 bg-gray-50">
+          <summary class="cursor-pointer font-semibold text-lg text-gray-800">
+            3️⃣ ¿Dónde encontrar apuestas de valor?
+          </summary>
+          <div class="mt-3 text-gray-700 leading-relaxed space-y-2">
+            <p>Las oportunidades de valor suelen aparecer en promociones especiales:</p>
+            <ul class="list-disc ml-6 space-y-1">
+              <li>Bet365 — Superaumentos</li>
+              <li>Winamax — Supercuotas doradas</li>
+              <li>William Hill — Cuotas insuperables</li>
+              <li>Codere — Superaumentos</li>
+              <li>Sportium, Bwin, Versus, Olybet, DAZN Bet…</li>
+            </ul>
+            <p class="text-sm text-gray-600">
+              Fuente orientativa: valuazos.com
+            </p>
+          </div>
         </details>
 
         <!-- Modo Aproximado -->
         <details class="border rounded-lg p-4 bg-gray-50">
-          <summary class="cursor-pointer font-semibold text-lg text-gray-800">2️⃣ Modo Aproximado (Súper Simple)</summary>
+          <summary class="cursor-pointer font-semibold text-lg text-gray-800">
+            4️⃣ Modo Aproximado (Súper simple)
+          </summary>
           <div class="mt-3 space-y-3 text-gray-700 leading-relaxed">
-            <p>Usa este modo cuando quieras una estimación rápida sin tener que analizar mercados complejos.</p>
+            <p>Ideal para una estimación rápida sin análisis profundo.</p>
             <ol class="list-decimal ml-6 space-y-2">
-              <li><strong>Cuota máxima encontrada:</strong> la mejor cuota que veas para ese mercado en cualquier casa (comparalo directamente en <em>oddschecker</em>).</li>
-              <li><strong>Cuota aumentada (boost):</strong> la cuota promocionada que te ofrece la casa.</li>
-              <li><strong>Comisión asumida (%):</strong> el margen de la casa (por defecto 10%).</li>
+              <li><strong>Cuota máxima encontrada:</strong> la mejor cuota sin boost.</li>
+              <li><strong>Cuota aumentada:</strong> la cuota promocionada.</li>
+              <li><strong>Comisión asumida:</strong> margen estimado (por defecto 10%).</li>
             </ol>
-            <p>El resultado te dirá si la apuesta tiene valor. Si el número que aparece en verde (+EV) es positivo, la apuesta tiene valor esperado.</p>
-            <p><strong>Ejemplo:</strong> Si la cuota normal es 1.5, el boost es 2 y la comisión 10%, verás un EV positivo de +21,21% ⇒ muy buena oportunidad.</p>
+            <p>
+              Si el resultado aparece en verde y es positivo, la apuesta tiene valor esperado.
+            </p>
           </div>
         </details>
 
         <!-- Modo Avanzado -->
         <details class="border rounded-lg p-4 bg-gray-50">
-          <summary class="cursor-pointer font-semibold text-lg text-gray-800">3️⃣ Modo Avanzado</summary>
+          <summary class="cursor-pointer font-semibold text-lg text-gray-800">
+            5️⃣ Modo Avanzado
+          </summary>
           <div class="mt-3 space-y-3 text-gray-700 leading-relaxed">
-            <p>Este modo ofrece un análisis completo. Aquí puedes elegir el tipo de mercado y ajustar comisiones reales.</p>
-            <h3 class="font-semibold">Tipos de mercado:</h3>
+            <p>Análisis completo según el tipo de mercado:</p>
             <ul class="list-disc ml-6 space-y-1">
-              <li><strong>Exchange:</strong> si ese mercado existe en el exchange, no hace falta tener en cuenta las comisiones, se asume que esa es la cuota real.</li>
-              <li><strong>Mercado 2 opciones (Sí/No):</strong> introduce las cuotas SÍ y NO de la misma casa; la calculadora deduce la comisión real.</li>
-              <li><strong>Mercado 3 opciones (1X2):</strong> introduce las tres cuotas (1, X y 2) y selecciona cuál tiene el boost.</li>
-              <li><strong>Sin mercado NO (asumir comisión):</strong> si la casa no ofrece la contraria, usa una comisión estimada (normalmente 10%).</li>
+              <li><strong>Exchange:</strong> no se asume comisión.</li>
+              <li><strong>Mercado 2 opciones:</strong> la calculadora deduce la comisión.</li>
+              <li><strong>Mercado 3 opciones (1X2):</strong> comisión implícita real.</li>
+              <li><strong>Sin mercado contrario:</strong> comisión estimada.</li>
             </ul>
-            <div class="p-3 bg-yellow-50 border-l-4 border-yellow-400 rounded">
-              <strong>Consejo:</strong> si el mercado no está en el exchange, usa <em>oddschecker</em> para encontrar la mejor cuota disponible y aplica la regla del 10% si no puedes calcular la comisión exacta.
+          </div>
+        </details>
+
+        <!-- Caso A -->
+        <details class="border rounded-lg p-4 bg-gray-50">
+          <summary class="cursor-pointer font-semibold text-lg text-gray-800">
+            6️⃣ Caso A: Mercado disponible en Exchange
+          </summary>
+          <div class="mt-3 space-y-3 text-gray-700 leading-relaxed">
+            <ol class="list-decimal ml-6 space-y-2">
+              <li>Busca el mercado en Smarkets.</li>
+              <li>Verifica Back, Lay y liquidez.</li>
+              <li>Calcula la cuota justa promediando Back y Lay.</li>
+              <li>Introduce esa cuota como referencia sin comisión.</li>
+            </ol>
+            <div class="p-3 bg-green-50 border-l-4 border-green-400 rounded">
+              +10% EV → Alto valor · 5–10% → Valor moderado
             </div>
           </div>
         </details>
 
-        <!-- Combinadas -->
+        <!-- Caso B -->
         <details class="border rounded-lg p-4 bg-gray-50">
-          <summary class="cursor-pointer font-semibold text-lg text-gray-800">4️⃣ Combinadas (2 o 3 selecciones)</summary>
+          <summary class="cursor-pointer font-semibold text-lg text-gray-800">
+            7️⃣ Caso B: Estadísticas de jugadores
+          </summary>
           <div class="mt-3 space-y-3 text-gray-700 leading-relaxed">
-            <p>Para combinadas, el proceso es el mismo que con una sola selección, pero lo repites para cada rama (A, B y C).</p>
             <ol class="list-decimal ml-6 space-y-2">
-              <li>Introduce la <strong>cuota boost combinada</strong> (la que te ofrece la casa).</li>
-              <li>Elige el tipo de mercado para cada selección (Exchange, 2 opciones, 3 opciones o Asumida).</li>
-              <li>Introduce las cuotas correspondientes.</li>
+              <li>Busca la mejor cuota en oddschecker.</li>
+              <li>Introduce la cuota máxima encontrada.</li>
+              <li>Introduce el boost.</li>
+              <li>Asume una comisión del 10%.</li>
             </ol>
-            <p>La calculadora combinará automáticamente las comisiones y te mostrará el <strong>EV total de la apuesta múltiple</strong>.</p>
-            <div class="p-3 bg-blue-50 border-l-4 border-blue-400 rounded">
-              <strong>Ejemplo:</strong> Si cada selección tiene comisiones del 5% y 10%, la calculadora combina esos efectos para mostrar el EV total ajustado.
+          </div>
+        </details>
+
+        <!-- Caso C -->
+        <details class="border rounded-lg p-4 bg-gray-50">
+          <summary class="cursor-pointer font-semibold text-lg text-gray-800">
+            8️⃣ Caso C: Mercado no disponible
+          </summary>
+          <div class="mt-3 space-y-3 text-gray-700 leading-relaxed">
+            <ol class="list-decimal ml-6 space-y-2">
+              <li>Obtén las cuotas individuales más altas.</li>
+              <li>Estima la cuota justa con ayuda de IA.</li>
+              <li>Introduce comisión estimada.</li>
+            </ol>
+            <div class="p-3 bg-red-50 border-l-4 border-red-400 rounded">
+              Caso poco frecuente. Usa este método con cautela.
             </div>
           </div>
         </details>
 
         <!-- Consejos -->
         <details class="border rounded-lg p-4 bg-gray-50">
-          <summary class="cursor-pointer font-semibold text-lg text-gray-800">5️⃣ Consejos prácticos</summary>
+          <summary class="cursor-pointer font-semibold text-lg text-gray-800">
+            9️⃣ Consejos finales
+          </summary>
           <ul class="mt-3 list-disc ml-6 space-y-2 text-gray-700 leading-relaxed">
-            <li>Comprueba siempre si el mercado existe en el exchange antes de asumir comisión.</li>
-            <li>Usa <em>oddschecker</em> para encontrar la máxima cuota de referencia.</li>
-            <li>Si no puedes calcular la comisión exacta, asume un 10%.</li>
-            <li>Un EV positivo no garantiza ganar una apuesta, pero sí que, a largo plazo, ese tipo de apuestas son rentables.</li>
+            <li>Comprueba siempre si existe mercado en exchange.</li>
+            <li>No apuestes solo por la cuota aumentada.</li>
+            <li>Un EV positivo no garantiza ganar una apuesta individual.</li>
           </ul>
         </details>
+
       </div>
 
-      <!-- Video tutorial -->
+      <!-- Video -->
       <section class="mt-10 text-center">
         <h2 class="text-2xl font-bold text-gray-800 mb-4">🎬 Ejemplo práctico en vídeo</h2>
-        <p class="text-gray-600 mb-6">
-          Mira este vídeo donde se explica paso a paso cómo usar correctamente la Calculadora EV.
-        </p>
         <div class="aspect-w-16 aspect-h-9 max-w-3xl mx-auto rounded-xl overflow-hidden shadow-lg">
           <iframe
             src="https://www.youtube.com/embed/THcUJW5fDGw"
             title="Video tutorial Calculadora EV"
             frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
-            class="w-full h-64 sm:h-96"
-          ></iframe>
+            class="w-full h-64 sm:h-96">
+          </iframe>
         </div>
       </section>
 
-      <!-- Botón regreso -->
+      <!-- Botón -->
       <div class="text-center mt-10">
-        <a href="/calculadoraEV.html" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">← Volver a la Calculadora EV</a>
+        <a href="/calculadoraEV.html"
+           class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+          ← Volver a la Calculadora EV
+        </a>
       </div>
+
     </div>
   </main>
 </body>
