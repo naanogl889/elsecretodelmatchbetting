@@ -1463,22 +1463,48 @@
         `;
       }
 
-      // ====== VISIBILIDAD MODO ======
+      // ====== VISIBILIDAD MODO (Sencillo / Avanzado) ======
       function setLevelUI(){
         basicBox.classList.toggle('hidden', !levelBasic.checked);
         advBox.classList.toggle('hidden', !levelAdv.checked);
       }
 
-      // ====== EVENTOS ======
-      [levelBasic, levelAdv].forEach(el=>el.addEventListener('change', ()=>{ setLevelUI(); updateBasic(); updateAdvanced(); }));
+      // ====== UI submodo sencillo (Casas / Smarkets) ======
+      function setSimpleModeUI(){
+        const useExchange = simpleEx && simpleEx.checked;
+        simpleBookBlock.classList.toggle('hidden', useExchange);
+        simpleExBlock.classList.toggle('hidden', !useExchange);
+      }
 
-      // Sencillo
+      // ====== EVENTOS ======
+
+      // Cambio entre Sencillo / Avanzado
+      [levelBasic, levelAdv].forEach(el =>
+        el && el.addEventListener('change', () => {
+          setLevelUI();
+          updateBasic();
+          updateAdvanced();
+        })
+      );
+
+      // Sencillo: Casas / Smarkets
       [bestOdds, boostOdds, basicComm, exBack, exLay, exBoost].forEach(
         el => el && el.addEventListener('input', updateBasic)
       );
       [simpleBook, simpleEx].forEach(
-        el => el && el.addEventListener('change', ()=>{ setSimpleModeUI(); updateBasic(); })
+        el => el && el.addEventListener('change', () => {
+          setSimpleModeUI();
+          updateBasic();
+        })
       );
+
+      // Avanzado (lo de antes, sin tocar)
+      [legs1,legs2,legs3].forEach(el=>el && el.addEventListener('change', updateAdvanced));
+      [ /* ... todos tus inputs avanzados ... */ ].forEach(el=>el && el.addEventListener('input', updateAdvanced));
+      [modeEx,modeBook2,modeBook3,modeNone,useComboRef,legAType,legBType,
+      legA3Type,legB3Type,legCType,useComboRef3
+      ].forEach(el=>el && el.addEventListener('change', ()=>{ toggleLegBlocks(); updateAdvanced(); }));
+
 
 
       // Avanzado
