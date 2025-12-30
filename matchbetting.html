@@ -1,651 +1,307 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="bg-slate-950">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>El Secreto del Match Betting</title>
-    <meta name="description" content="Guía gratuita de Match Betting: gana dinero con promociones de casas de apuestas sin riesgo, paso a paso."/>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    <style>
-        /* Ocultar el modal por defecto */
-        #auth-modal { display: none; }
-        /* Mostrar el modal cuando tenga la clase 'flex' */
-        #auth-modal.flex { display: flex; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ganar dinero con Match Betting | El Secreto del Match Betting</title>
+  <meta name="description" content="Descubre cómo ganar dinero de forma matemática con el Match Betting y empieza hoy usando todas las herramientas de ZeroAzar." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
-<body class="font-sans antialiased text-gray-800 bg-green-100">
+<body class="font-sans antialiased text-gray-100 bg-slate-950">
 
-<!-- BARRA DE NAVEGACIÓN DINÁMICA -->
-    <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
-        <div class="container mx-auto px-4 max-w-6xl">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-8">
-                    <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
-                    <a href="/apuestasdevalor.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Gana con Apuestas de Valor</a>
-                    <!-- Calculadoras (dropdown robusto) -->
-                    <div class="relative group">
-                      <button
-                        class="flex items-center gap-1 font-medium text-gray-700 hover:text-blue-600 transition"
-                        aria-haspopup="true" aria-expanded="false">
-                        Calculadoras <i class="fas fa-chevron-down text-xs"></i>
-                      </button>
-
-                      <!-- Menú pegado al botón, sin huecos -->
-                      <div
-                        class="absolute left-0 top-full w-56 bg-white border border-gray-200 rounded-lg shadow-md
-                              invisible opacity-0 translate-y-1
-                              group-hover:visible group-hover:opacity-100 group-hover:translate-y-0
-                              group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0
-                              transition duration-150">
-                        <a href="/calculadora.html"
-                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none">Calculadora Match Betting</a>
-                        <a href="/calculadoraEV.html"
-                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none">Calculadora EV</a>
-                      </div>
-                    </div>
-
-                    <a href="https://t.me/Supercuotas_Ai" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
-                        <i class="fab fa-telegram mr-2"></i> Telegram
-                    </a>
-                    <a href="https://www.instagram.com/elsecretodelmatchbetting" target="_blank" class="font-medium text-gray-700 hover:text-pink-600 transition flex items-center">
-                        <i class="fab fa-instagram mr-2"></i> Instagram
-                    </a>
-                </div>
-                <div id="user-status" class="flex items-center space-x-4">
-                    <!-- Contenido dinámico: Login/Logout -->
-                </div>
-            </div>
-        </div>
-    </nav>
-
-  <!-- Header -->
-  <header id="top" class="bg-green-300 py-16">
-    <div class="container mx-auto px-4 max-w-6xl">
-      <div class="flex flex-col md:flex-row items-center">
-        <div class="w-full text-center">
-          <h1 class="text-4xl md:text-5xl font-bold mb-4 text-black">Gana Dinero Sin Riesgo con Match Betting.</h1>
-          <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-black">Voy a ser directo. Te voy a enseñar a ganarle dinero a las casas de apuestas sin ni siquiera tener que "apostar", es decir, sin riesgo.</h2>
-          <p class="text-sm text-gray-800 mb-4 max-w-3xl mx-auto">Para que me creas, ahora te voy a enseñar como ganar 30€ en apenas 20 minutos de trabajo total. He creado una guía gratuita para que empieces en este mundillo y veas como de verdad se le puede sacar dinero a las casas de apuestas. No es ninguna mierda de tipsters ni nada, es un método para convertir las promociones en dinero real que puedes retirar a tu cuenta. Te dejo aquí abajo la guía gratuita para que le eches un vistazo. Si tienes cualquier duda puedes preguntarme por instagram.</p>
-          <p class="text-lg mb-8 max-w-3xl mx-auto text-black">Con matemáticas simples, en solo 20 minutos puedes ganar tus primeros 30€.</p>
-
-          <!-- BOTÓN DE ACCESO / LOGIN -->
-          <a id="main-cta-button" href="/guias.html"
-            class="bg-orange-500 text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:bg-orange-600 transition transform hover:scale-105 inline-block cursor-pointer">
-            <span>¡Gana los primeros 30€!</span>
-          </a>
-
-          <!-- Texto de ayuda -->
-          <p class="text-xs text-gray-700 mt-2 opacity-75">(Si el botón no responde, por favor, refresca la página)</p>
-
-        </div>
+<!-- NAV -->
+<nav class="bg-slate-900/90 backdrop-blur border-b border-slate-800 py-4 sticky top-0 z-50">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="flex justify-between items-center">
+      <div class="flex items-center space-x-8">
+        <a href="/index.html" class="font-medium text-slate-100 hover:text-emerald-400 transition">
+          Inicio
+        </a>
+        <a href="/calculadora.html" class="font-medium text-slate-300 hover:text-emerald-400 transition">
+          Calculadora Match Betting
+        </a>
+        <a href="/apuestasdevalor.html" class="font-medium text-slate-300 hover:text-indigo-300 transition">
+          Apuestas de Valor
+        </a>
+      </div>
+      <div class="flex items-center space-x-4">
+        <a href="https://t.me/Supercuotas_Ai" target="_blank"
+           class="text-slate-300 hover:text-sky-400 transition">
+          <i class="fab fa-telegram text-xl"></i>
+        </a>
+        <a href="https://www.instagram.com/elsecretodelmatchbetting" target="_blank"
+           class="text-slate-300 hover:text-pink-400 transition">
+          <i class="fab fa-instagram text-xl"></i>
+        </a>
       </div>
     </div>
-  </header>
+  </div>
+</nav>
 
-  <!-- Author Section -->
-  <section class="py-16 bg-gradient-to-br from-blue-50 to-green-50">
-    <div class="container mx-auto px-4 max-w-4xl">
-      <div class="flex flex-col md:flex-row items-center">
-        <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
-          <div class="relative">
-            <img src="images/fotojavier.jpg" alt="Javier" class="rounded-full w-40 h-40 object-cover border-4 border-white shadow-lg" loading="lazy">
-          </div>
-        </div>
-        <div class="md:w-2/3 md:pl-12">
-          <div class="flex items-center mb-6">
-            <h3 class="text-3xl font-bold text-gray-800">¡Hola! Soy Javier</h3>
-            <span class="ml-4 bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">3+ años de experiencia</span>
-          </div>
-
-          <div class="bg-white p-8 rounded-xl shadow-lg mb-6 border-t-4 border-green-500">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="flex items-start">
-                <div class="bg-green-100 p-3 rounded-full mr-4">
-                  <i class="fas fa-laptop-code text-green-600 text-xl"></i>
-                </div>
-                <div>
-                  <h4 class="font-bold text-lg mb-1">Estudiante de Informática</h4>
-                  <p class="text-gray-600">Universidad de Sevilla</p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div class="bg-blue-100 p-3 rounded-full mr-4">
-                  <i class="fas fa-coins text-blue-600 text-xl"></i>
-                </div>
-                <div>
-                  <h4 class="font-bold text-lg mb-1">+7.500€ ganados</h4>
-                  <p class="text-gray-600">Con matched betting</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-xl border-l-4 border-green-500 shadow-sm">
-            <p class="text-gray-800 mb-4">Hola! No soy ningún gurú financiero, soy un estudiante que descubrió el Matched Betting hace 3 años y lo usa para sacarse un extra cada mes.</p>
-            <p class="text-gray-800 mb-4">He creado esta guía gratuita porque quiero enseñarte el método exacto, sin el rollo que encuentras por ahí.</p>
-            <p class="font-bold text-green-700">Mi objetivo es que ganes tu primer dinero hoy mismo de forma muy sencilla y para que todo el mundo pueda entenderlo.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section class="py-16">
-    <div class="container mx-auto px-4 max-w-6xl">
-      <h2 class="text-3xl font-bold text-center mb-12">¿Por qué funciona el Match Betting?</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="feature-card bg-white p-8 rounded-xl shadow-md transition duration-300">
-          <div class="text-blue-600 text-4xl mb-4"><i class="fas fa-calculator"></i></div>
-          <h3 class="text-xl font-bold mb-3">100% matemático</h3>
-          <p class="text-gray-600">Basado en probabilidades y bonos de apuestas. No es suerte, es estrategia.</p>
-        </div>
-        <div class="feature-card bg-white p-8 rounded-xl shadow-md transition duration-300">
-          <div class="text-green-500 text-4xl mb-4"><i class="fas fa-euro-sign"></i></div>
-          <h3 class="text-xl font-bold mb-3">Gana 30€ en menos de 20 min</h3>
-          <p class="text-gray-600">Con tu primera apuesta calificatoria ya puedes empezar a ganar.</p>
-        </div>
-        <div class="feature-card bg-white p-8 rounded-xl shadow-md transition duration-300">
-          <div class="text-orange-500 text-4xl mb-4"><i class="fas fa-graduation-cap"></i></div>
-          <h3 class="text-xl font-bold mb-3">Explicado para todos</h3>
-          <p class="text-gray-600">Sin tecnicismos, paso a paso, incluso si nunca has apostado.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-16 bg-white">
-    <div class="container mx-auto px-4 max-w-4xl text-center">
-      <h2 class="text-3xl font-bold mb-4">No eres el primero en dudar... ni en ganar</h2>
-      <p class="text-xl text-gray-700 mb-10 max-w-2xl mx-auto">
-        Entiendo que suene demasiado bueno para ser verdad. Pero los números hablan por sí solos.
+<!-- HERO PRINCIPAL -->
+<header class="bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-20 border-b border-slate-800">
+  <div class="container mx-auto px-4 max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <div>
+      <p class="inline-flex items-center text-xs font-semibold tracking-wide uppercase text-emerald-300 mb-3">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 mr-2"></span>
+        Método matemático, no suerte
+      </p>
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 text-slate-50">
+        Cómo ganar dinero con Match Betting sin depender de la suerte
+      </h1>
+      <p class="text-lg text-slate-300 mb-8">
+        El Match Betting aprovecha bonos y promociones de las casas de apuestas para generar beneficios
+        <span class="text-emerald-300 font-semibold">de forma matemática</span>, cubriendo todos los resultados de un evento. [web:29][web:36]
       </p>
 
-      <div class="bg-white border-2 border-green-500 rounded-xl shadow-xl p-8 mb-12 transform transition hover:scale-[1.01] duration-300">
-        <div class="flex flex-col md:flex-row items-center justify-center">
-          <div class="bg-green-100 rounded-full p-4 mr-0 md:mr-6 mb-4 md:mb-0">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-            </svg>
-          </div>
-          <div class="text-center md:text-left">
-            <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Resultados Comprobados</h3>
-            <p class="text-lg text-gray-700">Más de 100 personas han obtenido sus primeros 30€ siguiendo esta guía paso a paso.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-        <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-green-500">
-          <div class="flex items-center mb-4">
-            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Lucía" class="w-12 h-12 rounded-full mr-3">
-            <div>
-              <p class="font-bold text-gray-800">Lucía G.</p>
-              <p class="text-sm text-gray-500">Estudiante, Madrid</p>
-            </div>
-          </div>
-          <div class="mb-3 flex">
-            <span class="text-yellow-400">★★★★★</span>
-          </div>
-          <p class="text-gray-700 mb-4">"Al principio no me lo creía, pero decidí probarlo paso a paso como explicaba la guía. En menos de media hora de trabajo ya tenía 32,50€ en mi cuenta listos para retirar. Lo que más me gustó es que todo está explicado paso a paso y  con ejemplos reales, incluso para alguien como yo que nunca había apostado. Lo mejor es que puedes ver los resultados inmediatamente con la primera promoción."</p>
-          <p class="text-sm text-gray-500">Verificado - 15/06/2025</p>
-        </div>
-
-        <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-green-500">
-          <div class="flex items-center mb-4">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Marcos" class="w-12 h-12 rounded-full mr-3">
-            <div>
-              <p class="font-bold text-gray-800">Marcos R.</p>
-              <p class="text-sm text-gray-500">Autónomo, Barcelona</p>
-            </div>
-          </div>
-          <div class="mb-3 flex">
-            <span class="text-yellow-400">★★★★★</span>
-          </div>
-          <p class="text-gray-700 mb-4">"Llevo 3 meses aplicando el método y ya he ganado 1.200€ extra. La explicación es impecable y el soporte responde rápido. Muy recomendado la verdad"</p>
-          <p class="text-sm text-gray-500">Verificado - 02/07/2025</p>
-        </div>
-
-        <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-green-500">
-          <div class="flex items-center mb-4">
-            <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="Pablo" class="w-12 h-12 rounded-full mr-3">
-            <div>
-              <p class="font-bold text-gray-800">Pablo G.</p>
-              <p class="text-sm text-gray-500">Estudiante, Sevilla</p>
-            </div>
-          </div>
-          <div class="mb-3 flex">
-            <span class="text-yellow-400">★★★★★</span>
-          </div>
-          <p class="text-gray-700 mb-4">"No tenia ni idea sobre este metodo. Solía apostar por mi cuenta y perdia bastante, ahora estoy recuperando lo que era mio y sacandoles más pasta jajaja."</p>
-          <p class="text-sm text-gray-500">Verificado - 28/06/2025</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Step by Step Guide -->
-  <section class="py-16 bg-gray-50">
-    <div class="container mx-auto px-4 max-w-4xl">
-      <div class="bg-gradient-to-r from-green-500 to-green-600 text-white p-8 rounded-xl shadow-lg mb-12 text-center">
-        <h2 class="text-3xl font-bold mb-6">✨ Convierte los bonos de bienvenida en dinero real ✨</h2>
-        <p class="text-xl mb-6">Las casas de apuestas te regalan dinero... pero casi nadie sabe cómo quedárselo</p>
-      </div>
-
-      <div class="bg-white p-8 rounded-xl shadow-md mb-8">
-        <div class="flex items-start mb-6">
-          <div class="bg-orange-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-4">1</div>
-          <div>
-            <h3 class="text-xl font-bold mb-3 text-green-600">El problema de apostar normal</h3>
-            <p class="mb-4">Las casas ofrecen promociones como: <span class="font-semibold">"Apuesta 50€ y recibe 50€ gratis"</span></p>
-            <p class="mb-4 bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">Si apuestas esos 50€ por tu cuenta, lo más probable es que los pierdas... y lo mismo con la apuesta gratis</p>
-          </div>
-        </div>
-
-        <div class="flex items-start mb-6">
-          <div class="bg-green-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mr-4">2</div>
-          <div>
-            <h3 class="text-xl font-bold mb-3 text-green-600">La solución del Match Betting</h3>
-            <p class="mb-4">Con nuestro método, transformas esa promoción en <span class="font-bold">30€ reales y asegurados</span>, sin importar el resultado</p>
-
-            <div class="bg-green-50 p-4 rounded-lg mb-4">
-              <h4 class="font-bold mb-2">¿Cómo funciona?</h4>
-              <ul class="space-y-2 pl-5">
-                <li class="flex items-start"><span class="mr-2">👉</span><span>Haces una apuesta "peaje" (pierdes ~2€) para liberar el bono</span></li>
-                <li class="flex items-start"><span class="mr-2">👉</span><span>Usas la apuesta gratis siguiendo nuestro método</span></li>
-                <li class="flex items-start"><span class="mr-2">👉</span><span>¡Obtienes ~30€ limpios!</span></li>
-              </ul>
-            </div>
-
-            <div class="bg-blue-50 p-4 rounded-lg">
-              <h4 class="font-bold mb-2">Ejemplo práctico:</h4>
-              <p class="mb-2">1. Apuestas que gana el Barça en Yaass Casino</p>
-              <p class="mb-2">2. Cubres con "no gana el Barça" en Betfair Exchange. </p>
-              <p class="mb-2">3. Pierdes ~2€ pero liberas los 50€ de bono</p>
-              <p class="font-bold">4. Con esos 50€ ganas ~30€ netos</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-gradient-to-r from-orange-500 to-orange-600 text-white p-6 rounded-lg text-center">
-          <h3 class="text-xl font-bold mb-3">🔥 Multiplica tus ganancias</h3>
-          <p class="mb-4">Esto es solo un bono de bienvenida. Con la guía completa podrás:</p>
-          <ul class="space-y-2 mb-4">
-            <li> Repetirlo en más de 20 casas de apuestas con diferentes promociones</li>
-            <li>Ganar más de 2.000€ en pocos meses</li>
-            <li>Todo sin suerte, solo con matemática básica</li>
-          </ul>
-          <p class="text-lg font-bold">💡 Convierte promociones que otros pierden en dinero seguro</p>
-        </div>
-        <div class="mt-8 text-center">
-          <a href="#top" class="bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-4 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transform transition hover:scale-105 inline-block">
-            QUIERO MI GUÍA GRATUITA
-            <i class="fas fa-arrow-up ml-2"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-white py-16">
-    <div class="container mx-auto px-4 max-w-4xl">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-800">¿Tienes Dudas? Aquí Tienes las Respuestas</h2>
-        <p class="text-lg text-gray-600 mt-4">Resolvemos las preguntas más comunes sobre el Matched Betting.</p>
-      </div>
-
+      <!-- CTA PRINCIPAL SUPER DESTACADA -->
       <div class="space-y-4">
-        <div class="bg-gray-50 rounded-lg shadow-sm">
-          <button class="accordion-toggle flex justify-between items-center w-full p-5 text-left font-semibold text-gray-800">
-            <span>1. ¿Es esto realmente legal en España?</span>
-            <i class="fas fa-chevron-down text-gray-500"></i>
-          </button>
-          <div class="accordion-content">
-            <div class="p-5 pt-0 text-gray-700">
-              <p><strong>Sí, es 100% legal.</strong> El Matched Betting no es un chanchullo ni una trampa. Simplemente estás aprovechando las promociones que las casas de apuestas ofrecen públicamente. Operas dentro de sus términos y condiciones y cumples con la ley, ya que eres mayor de edad y juegas de forma responsable.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-gray-50 rounded-lg shadow-sm">
-          <button class="accordion-toggle flex justify-between items-center w-full p-5 text-left font-semibold text-gray-800">
-            <span>2. ¿De verdad no hay ningún riesgo de perder dinero?</span>
-            <i class="fas fa-chevron-down text-gray-500"></i>
-          </button>
-          <div class="accordion-content">
-            <div class="p-5 pt-0 text-gray-700">
-              <p>El método en sí es matemáticamente seguro porque siempre cubres todos los resultados posibles de un evento. El único "riesgo" es el error humano (ej: equivocarse al introducir una cantidad). Por eso es crucial seguir las guías paso a paso y usar la calculadora. Si lo haces bien, el beneficio está garantizado.</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="bg-gray-50 rounded-lg shadow-sm">
-          <button class="accordion-toggle flex justify-between items-center w-full p-5 text-left font-semibold text-gray-800">
-            <span>3. ¿Cuánto dinero necesito para empezar?</span>
-            <i class="fas fa-chevron-down text-gray-500"></i>
-          </button>
-          <div class="accordion-content">
-            <div class="p-5 pt-0 text-gray-700">
-              <p>Lo ideal es empezar con un capital (llamado "bank") de entre <strong>150€ y 250€</strong>. Este dinero no lo vas a perder, simplemente lo necesitas para moverlo entre las casas de apuestas (hacer el depósito, cubrir las apuestas en Betfair, etc.). Cuanto más "bank" tengas, más rápido podrás completar varias ofertas a la vez.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-gray-50 rounded-lg shadow-sm">
-          <button class="accordion-toggle flex justify-between items-center w-full p-5 text-left font-semibold text-gray-800">
-            <span>4. ¿Cuánto tiempo se tarda en ver resultados?</span>
-            <i class="fas fa-chevron-down text-gray-500"></i>
-          </button>
-          <div class="accordion-content">
-            <div class="p-5 pt-0 text-gray-700">
-              <p>Verás tu primer beneficio real <strong>el mismo día que completes tu primera oferta</strong>, como la que se explica en la guía gratuita. Cada oferta suele llevar entre 20 y 30 minutos de trabajo total. Puedes ganar tus primeros 30€ hoy mismo.</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="bg-gray-50 rounded-lg shadow-sm">
-          <button class="accordion-toggle flex justify-between items-center w-full p-5 text-left font-semibold text-gray-800">
-            <span>5. Si es tan bueno, ¿por qué no lo hace todo el mundo?</span>
-            <i class="fas fa-chevron-down text-gray-500"></i>
-          </button>
-          <div class="accordion-content">
-            <div class="p-5 pt-0 text-gray-700">
-              <p>Principalmente por tres razones: <strong>1) Desconocimiento:</strong> la mayoría de gente no sabe que este método existe. <strong>2) Escepticismo:</strong> suena "demasiado bueno para ser verdad" y lo descartan. <strong>3) No es una fórmula mágica:</strong> requiere seguir unos pasos, ser metódico y dedicarle un poco de tiempo. No te harás rico de la noche a la mañana, pero sí generarás un ingreso extra muy sólido.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <style>
-      .accordion-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease-out;
-      }
-      .accordion-toggle i {
-        transition: transform 0.3s ease-out;
-      }
-      .accordion-toggle.active i {
-        transform: rotate(180deg);
-      }
-    </style>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const accordions = document.querySelectorAll('.accordion-toggle');
-        accordions.forEach(button => {
-          button.addEventListener('click', () => {
-            const content = button.nextElementSibling;
-            button.classList.toggle('active');
-            if (content.style.maxHeight) {
-              content.style.maxHeight = null;
-            } else {
-              content.style.maxHeight = content.scrollHeight + "px";
-            }
-          });
-        });
-      });
-    </script>
-  </section>
-
-  <!-- Upsell Section -->
-  <section class="py-16 bg-green-300 text-black">
-    <div class="container mx-auto px-4 max-w-4xl text-center">
-      <h2 class="text-3xl font-bold mb-6">¿Quieres llevar esto al siguiente nivel?</h2>
-      <p class="text-xl mb-8">Consigue la Guía Completa de Match Betting con todo lo que necesitas para ganar 300-500€ al mes.</p>
-
-      <div class="bg-white text-gray-800 rounded-xl p-8 mb-8 max-w-2xl mx-auto">
-        <h3 class="text-2xl font-bold mb-4">Guía Completa </h3>
-        <ul class="space-y-3 mb-6 text-left">
-          <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>Lista actualizada de TODAS las promociones de las casas de apuestas españolas</span></li>
-          <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>Soporte personalizado para resolver tus dudas</span></li>
-          <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>Acceso a comunidad privada con estrategias avanzadas</span></li>
-          <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>Tutoriales para ganar dinero con más métodos (ganancias recurrentes)</span></li>
-          <li class="flex items-start"><i class="fas fa-check text-green-500 mt-1 mr-2"></i><span>Guías para promociones personales y/o privadas</span></li>
-        </ul>
-        <a href="/premium.html" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full text-lg shadow-md transition">
-          QUIERO LAS GUÍAS PREMIUM
+        <a href="https://zeroazar.com?fpr=javier90"
+           class="group inline-flex items-center justify-center gap-3
+                  bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-semibold
+                  px-8 py-4 rounded-full text-lg shadow-xl shadow-emerald-500/40
+                  transition transform hover:scale-105">
+          ENTRAR A ZEROAZAR Y EMPEZAR A GANAR
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-950/10">
+            <i class="fas fa-arrow-right text-slate-900 group-hover:translate-x-0.5 transition"></i>
+          </span>
         </a>
-
+        <p class="text-sm text-slate-400">
+          En ZeroAzar tienes guías, calculadoras y soporte para aplicar Match Betting paso a paso. [web:41]
+        </p>
       </div>
-
-      <p class="text-black">Empieza con la guía gratuita y si ves que funciona, mejora tus resultados con la versión completa.</p>
     </div>
-  </section>
+
+    <div class="relative">
+      <div class="absolute -top-10 -right-6 w-40 h-40 bg-emerald-500/20 blur-3xl rounded-full"></div>
+      <div class="absolute -bottom-10 -left-10 w-48 h-48 bg-indigo-500/20 blur-3xl rounded-full"></div>
+
+      <div class="relative bg-slate-900/80 border border-slate-700 rounded-2xl p-6 shadow-xl shadow-slate-900/70">
+        <h2 class="text-xl font-semibold mb-4 text-slate-50">
+          ¿Qué es el Match Betting?
+        </h2>
+        <p class="text-sm text-slate-300 mb-3">
+          Es una estrategia donde realizas dos apuestas opuestas sobre el mismo evento (una a favor y otra en contra)
+          utilizando bonos y freebets, de forma que el resultado del partido da igual. [web:29][web:33]
+        </p>
+        <p class="text-sm text-slate-300">
+          Tu beneficio no depende de adivinar el resultado, sino de
+          <span class="text-emerald-300 font-semibold">convertir bonos en dinero real</span> mediante reglas claras. [web:36][web:41]
+        </p>
+
+        <div class="mt-5 grid grid-cols-2 gap-3 text-xs text-slate-300">
+          <div class="bg-slate-950/60 border border-emerald-500/40 rounded-xl p-3">
+            <p class="font-semibold text-emerald-300 mb-1">Riesgo controlado</p>
+            <p>Se cubren todos los resultados del evento para anular el componente aleatorio. [web:29][web:32]</p>
+          </div>
+          <div class="bg-slate-950/60 border border-indigo-500/40 rounded-xl p-3">
+            <p class="font-semibold text-indigo-300 mb-1">Basado en bonos</p>
+            <p>Las ganancias vienen de las promociones y freebets que ofrecen las casas. [web:30][web:41]</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- BLOQUE DESTACADO DEL ENLACE -->
+<section class="py-12 bg-slate-950 border-b border-slate-800">
+  <div class="container mx-auto px-4 max-w-4xl">
+    <div class="relative overflow-hidden rounded-2xl border border-emerald-500/40 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 shadow-2xl shadow-emerald-500/20">
+      <div class="absolute inset-y-0 right-0 w-1/2 opacity-40 pointer-events-none hidden md:block"
+           style="background: radial-gradient(circle at 0 0, rgba(16,185,129,0.18), transparent 55%), radial-gradient(circle at 100% 100%, rgba(79,70,229,0.18), transparent 55%);">
+      </div>
+      <div class="relative p-6 sm:p-8 lg:p-10">
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+          <div>
+            <p class="text-xs font-semibold tracking-wide text-emerald-300 uppercase mb-2">
+              Paso 1 imprescindible
+            </p>
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-50 mb-3">
+              Crea tu cuenta en ZeroAzar desde este enlace
+            </h2>
+            <p class="text-sm sm:text-base text-slate-200 max-w-xl">
+              ZeroAzar reúne en una sola plataforma las herramientas, alertas y guías que necesitas para hacer Match Betting
+              de forma ordenada y rentable, sin volverte loco comparando cuotas. [web:41][web:38]
+            </p>
+          </div>
+
+          <!-- CTA súper visible -->
+          <div class="w-full lg:w-auto">
+            <a href="https://zeroazar.com?fpr=javier90"
+               class="block text-center bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-semibold
+                      px-8 py-4 rounded-xl text-base sm:text-lg shadow-xl shadow-emerald-500/40
+                      transition transform hover:-translate-y-0.5 hover:scale-105">
+              IR A ZEROAZAR AHORA
+              <span class="block text-xs font-normal text-slate-900/80 mt-1">
+                Enlace recomendado para empezar con el Match Betting
+              </span>
+            </a>
+            <p class="mt-3 text-[11px] text-emerald-200 text-center">
+              Usa siempre este enlace para asegurarte de acceder al servicio correcto:
+              <span class="break-all underline decoration-emerald-400/60 decoration-dotted">
+                https://zeroazar.com?fpr=javier90
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA EL MATCH BETTING -->
+<section class="py-16 bg-slate-950">
+  <div class="container mx-auto px-4 max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <div>
+      <h2 class="text-3xl font-bold mb-4 text-emerald-400">
+        Cómo se gana dinero con Match Betting
+      </h2>
+      <p class="text-slate-300 mb-4">
+        La idea es sencilla: cuando una casa de apuestas te da un bono o una apuesta gratis, tú haces una apuesta a favor
+        en esa casa y una apuesta en contra en otra casa o exchange, de forma que siempre cubras todas las opciones. [web:29][web:32]
+      </p>
+      <p class="text-slate-300 mb-4">
+        El resultado del partido deja de importar: lo que te interesa es
+        <span class="text-emerald-300 font-semibold">desbloquear el bono</span> y convertirlo en dinero real mediante apuestas bien calculadas. [web:30][web:36]
+      </p>
+
+      <div class="mt-6 space-y-4">
+        <div class="flex gap-3">
+          <div class="mt-1">
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 text-sm font-semibold">1</span>
+          </div>
+          <div>
+            <p class="font-semibold text-slate-100 mb-1">Aprovechas bonos y freebets</p>
+            <p class="text-sm text-slate-300">
+              Las casas ofrecen dinero extra para que apuestes; el Match Betting usa esas promociones a tu favor. [web:30][web:41]
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-3">
+          <div class="mt-1">
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 text-sm font-semibold">2</span>
+          </div>
+          <div>
+            <p class="font-semibold text-slate-100 mb-1">Cubres todos los resultados</p>
+            <p class="text-sm text-slate-300">
+              Realizas una apuesta a favor en la casa del bono y otra en contra en otra plataforma para anular el riesgo. [web:29][web:33]
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-3">
+          <div class="mt-1">
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 text-sm font-semibold">3</span>
+          </div>
+          <div>
+            <p class="font-semibold text-slate-100 mb-1">Beneficio repetible mes a mes</p>
+            <p class="text-sm text-slate-300">
+              Repitiendo el proceso con distintas promos, se puede generar un ingreso constante y medible. [web:36][web:38]
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta lateral: por qué usar ZeroAzar -->
+    <div class="lg:pl-4">
+      <div class="bg-slate-900/80 border border-slate-700 rounded-2xl p-6 shadow-xl shadow-slate-900/70">
+        <h3 class="text-xl font-semibold mb-4 text-slate-50">
+          Por qué usar ZeroAzar y no hacerlo por tu cuenta
+        </h3>
+        <ul class="space-y-3 text-sm text-slate-300">
+          <li class="flex gap-3">
+            <span class="mt-1 text-emerald-300">
+              <i class="fas fa-check-circle"></i>
+            </span>
+            <span>Centraliza las oportunidades de bonos, para que no pierdas tiempo comparando webs manualmente. [web:34][web:41]</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-1 text-emerald-300">
+              <i class="fas fa-check-circle"></i>
+            </span>
+            <span>Incluye guías y calculadoras para que sigas cada movimiento con números claros, sin improvisar. [web:30][web:41]</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-1 text-emerald-300">
+              <i class="fas fa-check-circle"></i>
+            </span>
+            <span>Te ayuda a controlar el bank y evitar errores típicos de principiantes, como no cubrir bien un resultado. [web:32][web:36]</span>
+          </li>
+        </ul>
+
+        <div class="mt-6">
+          <a href="https://zeroazar.com?fpr=javier90"
+             class="block text-center bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold
+                    px-6 py-3 rounded-xl text-base shadow-lg shadow-emerald-500/40 transition transform hover:scale-105">
+            EMPEZAR EN ZEROAZAR
+          </a>
+          <p class="mt-2 text-[11px] text-slate-400 text-center">
+            Acceso recomendado desde este enlace para asegurar la configuración correcta:
+            <span class="underline decoration-emerald-400/60 decoration-dotted">
+              zeroazar.com?fpr=javier90
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOQUE FINAL CON AVISO RESPONSABLE -->
+<section class="py-12 bg-slate-950 border-t border-slate-800">
+  <div class="container mx-auto px-4 max-w-4xl text-center">
+    <h2 class="text-2xl font-bold text-slate-50 mb-4">
+      ¿Listo para dar el paso y aplicar Match Betting de forma seria?
+    </h2>
+    <p class="text-slate-300 mb-6 max-w-2xl mx-auto">
+      Si te tomas esto como un sistema y sigues las guías, el Match Betting puede ser una fuente sólida de ingresos adicionales,
+      siempre que respetes las reglas y gestiones bien tu bank. [web:36][web:38]
+    </p>
+
+    <a href="https://zeroazar.com?fpr=javier90"
+       class="inline-flex items-center justify-center gap-3
+              bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-semibold
+              px-8 py-3 rounded-full text-lg shadow-xl shadow-emerald-500/40
+              transition transform hover:-translate-y-0.5 hover:scale-105">
+      ACCEDER A ZEROAZAR DESDE MI ENLACE
+      <i class="fas fa-arrow-up-right-from-square text-slate-900"></i>
+    </a>
+
+    <p class="mt-4 text-[11px] text-slate-500">
+      El Match Betting se basa en matemáticas y gestión de riesgo; no es un juego de azar impulsivo. [web:29][web:44]
+    </p>
+  </div>
+</section>
 
 <!-- FOOTER -->
-    <footer class="py-8 bg-gray-800 text-white">
-    <div class="container mx-auto px-4 max-w-6xl">
-      <div class="flex flex-col md:flex-row justify-between items-center">
-        <div class="mb-4 md:mb-0">
-          <p class="text-gray-400">© 2025 El Secreto del Match Betting</p>
-        </div>
-        <div class="flex space-x-4">
-          <a href="https://www.instagram.com/elsecretodelmatchbetting" target="_blank" class="text-gray-400 hover:text-white transition" aria-label="Instagram">
-            <i class="fab fa-instagram text-xl"></i>
-          </a>
-          <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="text-gray-400 hover:text-white transition" aria-label="Grupo de Telegram">
-            <i class="fab fa-telegram text-xl"></i>
-          </a>
-          <a href="mailto:elsecretodelmatchbetting@gmail.com" class="text-gray-400 hover:text-white transition" aria-label="Contacto por correo">
-            <i class="fas fa-envelope text-xl"></i>
-          </a>
-        </div>
+<footer class="py-8 bg-slate-950 border-t border-slate-800 text-slate-400">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-4 md:mb-0">
+        <p class="text-slate-500">© 2025 El Secreto del Match Betting</p>
+      </div>
+      <div class="flex space-x-4">
+        <a href="https://www.instagram.com/elsecretodelmatchbetting" target="_blank"
+           class="text-slate-400 hover:text-pink-400 transition">
+          <i class="fab fa-instagram text-xl"></i>
+        </a>
+        <a href="https://t.me/Supercuotas_Ai" target="_blank"
+           class="text-slate-400 hover:text-sky-400 transition">
+          <i class="fab fa-telegram text-xl"></i>
+        </a>
+        <a href="mailto:elsecretodelmatchbetting@gmail.com"
+           class="text-slate-400 hover:text-emerald-400 transition">
+          <i class="fas fa-envelope text-xl"></i>
+        </a>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
-<!-- MODAL DE AUTENTICACIÓN -->
-    <div id="auth-modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 items-center justify-center z-50">
-        <div class="bg-white rounded-lg shadow-2xl p-8 w-full max-w-md m-4">
-            <div class="flex justify-between items-center mb-6">
-                <h2 id="modal-title" class="text-2xl font-bold text-gray-800">Iniciar Sesión</h2>
-                <button id="close-modal-button" class="text-gray-500 hover:text-gray-800 text-3xl leading-none">&times;</button>
-            </div>
-
-            <!-- LOGIN -->
-            <form id="login-form" class="space-y-4">
-                <input type="email" id="login-email" placeholder="Correo electrónico" required class="w-full px-4 py-2 border rounded-lg">
-                <input type="password" id="login-password" required placeholder="Contraseña" class="w-full px-4 py-2 border rounded-lg">
-                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700">Iniciar Sesión</button>
-                <p class="text-sm text-center">¿No tienes cuenta? <a href="#" id="show-register-form" class="text-blue-600 hover:underline">Regístrate</a></p>
-            </form>
-
-            <!-- REGISTRO -->
-            <form id="register-form" class="space-y-4 hidden">
-                <input type="text" id="register-name" placeholder="Nombre" required class="w-full px-4 py-2 border rounded-lg">
-                <input type="email" id="register-email" placeholder="Correo electrónico" required class="w-full px-4 py-2 border rounded-lg">
-                <input type="password" id="register-password" required minlength="8" placeholder="Mínimo 8 caracteres" class="w-full px-4 py-2 border rounded-lg">
-                <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700">Crear Cuenta</button>
-                <p class="text-sm text-center">¿Ya tienes cuenta? <a href="#" id="show-login-form" class="text-blue-600 hover:underline">Inicia Sesión</a></p>
-            </form>
-
-            <p id="auth-error" class="text-red-500 text-sm mt-4 text-center"></p>
-        </div>
-    </div>
-
-    <!-- SCRIPT DE FIREBASE Y LÓGICA -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyBpvJVoiEe_ELuJGtDt7wfpkDSDK77gmqc",
-            authDomain: "secreto-matchbetting.firebaseapp.com",
-            projectId: "secreto-matchbetting",
-            storageBucket: "secreto-matchbetting.appspot.com",
-            messagingSenderId: "742895000020",
-            appId: "1:742895000020:web:6d5e5f43df2706e0f95e41",
-            measurementId: "G-E9R9X4D48D"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        // Esperamos a que todo el HTML esté cargado
-        document.addEventListener('DOMContentLoaded', () => {
-            const userStatusDiv   = document.getElementById('user-status');
-            const mainCtaButton   = document.getElementById('main-cta-button');
-            const navGuideLink    = document.getElementById('nav-guide-link');
-            const modal           = document.getElementById('auth-modal');
-            const closeModalButton= document.getElementById('close-modal-button');
-            const modalTitle      = document.getElementById('modal-title');
-            const loginForm       = document.getElementById('login-form');
-            const registerForm    = document.getElementById('register-form');
-            const showRegisterLink= document.getElementById('show-register-form');
-            const showLoginLink   = document.getElementById('show-login-form');
-            const authError       = document.getElementById('auth-error');
-
-            const openModal = (view = 'login') => {
-                modal.classList.add('flex');
-                authError.textContent = '';
-                authError.classList.remove('text-red-500','text-green-600');
-
-                if (view === 'login') {
-                    loginForm.style.display = 'block';
-                    registerForm.style.display = 'none';
-                    modalTitle.textContent = 'Iniciar Sesión';
-                } else {
-                    loginForm.style.display = 'none';
-                    registerForm.style.display = 'block';
-                    modalTitle.textContent = 'Crear Cuenta';
-                }
-            };
-            const closeModal = () => modal.classList.remove('flex');
-
-            closeModalButton.addEventListener('click', closeModal);
-            showRegisterLink.addEventListener('click', (e) => { e.preventDefault(); openModal('register'); });
-            showLoginLink.addEventListener('click', (e) => { e.preventDefault(); openModal('login'); });
-
-            onAuthStateChanged(auth, user => {
-                userStatusDiv.innerHTML = '';
-                if (user) {
-                    userStatusDiv.innerHTML = `
-                        <span class="text-sm text-gray-600 hidden sm:inline">${user.email}</span>
-                        <button id="logout-button" class="bg-gray-200 text-gray-700 px-3 py-1 rounded-md text-sm font-semibold hover:bg-gray-300">Salir</button>
-                    `;
-                    document.getElementById('logout-button').addEventListener('click', () => signOut(auth));
-                } else {
-                    userStatusDiv.innerHTML = `
-                        <button id="nav-login-button" class="bg-blue-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-700">Acceder</button>
-                    `;
-                    document.getElementById('nav-login-button').addEventListener('click', () => openModal('login'));
-                }
-            });
-            
-            const handleProtectedLink = (event) => {
-                event.preventDefault();
-                const user = auth.currentUser;
-                if (user) {
-                    window.location.href = '/guias.html';
-                } else {
-                    openModal('register'); // antes ponías 'signup'; aquí existe 'register'
-                }
-            };
-
-            if (mainCtaButton) mainCtaButton.addEventListener('click', handleProtectedLink);
-            if (navGuideLink)  navGuideLink.addEventListener('click', handleProtectedLink);
-
-            // REGISTRO
-            registerForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-
-                // Limpia mensajes
-                authError.textContent = '';
-                authError.classList.remove('text-red-500', 'text-green-600');
-
-                const name     = document.getElementById('register-name')?.value?.trim() || '';
-                const email    = document.getElementById('register-email')?.value?.trim() || '';
-                const password = document.getElementById('register-password')?.value || '';
-
-                // Validación previa
-                if (!email) {
-                  authError.textContent = 'Introduce un email válido.';
-                  authError.classList.add('text-red-500');
-                  return;
-                }
-                if (password.length < 8) {
-                  authError.textContent = 'La contraseña debe tener al menos 8 caracteres.';
-                  authError.classList.add('text-red-500');
-                  return;
-                }
-
-                try {
-                  const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-
-                  // Guarda nombre (opcional) en Firestore
-                  try { await setDoc(doc(db, "users", userCredential.user.uid), { name }); } catch (_) {}
-
-
-                  // Éxito → primero cambiamos a login...
-                  openModal('login');
-
-                  // ...y AHORA mostramos el mensaje en verde (para que no lo borre openModal)
-                  authError.classList.remove('text-red-500','text-green-600'); // por si acaso
-                  authError.textContent = 'Cuenta creada con éxito. Ahora inicia sesión para acceder.';
-                  authError.classList.add('text-green-600');
-
-                  // Pre-rellenar email en login
-                  const loginEmailInput = document.getElementById('login-email');
-                  if (loginEmailInput) loginEmailInput.value = email;
-
-                  // Limpiar password del registro
-                  const regPass = document.getElementById('register-password');
-                  if (regPass) regPass.value = '';
-
-                } catch (error) {
-                  const code = error.code || '';
-                  authError.classList.add('text-red-500');
-
-                  if (code === 'auth/email-already-in-use') {
-                    authError.textContent = 'Ese email ya tiene cuenta. Cambiando a “Iniciar sesión”…';
-                    openModal('login');
-                    const loginEmailInput = document.getElementById('login-email');
-                    if (loginEmailInput) loginEmailInput.value = email;
-                  } else if (code === 'auth/invalid-email') {
-                    authError.textContent = 'Email no válido.';
-                  } else if (code === 'auth/weak-password') {
-                    authError.textContent = 'La contraseña es débil. Usa 8+ caracteres.';
-                  } else {
-                    authError.textContent = 'Ha ocurrido un error. Inténtalo de nuevo.';
-                    console.error(error);
-                  }
-                }
-            });
-
-            // LOGIN (añadido)
-            loginForm.addEventListener('submit', async (e) => {
-              e.preventDefault();
-              authError.textContent = '';
-              authError.classList.remove('text-red-500','text-green-600');
-
-              const email    = document.getElementById('login-email')?.value?.trim() || '';
-              const password = document.getElementById('login-password')?.value || '';
-
-              if (!email || !password) {
-                authError.textContent = 'Introduce email y contraseña.';
-                authError.classList.add('text-red-500');
-                return;
-              }
-
-              try {
-                await signInWithEmailAndPassword(auth, email, password);
-                closeModal();
-                window.location.href = '/guias.html';
-              } catch (error) {
-                authError.textContent = 'Email o contraseña incorrectos.';
-                authError.classList.add('text-red-500');
-                console.error(error);
-              }
-            });
-
-        });
-    </script>
 </body>
 </html>
