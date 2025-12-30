@@ -1,255 +1,297 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="bg-slate-950">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Calculadora Match Betting | El Secreto del Match Betting</title>
-  <meta name="description" content="Calculadora de Match Betting: Dinero Real, Freebet, Reembolso y Rollover en modo En Contra (Casa vs Exchange) y A Favor (Casa vs Casa)."/>
+  <meta name="description" content="Calculadora de Match Betting: Dinero Real, Freebet, Reembolso y Rollover en modo En Contra (Casa vs Exchange) y A Favor (Casa vs Casa)." />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
 
-<body class="font-sans antialiased text-gray-800 bg-green-100">
+<body class="font-sans antialiased text-gray-100 bg-slate-950">
+
 <!-- BARRA DE NAVEGACIÓN DINÁMICA -->
-    <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
-        <div class="container mx-auto px-4 max-w-6xl">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-8">
-                    <a href="/index.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Inicio</a>
-                    <a id="nav-guide-link" href="/guias.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guía GRATIS</a>
-                    <a href="/premium.html" class="font-medium text-gray-700 hover:text-blue-600 transition">Guías Premium</a>
-                    <!-- Calculadoras (dropdown robusto) -->
-                    <div class="relative group">
-                      <button
-                        class="flex items-center gap-1 font-medium text-gray-700 hover:text-blue-600 transition"
-                        aria-haspopup="true" aria-expanded="false">
-                        Calculadoras <i class="fas fa-chevron-down text-xs"></i>
-                      </button>
+<nav class="bg-slate-900/90 backdrop-blur border-b border-slate-800 py-4 sticky top-0 z-50">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="flex justify-between items-center">
+      <div class="flex items-center space-x-8">
+        <a href="/index.html" class="font-medium text-slate-100 hover:text-emerald-400 transition">Inicio</a>
+        <a id="nav-guide-link" href="/guias.html" class="font-medium text-slate-300 hover:text-emerald-400 transition">Guía GRATIS</a>
+        <a href="/premium.html" class="font-medium text-slate-300 hover:text-emerald-400 transition">Guías Premium</a>
 
-                      <!-- Menú pegado al botón, sin huecos -->
-                      <div
-                        class="absolute left-0 top-full w-56 bg-white border border-gray-200 rounded-lg shadow-md
-                              invisible opacity-0 translate-y-1
-                              group-hover:visible group-hover:opacity-100 group-hover:translate-y-0
-                              group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0
-                              transition duration-150">
-                        <a href="/calculadora.html"
-                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none">Calculadora Match Betting</a>
-                        <a href="/calculadoraEV.html"
-                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none">Calculadora EV</a>
-                      </div>
-                    </div>
+        <!-- Calculadoras (dropdown robusto) -->
+        <div class="relative group">
+          <button
+            class="flex items-center gap-1 font-medium text-slate-200 hover:text-emerald-400 transition"
+            aria-haspopup="true" aria-expanded="false">
+            Calculadoras <i class="fas fa-chevron-down text-xs"></i>
+          </button>
 
-                    <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="font-medium text-gray-700 hover:text-sky-500 transition flex items-center">
-                        <i class="fab fa-telegram mr-2"></i> Telegram
-                    </a>
-                    <a href="https://www.instagram.com/elsecretodelmatchbetting" target="_blank" class="font-medium text-gray-700 hover:text-pink-600 transition flex items-center">
-                        <i class="fab fa-instagram mr-2"></i> Instagram
-                    </a>
-                </div>
-                <div id="user-status" class="flex items-center space-x-4">
-                    <!-- Contenido dinámico: Login/Logout -->
-                </div>
-            </div>
+          <!-- Menú pegado al botón, sin huecos -->
+          <div
+            class="absolute left-0 top-full w-56 bg-slate-900 border border-slate-700 rounded-lg shadow-md
+                   invisible opacity-0 translate-y-1
+                   group-hover:visible group-hover:opacity-100 group-hover:translate-y-0
+                   group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0
+                   transition duration-150">
+            <a href="/calculadora.html"
+               class="block px-4 py-2 text-sm text-slate-100 hover:bg-slate-800 focus:bg-slate-800 focus:outline-none">
+              Calculadora Match Betting
+            </a>
+            <a href="/calculadoraEV.html"
+               class="block px-4 py-2 text-sm text-slate-100 hover:bg-slate-800 focus:bg-slate-800 focus:outline-none">
+              Calculadora EV
+            </a>
+          </div>
         </div>
-    </nav>
-  <!-- CONTENIDO -->
-  <main class="container mx-auto px-4 py-8 sm:py-16 max-w-6xl">
-    <div class="bg-white p-5 sm:p-8 rounded-xl shadow-lg">
-      <h1 class="text-3xl md:text-4xl font-bold text-center mb-6 text-gray-800">
-         Calculadora de Match Betting
-      </h1>
 
-      <!-- NUEVO: selector de MODO (En contra / A favor) -->
-      <section class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-        <label class="block">
-          <span class="block text-sm font-medium text-gray-600 mb-1">Modo</span>
-          <select id="modo" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200">
-            <option value="contra">En contra (CasaDeApuestasVSExchange)</option>
-            <option value="favor">A favor (CasaDeApuestasVSCasaDeApuestas)</option>
-          </select>
-        </label>
-
-        <!-- Tipo de apuesta (se mantiene) -->
-        <label class="block">
-          <span class="block text-sm font-medium text-gray-600 mb-1">Tipo de apuesta</span>
-          <select id="tipo-apuesta" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200">
-            <option value="real">Dinero Real</option>
-            <option value="freebet">Freebet (SNR)</option>
-            <option value="reembolso">Reembolso</option>
-            <option value="rollover">Rollover</option>
-          </select>
-        </label>
-      </section>
-
-      <!-- Parámetros generales -->
-      <div class="bg-gray-50 border rounded-xl p-4 sm:p-5 mb-4">
-        <h2 class="text-lg font-semibold mb-3">Parámetros generales</h2>
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <!-- Importe y cuota principal SIEMPRE -->
-          <label class="block">
-            <span class="block text-sm font-medium text-gray-600 mb-1">💰 Importe en Casa 1 (€)</span>
-            <input id="importe" inputmode="decimal" placeholder="10.00"
-              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-          </label>
-
-          <label class="block">
-            <span id="lbl-cuota1" class="block text-sm font-medium text-gray-600 mb-1">📈 Cuota en Casa 1 (Back)</span>
-            <input id="cuota-back" inputmode="decimal" placeholder="1.55"
-              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-          </label>
-
-          <!-- Campo variable según modo -->
-          <label class="block" id="wrap-cuota-variable">
-            <span id="lbl-cuota-variable" class="block text-sm font-medium text-gray-600 mb-1">📉 Cuota en Exchange (Lay)</span>
-            <input id="cuota-variable" inputmode="decimal" placeholder="1.60"
-              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-          </label>
-
-          <!-- Comisión (solo En contra) -->
-          <label class="block" id="wrap-comision">
-            <span class="block text-sm font-medium text-gray-600 mb-1">🏦 Comisión del Exchange (%)</span>
-            <input id="comision" type="number" min="0" max="100" step="0.1" value="2.0"
-              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-            <span class="text-[11px] text-gray-500">Por defecto 2% (se aplica a las ganancias del lay).</span>
-          </label>
-        </section>
+        <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank"
+           class="font-medium text-slate-300 hover:text-sky-400 transition flex items-center">
+          <i class="fab fa-telegram mr-2"></i> Telegram
+        </a>
+        <a href="https://www.instagram.com/elsecretodelmatchbetting" target="_blank"
+           class="font-medium text-slate-300 hover:text-pink-400 transition flex items-center">
+          <i class="fab fa-instagram mr-2"></i> Instagram
+        </a>
       </div>
 
-      <!-- Parámetros específicos -->
-      <div id="panel-reembolso" class="hidden mt-4 border rounded-xl p-4 bg-gray-50">
-        <h3 class="font-semibold mb-2">⚙️ Parámetros para Reembolso</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <label class="block">
-            <span class="block text-sm font-medium text-gray-600 mb-1">💵 Monto reembolsado si pierdes (€)</span>
-            <input id="reb-monto" inputmode="decimal" placeholder="10.00"
-              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-          </label>
-          <label class="block">
-            <span class="block text-sm font-medium text-gray-600 mb-1">🔁 Retención esperada de la freebet (0-1)</span>
-            <input id="reb-retencion" inputmode="decimal" placeholder="0.75"
-              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-          </label>
-        </div>
-      </div>
-
-      <div id="panel-rollover" class="hidden mt-4 border rounded-xl p-4 bg-gray-50">
-        <h3 class="font-semibold mb-2">⚙️ Parámetros para Rollover</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <label class="block">
-            <span class="block text-sm font-medium text-gray-600 mb-1">🎁 Importe del bono (€)</span>
-            <input id="rol-bono" inputmode="decimal" placeholder="100"
-              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-          </label>
-          <label class="block">
-            <span class="block text-sm font-medium text-gray-600 mb-1">🔄 Rollover total requerido (€)</span>
-            <input id="rol-rollover" inputmode="decimal" placeholder="600"
-              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-          </label>
-          <label class="block">
-            <span class="block text-sm font-medium text-gray-600 mb-1">🧲 Retención estimada tras rollover (0-1)</span>
-            <input id="rol-retencion" inputmode="decimal" placeholder="0.95"
-              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200" />
-          </label>
-        </div>
-      </div>
-
-      <!-- Botones acción -->
-      <div class="mt-6 flex flex-wrap gap-3">
-        <button id="btn-calcular" class="bg-blue-600 text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-blue-700">
-          🔍 Calcular
-        </button>
-        <button id="btn-reset" class="bg-gray-800 text-white px-4 py-2.5 rounded-lg hover:bg-gray-900">
-          ♻️ Reset
-        </button>
-      </div>
-
-      <!-- Toast -->
-      <div id="toast" class="hidden fixed left-1/2 -translate-x-1/2 bottom-6 z-50">
-        <div class="bg-gray-900 text-white text-sm px-4 py-2 rounded-full shadow-lg" id="toast-msg">Listo</div>
-      </div>
-
-      <!-- Resultado principal -->
-      <section id="resumen" class="hidden mt-6">
-        <section id="ev-card" class="flex items-center justify-between gap-4 border rounded-xl p-5 md:p-6 bg-gray-50">
-          <div class="flex items-center gap-4">
-            <span id="ev-pill"
-                  class="min-w-[92px] text-center text-sm font-extrabold tracking-wide px-3 py-2 rounded-full border">
-              Rating
-            </span>
-            <div>
-              <div class="text-xs text-gray-500 mb-1">Porcentaje de valor del cruce</div>
-              <div id="ev-value" class="text-4xl md:text-5xl font-black leading-none">0,00%</div>
-            </div>
-          </div>
-          <div class="text-right">
-            <div class="text-xs text-gray-500 mb-1">Clasificación</div>
-            <div id="ev-clas" class="text-lg font-bold">—</div>
-          </div>
-        </section>
-
-        <!-- Tarjetas (se adaptan según modo) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5">
-          <div class="rounded-xl p-5 border bg-blue-50">
-            <div class="text-sm font-semibold mb-2">Casa 1</div>
-            <div id="card-back" class="text-xl font-bold">—</div>
-          </div>
-
-          <div class="rounded-xl p-5 border bg-orange-50">
-            <div class="text-sm font-semibold mb-2">Ganancia Estimada</div>
-            <div id="card-gan" class="text-2xl font-black">—</div>
-            <div id="card-rating" class="text-sm text-gray-700 mt-1">Rating —</div>
-          </div>
-
-          <div class="rounded-xl p-5 border bg-red-50">
-            <div id="lbl-tarjeta-3" class="text-sm font-semibold mb-2">Exchange</div>
-            <div id="card-lay" class="text-xl font-bold">—</div>
-            <div id="card-riesgo" class="text-sm text-gray-700 mt-1">Riesgo: —</div>
-            <!-- Botón copiar (cambia de Lay a Stake2 según modo) -->
-            <button id="btn-copy-inline" class="mt-3 w-full bg-white text-gray-800 px-3 py-2 rounded-md border hover:bg-gray-50 disabled:opacity-40" disabled>
-              📋 Copiar
-            </button>
-          </div>
-        </div>
-
-        <!-- Tabla escenarios -->
-        <div class="mt-6">
-          <h3 class="font-semibold mb-2">📊 ¿Qué pasa si gana Casa 1 o gana el otro lado?</h3>
-          <div class="overflow-x-auto">
-            <table class="min-w-full text-sm text-left border rounded-lg overflow-hidden">
-              <thead class="bg-gray-100">
-                <tr>
-                  <th class="px-3 py-2">Resultado</th>
-                  <th class="px-3 py-2">Casa 1</th>
-                  <th class="px-3 py-2" id="th-col3">Exchange</th>
-                  <th class="px-3 py-2">Total</th>
-                </tr>
-              </thead>
-              <tbody id="tabla-body"></tbody>
-            </table>
-          </div>
-
-          <div class="mt-3 text-sm text-gray-600" id="diferencia-text">—</div>
-        </div>
-      </section>
-    </div>
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="py-8 bg-gray-800 text-white">
-    <div class="container mx-auto px-4 max-w-6xl">
-      <div class="flex flex-col md:flex-row justify-between items-center">
-        <div class="mb-4 md:mb-0">
-          <p class="text-gray-400">© 2025 El Secreto del Match Betting</p>
-        </div>
-        <div class="flex space-x-4">
-          <a href="https://www.instagram.com/elsecretodelmatchbetting" target="_blank" class="text-gray-400 hover:text-white transition" aria-label="Instagram"><i class="fab fa-instagram text-xl"></i></a>
-          <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank" class="text-gray-400 hover:text-white transition" aria-label="Grupo de Telegram"><i class="fab fa-telegram text-xl"></i></a>
-          <a href="mailto:elsecretodelmatchbetting@gmail.com" class="text-gray-400 hover:text-white transition" aria-label="Contacto por correo"><i class="fas fa-envelope text-xl"></i></a>
-        </div>
+      <div id="user-status" class="flex items-center space-x-4">
+        <!-- Contenido dinámico: Login/Logout -->
       </div>
     </div>
-  </footer>
+  </div>
+</nav>
+
+<!-- CONTENIDO -->
+<main class="container mx-auto px-4 py-8 sm:py-16 max-w-6xl">
+  <div class="bg-slate-900/80 border border-slate-800 p-5 sm:p-8 rounded-xl shadow-xl shadow-emerald-500/10">
+    <h1 class="text-3xl md:text-4xl font-bold text-center mb-6 text-slate-50">
+      Calculadora de Match Betting
+    </h1>
+
+    <!-- NUEVO: selector de MODO (En contra / A favor) -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+      <label class="block">
+        <span class="block text-sm font-medium text-slate-300 mb-1">Modo</span>
+        <select id="modo"
+                class="w-full border border-slate-600 bg-slate-950 text-slate-100 rounded-lg px-4 py-2
+                       focus:outline-none focus:ring-2 focus:ring-emerald-400/50">
+          <option value="contra">En contra (CasaDeApuestasVSExchange)</option>
+          <option value="favor">A favor (CasaDeApuestasVSCasaDeApuestas)</option>
+        </select>
+      </label>
+
+      <!-- Tipo de apuesta -->
+      <label class="block">
+        <span class="block text-sm font-medium text-slate-300 mb-1">Tipo de apuesta</span>
+        <select id="tipo-apuesta"
+                class="w-full border border-slate-600 bg-slate-950 text-slate-100 rounded-lg px-4 py-2
+                       focus:outline-none focus:ring-2 focus:ring-emerald-400/50">
+          <option value="real">Dinero Real</option>
+          <option value="freebet">Freebet (SNR)</option>
+          <option value="reembolso">Reembolso</option>
+          <option value="rollover">Rollover</option>
+        </select>
+      </label>
+    </section>
+
+    <!-- Parámetros generales -->
+    <div class="bg-slate-900 border border-slate-700 rounded-xl p-4 sm:p-5 mb-4">
+      <h2 class="text-lg font-semibold mb-3 text-slate-100">Parámetros generales</h2>
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Importe y cuota principal SIEMPRE -->
+        <label class="block">
+          <span class="block text-sm font-medium text-slate-300 mb-1">💰 Importe en Casa 1 (€)</span>
+          <input id="importe" inputmode="decimal" placeholder="10.00"
+                 class="w-full border border-slate-600 bg-slate-950 text-slate-100 rounded-lg px-4 py-2
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400/50" />
+        </label>
+
+        <label class="block">
+          <span id="lbl-cuota1" class="block text-sm font-medium text-slate-300 mb-1">📈 Cuota en Casa 1 (Back)</span>
+          <input id="cuota-back" inputmode="decimal" placeholder="1.55"
+                 class="w-full border border-slate-600 bg-slate-950 text-slate-100 rounded-lg px-4 py-2
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400/50" />
+        </label>
+
+        <!-- Campo variable según modo -->
+        <label class="block" id="wrap-cuota-variable">
+          <span id="lbl-cuota-variable" class="block text-sm font-medium text-slate-300 mb-1">📉 Cuota en Exchange (Lay)</span>
+          <input id="cuota-variable" inputmode="decimal" placeholder="1.60"
+                 class="w-full border border-slate-600 bg-slate-950 text-slate-100 rounded-lg px-4 py-2
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400/50" />
+        </label>
+
+        <!-- Comisión (solo En contra) -->
+        <label class="block" id="wrap-comision">
+          <span class="block text-sm font-medium text-slate-300 mb-1">🏦 Comisión del Exchange (%)</span>
+          <input id="comision" type="number" min="0" max="100" step="0.1" value="2.0"
+                 class="w-full border border-slate-600 bg-slate-950 text-slate-100 rounded-lg px-4 py-2
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400/50" />
+          <span class="text-[11px] text-slate-400">
+            Por defecto 2% (se aplica a las ganancias del lay).
+          </span>
+        </label>
+      </section>
+    </div>
+
+    <!-- Parámetros específicos -->
+    <div id="panel-reembolso" class="hidden mt-4 border border-emerald-500/40 rounded-xl p-4 bg-slate-900/80">
+      <h3 class="font-semibold mb-2 text-emerald-300">⚙️ Parámetros para Reembolso</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <label class="block">
+          <span class="block text-sm font-medium text-slate-300 mb-1">💵 Monto reembolsado si pierdes (€)</span>
+          <input id="reb-monto" inputmode="decimal" placeholder="10.00"
+                 class="w-full border border-slate-600 bg-slate-950 text-slate-100 rounded-lg px-4 py-2
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400/50" />
+        </label>
+        <label class="block">
+          <span class="block text-sm font-medium text-slate-300 mb-1">🔁 Retención esperada de la freebet (0-1)</span>
+          <input id="reb-retencion" inputmode="decimal" placeholder="0.75"
+                 class="w-full border border-slate-600 bg-slate-950 text-slate-100 rounded-lg px-4 py-2
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400/50" />
+        </label>
+      </div>
+    </div>
+
+    <div id="panel-rollover" class="hidden mt-4 border border-indigo-500/40 rounded-xl p-4 bg-slate-900/80">
+      <h3 class="font-semibold mb-2 text-indigo-300">⚙️ Parámetros para Rollover</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <label class="block">
+          <span class="block text-sm font-medium text-slate-300 mb-1">🎁 Importe del bono (€)</span>
+          <input id="rol-bono" inputmode="decimal" placeholder="100"
+                 class="w-full border border-slate-600 bg-slate-950 text-slate-100 rounded-lg px-4 py-2
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400/50" />
+        </label>
+        <label class="block">
+          <span class="block text-sm font-medium text-slate-300 mb-1">🔄 Rollover total requerido (€)</span>
+          <input id="rol-rollover" inputmode="decimal" placeholder="600"
+                 class="w-full border border-slate-600 bg-slate-950 text-slate-100 rounded-lg px-4 py-2
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400/50" />
+        </label>
+        <label class="block">
+          <span class="block text-sm font-medium text-slate-300 mb-1">🧲 Retención estimada tras rollover (0-1)</span>
+          <input id="rol-retencion" inputmode="decimal" placeholder="0.95"
+                 class="w-full border border-slate-600 bg-slate-950 text-slate-100 rounded-lg px-4 py-2
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400/50" />
+        </label>
+      </div>
+    </div>
+
+    <!-- Botones acción -->
+    <div class="mt-6 flex flex-wrap gap-3">
+      <button id="btn-calcular"
+              class="bg-emerald-500 text-slate-950 px-5 py-2.5 rounded-lg font-semibold hover:bg-emerald-400
+                     shadow-lg shadow-emerald-500/30 transition">
+        🔍 Calcular
+      </button>
+      <button id="btn-reset"
+              class="bg-slate-800 text-slate-100 px-4 py-2.5 rounded-lg hover:bg-slate-700 border border-slate-700">
+        ♻️ Reset
+      </button>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="hidden fixed left-1/2 -translate-x-1/2 bottom-6 z-50">
+      <div class="bg-slate-900 text-slate-50 text-sm px-4 py-2 rounded-full shadow-lg" id="toast-msg">Listo</div>
+    </div>
+
+    <!-- Resultado principal -->
+    <section id="resumen" class="hidden mt-6">
+      <section id="ev-card"
+               class="flex items-center justify-between gap-4 border border-slate-700 rounded-xl p-5 md:p-6 bg-slate-900">
+        <div class="flex items-center gap-4">
+          <span id="ev-pill"
+                class="min-w-[92px] text-center text-sm font-extrabold tracking-wide px-3 py-2 rounded-full border">
+            Rating
+          </span>
+          <div>
+            <div class="text-xs text-slate-400 mb-1">Porcentaje de valor del cruce</div>
+            <div id="ev-value" class="text-4xl md:text-5xl font-black leading-none">0,00%</div>
+          </div>
+        </div>
+        <div class="text-right">
+          <div class="text-xs text-slate-400 mb-1">Clasificación</div>
+          <div id="ev-clas" class="text-lg font-bold">—</div>
+        </div>
+      </section>
+
+      <!-- Tarjetas -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5">
+        <div class="rounded-xl p-5 border border-emerald-500/40 bg-slate-900/80">
+          <div class="text-sm font-semibold mb-2 text-slate-300">Casa 1</div>
+          <div id="card-back" class="text-xl font-bold text-slate-50">—</div>
+        </div>
+
+        <div class="rounded-xl p-5 border border-indigo-500/40 bg-slate-900/80">
+          <div class="text-sm font-semibold mb-2 text-slate-300">Ganancia Estimada</div>
+          <div id="card-gan" class="text-2xl font-black text-emerald-300">—</div>
+          <div id="card-rating" class="text-sm text-slate-300 mt-1">Rating —</div>
+        </div>
+
+        <div class="rounded-xl p-5 border border-slate-700 bg-slate-900/80">
+          <div id="lbl-tarjeta-3" class="text-sm font-semibold mb-2 text-slate-300">Exchange</div>
+          <div id="card-lay" class="text-xl font-bold text-slate-50">—</div>
+          <div id="card-riesgo" class="text-sm text-slate-300 mt-1">Riesgo: —</div>
+          <button id="btn-copy-inline"
+                  class="mt-3 w-full bg-slate-950 text-slate-100 px-3 py-2 rounded-md border border-slate-700
+                         hover:bg-slate-900 disabled:opacity-40"
+                  disabled>
+            📋 Copiar
+          </button>
+        </div>
+      </div>
+
+      <!-- Tabla escenarios -->
+      <div class="mt-6">
+        <h3 class="font-semibold mb-2 text-slate-100">
+          📊 ¿Qué pasa si gana Casa 1 o gana el otro lado?
+        </h3>
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm text-left border border-slate-800 rounded-lg overflow-hidden">
+            <thead class="bg-slate-900/80">
+              <tr>
+                <th class="px-3 py-2 text-slate-200">Resultado</th>
+                <th class="px-3 py-2 text-slate-200">Casa 1</th>
+                <th class="px-3 py-2 text-slate-200" id="th-col3">Exchange</th>
+                <th class="px-3 py-2 text-slate-200">Total</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-body" class="bg-slate-950/40 text-slate-100"></tbody>
+          </table>
+        </div>
+
+        <div class="mt-3 text-sm text-slate-300" id="diferencia-text">—</div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="py-8 bg-slate-950 border-t border-slate-800 text-slate-400">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+      <div class="mb-4 md:mb-0">
+        <p class="text-slate-500">© 2025 El Secreto del Match Betting</p>
+      </div>
+      <div class="flex space-x-4">
+        <a href="https://www.instagram.com/elsecretodelmatchbetting" target="_blank"
+           class="text-slate-400 hover:text-pink-400 transition" aria-label="Instagram">
+          <i class="fab fa-instagram text-xl"></i>
+        </a>
+        <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank"
+           class="text-slate-400 hover:text-sky-400 transition" aria-label="Grupo de Telegram">
+          <i class="fab fa-telegram text-xl"></i>
+        </a>
+        <a href="mailto:elsecretodelmatchbetting@gmail.com"
+           class="text-slate-400 hover:text-emerald-400 transition" aria-label="Contacto por correo">
+          <i class="fas fa-envelope text-xl"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
 
   <!-- LÓGICA -->
   <script>
