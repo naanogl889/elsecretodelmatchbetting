@@ -11,7 +11,7 @@
 </head>
 <body class="font-sans antialiased text-gray-100 bg-slate-950">
 
-<!-- NAV -->
+<!-- NAV (mismo estilo que Apuestas de Valor) -->
 <nav class="bg-slate-900/90 backdrop-blur border-b border-slate-800 py-4 sticky top-0 z-50">
   <div class="container mx-auto px-4 max-w-6xl">
     <div class="flex justify-between items-center">
@@ -19,21 +19,39 @@
         <a href="/index.html" class="font-medium text-slate-100 hover:text-emerald-400 transition">
           Inicio
         </a>
-        <a href="/calculadora.html" class="font-medium text-slate-300 hover:text-emerald-400 transition">
-          Calculadora Match Betting
+        <a href="/matchbetting.html" class="font-medium text-slate-200 hover:text-emerald-400 transition">
+          Gana con Matchbetting
         </a>
-        <a href="/apuestasdevalor.html" class="font-medium text-slate-300 hover:text-indigo-300 transition">
-          Apuestas de Valor
-        </a>
-      </div>
-      <div class="flex items-center space-x-4">
+
+        <!-- Dropdown calculadoras -->
+        <div class="relative group">
+          <button class="flex items-center gap-1 font-medium text-slate-200 hover:text-emerald-400 transition">
+            Calculadoras <i class="fas fa-chevron-down text-xs"></i>
+          </button>
+          <div
+            class="absolute left-0 top-full w-56 bg-slate-900 border border-slate-700 rounded-lg shadow-md
+                   invisible opacity-0 translate-y-1
+                   group-hover:visible group-hover:opacity-100 group-hover:translate-y-0
+                   group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0
+                   transition duration-150">
+            <a href="/calculadora.html"
+               class="block px-4 py-2 text-sm text-slate-100 hover:bg-slate-800">
+              Calculadora Match Betting
+            </a>
+            <a href="/calculadoraEV.html"
+               class="block px-4 py-2 text-sm text-slate-100 hover:bg-slate-800">
+              Calculadora EV
+            </a>
+          </div>
+        </div>
+
         <a href="https://t.me/Supercuotas_Ai" target="_blank"
-           class="text-slate-300 hover:text-sky-400 transition">
-          <i class="fab fa-telegram text-xl"></i>
+           class="font-medium text-slate-300 hover:text-sky-400 transition flex items-center">
+          <i class="fab fa-telegram mr-2"></i> Telegram
         </a>
         <a href="https://www.instagram.com/elsecretodelmatchbetting" target="_blank"
-           class="text-slate-300 hover:text-pink-400 transition">
-          <i class="fab fa-instagram text-xl"></i>
+           class="font-medium text-slate-300 hover:text-pink-400 transition flex items-center">
+          <i class="fab fa-instagram mr-2"></i> Instagram
         </a>
       </div>
     </div>
@@ -53,7 +71,7 @@
       </h1>
       <p class="text-lg text-slate-300 mb-8">
         El Match Betting aprovecha bonos y promociones de las casas de apuestas para generar beneficios
-        <span class="text-emerald-300 font-semibold">de forma matemática</span>, cubriendo todos los resultados de un evento. [web:29][web:36]
+        <span class="text-emerald-300 font-semibold">de forma matemática</span>, cubriendo todos los resultados de un evento.
       </p>
 
       <!-- CTA PRINCIPAL SUPER DESTACADA -->
@@ -69,7 +87,7 @@
           </span>
         </a>
         <p class="text-sm text-slate-400">
-          En ZeroAzar tienes guías, calculadoras y soporte para aplicar Match Betting paso a paso. [web:41]
+          En ZeroAzar tienes guías, calculadoras y soporte para aplicar Match Betting paso a paso.
         </p>
       </div>
     </div>
@@ -84,21 +102,21 @@
         </h2>
         <p class="text-sm text-slate-300 mb-3">
           Es una estrategia donde realizas dos apuestas opuestas sobre el mismo evento (una a favor y otra en contra)
-          utilizando bonos y freebets, de forma que el resultado del partido da igual. [web:29][web:33]
+          utilizando bonos y freebets, de forma que el resultado del partido da igual.
         </p>
         <p class="text-sm text-slate-300">
           Tu beneficio no depende de adivinar el resultado, sino de
-          <span class="text-emerald-300 font-semibold">convertir bonos en dinero real</span> mediante reglas claras. [web:36][web:41]
+          <span class="text-emerald-300 font-semibold">convertir bonos en dinero real</span> mediante reglas claras.
         </p>
 
         <div class="mt-5 grid grid-cols-2 gap-3 text-xs text-slate-300">
           <div class="bg-slate-950/60 border border-emerald-500/40 rounded-xl p-3">
             <p class="font-semibold text-emerald-300 mb-1">Riesgo controlado</p>
-            <p>Se cubren todos los resultados del evento para anular el componente aleatorio. [web:29][web:32]</p>
+            <p>Se cubren todos los resultados del evento para anular el componente aleatorio.</p>
           </div>
           <div class="bg-slate-950/60 border border-indigo-500/40 rounded-xl p-3">
             <p class="font-semibold text-indigo-300 mb-1">Basado en bonos</p>
-            <p>Las ganancias vienen de las promociones y freebets que ofrecen las casas. [web:30][web:41]</p>
+            <p>Las ganancias vienen de las promociones y freebets que ofrecen las casas.</p>
           </div>
         </div>
       </div>
@@ -124,7 +142,7 @@
             </h2>
             <p class="text-sm sm:text-base text-slate-200 max-w-xl">
               ZeroAzar reúne en una sola plataforma las herramientas, alertas y guías que necesitas para hacer Match Betting
-              de forma ordenada y rentable, sin volverte loco comparando cuotas. [web:41][web:38]
+              de forma ordenada y rentable, sin volverte loco comparando cuotas.
             </p>
           </div>
 
@@ -140,7 +158,7 @@
               </span>
             </a>
             <p class="mt-3 text-[11px] text-emerald-200 text-center">
-              Usa siempre este enlace para asegurarte de acceder al servicio correcto:
+              Usa siempre este enlace:
               <span class="break-all underline decoration-emerald-400/60 decoration-dotted">
                 https://zeroazar.com?fpr=javier90
               </span>
@@ -160,12 +178,12 @@
         Cómo se gana dinero con Match Betting
       </h2>
       <p class="text-slate-300 mb-4">
-        La idea es sencilla: cuando una casa de apuestas te da un bono o una apuesta gratis, tú haces una apuesta a favor
-        en esa casa y una apuesta en contra en otra casa o exchange, de forma que siempre cubras todas las opciones. [web:29][web:32]
+        La idea es sencilla: cuando una casa de apuestas te da un bono o una apuesta gratis, haces una apuesta a favor
+        en esa casa y otra en contra en otra plataforma, de forma que siempre cubras todas las opciones.
       </p>
       <p class="text-slate-300 mb-4">
         El resultado del partido deja de importar: lo que te interesa es
-        <span class="text-emerald-300 font-semibold">desbloquear el bono</span> y convertirlo en dinero real mediante apuestas bien calculadas. [web:30][web:36]
+        <span class="text-emerald-300 font-semibold">desbloquear el bono</span> y convertirlo en dinero real mediante apuestas bien calculadas.
       </p>
 
       <div class="mt-6 space-y-4">
@@ -176,7 +194,7 @@
           <div>
             <p class="font-semibold text-slate-100 mb-1">Aprovechas bonos y freebets</p>
             <p class="text-sm text-slate-300">
-              Las casas ofrecen dinero extra para que apuestes; el Match Betting usa esas promociones a tu favor. [web:30][web:41]
+              Las casas ofrecen dinero extra para que apuestes; el Match Betting usa esas promociones a tu favor.
             </p>
           </div>
         </div>
@@ -188,7 +206,7 @@
           <div>
             <p class="font-semibold text-slate-100 mb-1">Cubres todos los resultados</p>
             <p class="text-sm text-slate-300">
-              Realizas una apuesta a favor en la casa del bono y otra en contra en otra plataforma para anular el riesgo. [web:29][web:33]
+              Realizas una apuesta a favor en la casa del bono y otra en contra en otra plataforma para anular el riesgo.
             </p>
           </div>
         </div>
@@ -200,7 +218,7 @@
           <div>
             <p class="font-semibold text-slate-100 mb-1">Beneficio repetible mes a mes</p>
             <p class="text-sm text-slate-300">
-              Repitiendo el proceso con distintas promos, se puede generar un ingreso constante y medible. [web:36][web:38]
+              Repitiendo el proceso con distintas promos, se puede generar un ingreso constante y medible.
             </p>
           </div>
         </div>
@@ -218,19 +236,19 @@
             <span class="mt-1 text-emerald-300">
               <i class="fas fa-check-circle"></i>
             </span>
-            <span>Centraliza las oportunidades de bonos, para que no pierdas tiempo comparando webs manualmente. [web:34][web:41]</span>
+            <span>Centraliza las oportunidades de bonos, para que no pierdas tiempo comparando webs manualmente.</span>
           </li>
           <li class="flex gap-3">
             <span class="mt-1 text-emerald-300">
               <i class="fas fa-check-circle"></i>
             </span>
-            <span>Incluye guías y calculadoras para que sigas cada movimiento con números claros, sin improvisar. [web:30][web:41]</span>
+            <span>Incluye guías y calculadoras para que sigas cada movimiento con números claros, sin improvisar.</span>
           </li>
           <li class="flex gap-3">
             <span class="mt-1 text-emerald-300">
               <i class="fas fa-check-circle"></i>
             </span>
-            <span>Te ayuda a controlar el bank y evitar errores típicos de principiantes, como no cubrir bien un resultado. [web:32][web:36]</span>
+            <span>Te ayuda a controlar el bank y evitar errores típicos de principiantes, como no cubrir bien un resultado.</span>
           </li>
         </ul>
 
@@ -241,7 +259,7 @@
             EMPEZAR EN ZEROAZAR
           </a>
           <p class="mt-2 text-[11px] text-slate-400 text-center">
-            Acceso recomendado desde este enlace para asegurar la configuración correcta:
+            Acceso recomendado desde este enlace:
             <span class="underline decoration-emerald-400/60 decoration-dotted">
               zeroazar.com?fpr=javier90
             </span>
@@ -260,7 +278,7 @@
     </h2>
     <p class="text-slate-300 mb-6 max-w-2xl mx-auto">
       Si te tomas esto como un sistema y sigues las guías, el Match Betting puede ser una fuente sólida de ingresos adicionales,
-      siempre que respetes las reglas y gestiones bien tu bank. [web:36][web:38]
+      siempre que respetes las reglas y gestiones bien tu bank.
     </p>
 
     <a href="https://zeroazar.com?fpr=javier90"
@@ -273,12 +291,12 @@
     </a>
 
     <p class="mt-4 text-[11px] text-slate-500">
-      El Match Betting se basa en matemáticas y gestión de riesgo; no es un juego de azar impulsivo. [web:29][web:44]
+      El Match Betting se basa en matemáticas y gestión de riesgo; no es un juego de azar impulsivo.
     </p>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- FOOTER (mismo que Apuestas de Valor) -->
 <footer class="py-8 bg-slate-950 border-t border-slate-800 text-slate-400">
   <div class="container mx-auto px-4 max-w-6xl">
     <div class="flex flex-col md:flex-row justify-between items-center">
@@ -290,7 +308,7 @@
            class="text-slate-400 hover:text-pink-400 transition">
           <i class="fab fa-instagram text-xl"></i>
         </a>
-        <a href="https://t.me/Supercuotas_Ai" target="_blank"
+        <a href="https://t.me/+5BkA66buCBdlOTc0" target="_blank"
            class="text-slate-400 hover:text-sky-400 transition">
           <i class="fab fa-telegram text-xl"></i>
         </a>
